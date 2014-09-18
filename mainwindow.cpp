@@ -10,8 +10,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->label->setStyleSheet("QLabel {color : green;}");
     ptr_logfile = new logfile;
     ptr_currentdata = new CurrentData;
-    ptr_logfile->setlogevent("hey it works");
-    ptr_logfile->setlogevent("multiple times");
+    ptr_control = new control;
+    ptr_control->init(ptr_logfile,ptr_currentdata);
+    QTimer *timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(update()));
+    timer->start(10000); //every 10 second
 }
 
 MainWindow::~MainWindow()
@@ -49,4 +52,7 @@ void MainWindow::on_showlog_clicked()
     ptr_ShowLog->setAttribute(Qt::WA_DeleteOnClose);
     ptr_ShowLog->init(ptr_logfile);
     ptr_ShowLog->show();
+}
+void MainWindow::update(){
+    ptr_control->checkvalues();
 }
