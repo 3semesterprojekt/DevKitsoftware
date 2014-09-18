@@ -1,0 +1,43 @@
+#-------------------------------------------------
+#
+# Project created by QtCreator 2014-09-06T05:43:29
+#
+#-------------------------------------------------
+
+QT       += core gui
+
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+TARGET = devkitsoftware
+    target.file = devkitsoftware
+    target.path = /home/root
+INSTALLS += target
+TEMPLATE = app
+
+
+SOURCES += main.cpp\
+        mainwindow.cpp \
+    showdata.cpp \
+    changeauto.cpp \
+    setmanual.cpp \
+    showlog.cpp \
+    currentdata.cpp \
+    logfile.cpp \
+    connection.cpp \
+    control.cpp
+
+HEADERS  += mainwindow.h \
+    showdata.h \
+    changeauto.h \
+    setmanual.h \
+    showlog.h \
+    currentdata.h \
+    logfile.h \
+    connection.h \
+    control.h
+
+FORMS    += mainwindow.ui \
+    showdata.ui \
+    changeauto.ui \
+    setmanual.ui \
+    showlog.ui
