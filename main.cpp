@@ -1,11 +1,11 @@
 #include "mainwindow.h"
 #include <QApplication>
-#include <QWSServer>
+//#include <QWSServer>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    QWSServer::setCursorVisible(false);     //hide cursor
+//    QWSServer::setCursorVisible(false);     //hide cursor
     MainWindow w;
     w.show();
 

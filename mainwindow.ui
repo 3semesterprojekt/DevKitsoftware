@@ -120,7 +120,7 @@
     <property name="font">
      <font>
       <family>gargi</family>
-      <pointsize>17</pointsize>
+      <pointsize>14</pointsize>
       <weight>75</weight>
       <italic>true</italic>
       <bold>true</bold>

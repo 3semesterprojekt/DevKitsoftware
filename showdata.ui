@@ -77,7 +77,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Elektric resistance in kΩ</string>
+    <string>Ground humidity in %</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">

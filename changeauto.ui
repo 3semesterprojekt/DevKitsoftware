@@ -127,7 +127,7 @@ height: 20px;
     </font>
    </property>
    <property name="text">
-    <string>Elektric resistance in kΩ</string>
+    <string>Ground humidity in %</string>
    </property>
   </widget>
   <widget class="QSlider" name="mintempSlider">
@@ -144,6 +144,12 @@ height: 20px;
    </property>
    <property name="styleSheet">
     <string notr="true"/>
+   </property>
+   <property name="minimum">
+    <number>-10</number>
+   </property>
+   <property name="maximum">
+    <number>40</number>
    </property>
    <property name="sliderPosition">
     <number>10</number>
@@ -213,6 +219,12 @@ height: 20px;
    </property>
    <property name="styleSheet">
     <string notr="true"/>
+   </property>
+   <property name="minimum">
+    <number>-10</number>
+   </property>
+   <property name="maximum">
+    <number>40</number>
    </property>
    <property name="orientation">
     <enum>Qt::Vertical</enum>

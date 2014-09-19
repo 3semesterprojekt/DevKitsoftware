@@ -11,10 +11,19 @@ class connection
 {
 public:
     connection();
+    int gettemp();
+    int getwater();
+    void setheater(bool);
+    void setwindow(bool);
+    void outwater(int);
 
 private:
-
-
+    /*
+     * write function
+     * reade function
+     * setup fuction
+     * connectionhandler/connectionide variables
+    */
 };
 
 #endif // CONNECTION_H
