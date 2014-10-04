@@ -25,18 +25,17 @@ public:
     void givewater();
 
 private:
-    unsigned long transfer(int, unsigned long);
-    int convert(unsigned long);
+    int transfer(int, int);
 
     static const int tempdev = 1;
     static const int waterdev = 2;
-    static const unsigned long gettempcmd = 0;
-    static const unsigned long getwatercmd = 0;
-    static const unsigned long openwindowcmd = 0;
-    static const unsigned long closewindowcmd = 0;
-    static const unsigned long startheatercmd = 0;
-    static const unsigned long stopheatercmd = 0;
-    static const unsigned long changewatercmd = 0;
+    static const int gettempcmd = 0x01;
+    static const int getwatercmd = 0x02;
+    static const int openwindowcmd = 0x05;
+    static const int closewindowcmd = 0x06;
+    static const int startheatercmd = 0x03;
+    static const int stopheatercmd = 0x04;
+    static const int addwatercmd = 0x07;
 };
 
 #endif // CONNECTION_H

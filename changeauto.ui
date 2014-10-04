@@ -60,6 +60,9 @@
    <property name="focusPolicy">
     <enum>Qt::NoFocus</enum>
    </property>
+   <property name="maximum">
+    <number>100</number>
+   </property>
    <property name="orientation">
     <enum>Qt::Vertical</enum>
    </property>
@@ -95,7 +98,7 @@ height: 20px;
   <widget class="QLabel" name="templabel">
    <property name="geometry">
     <rect>
-     <x>290</x>
+     <x>300</x>
      <y>70</y>
      <width>161</width>
      <height>40</height>
@@ -114,7 +117,7 @@ height: 20px;
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>53</x>
+     <x>65</x>
      <y>70</y>
      <width>171</width>
      <height>40</height>
@@ -127,7 +130,7 @@ height: 20px;
     </font>
    </property>
    <property name="text">
-    <string>Elektric resistance in kΩ</string>
+    <string>Humidity in %</string>
    </property>
   </widget>
   <widget class="QSlider" name="mintempSlider">
@@ -144,6 +147,12 @@ height: 20px;
    </property>
    <property name="styleSheet">
     <string notr="true"/>
+   </property>
+   <property name="minimum">
+    <number>-10</number>
+   </property>
+   <property name="maximum">
+    <number>40</number>
    </property>
    <property name="sliderPosition">
     <number>10</number>
@@ -213,6 +222,12 @@ height: 20px;
    </property>
    <property name="styleSheet">
     <string notr="true"/>
+   </property>
+   <property name="minimum">
+    <number>-10</number>
+   </property>
+   <property name="maximum">
+    <number>40</number>
    </property>
    <property name="orientation">
     <enum>Qt::Vertical</enum>

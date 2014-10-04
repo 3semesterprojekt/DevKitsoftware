@@ -3,7 +3,7 @@
 #define TEMPUNDERMAX 2
 control::control()
 {
-    waterqueue = 6;
+    waterqueue = 2;
 }
 
 void control::init(logfile * ptr_log, CurrentData * ptr_data){
@@ -14,8 +14,8 @@ void control::init(logfile * ptr_log, CurrentData * ptr_data){
 
 
 void control::checkvalues(){
-    ptr_currentdata->setcurrenttemp(ptr_connection->gettemp());
-    ptr_currentdata->setcurrentwater(ptr_connection->getwater());
+    //ptr_currentdata->setcurrenttemp(ptr_connection->gettemp());
+    //ptr_currentdata->setcurrentwater(ptr_connection->getwater());
 
     if(ptr_currentdata->getoverrideheater() == false && ptr_currentdata->getautotemp() == true){ //heater on auto
         if(ptr_currentdata->getcurrenttemp() < ptr_currentdata->getmintemp() && ptr_currentdata->getcurrentheaterstate() == false){ //temperatur is lower that mintemp and heater is off

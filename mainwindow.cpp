@@ -54,4 +54,19 @@ void MainWindow::on_showlog_clicked()
 }
 void MainWindow::update(){
     ptr_control->checkvalues();
+    //qDebug() << "VALUES:" << endl;
+    //qDebug() << ptr_currentdata->getautotemp()<< endl;
+    //qDebug() << ptr_currentdata->getautowater()<< endl;
+    //qDebug() << ptr_currentdata->getcurrentheaterstate()<< endl;
+    //qDebug() << ptr_currentdata->getcurrenttemp()<< endl;
+    //qDebug() << ptr_currentdata->getcurrentwater()<< endl;
+    //qDebug() << ptr_currentdata->getcurrentwindowstate()<< endl;
+    //qDebug() << ptr_currentdata->getmanualheaterstate()<< endl;
+    //qDebug() << ptr_currentdata->getmanualwindowstate()<< endl;
+    //qDebug() << ptr_currentdata->getmaxtemp()<< endl;
+    //qDebug() << ptr_currentdata->getmintemp()<< endl;
+    //qDebug() << ptr_currentdata->getoverrideheater()<< endl;
+    //qDebug() << ptr_currentdata->getoverrideheater()<< endl;
+    //qDebug() << ptr_currentdata->getoverridewindow()<< endl;
+    //qDebug() << ptr_currentdata->gettargetwater()<< endl;
 }

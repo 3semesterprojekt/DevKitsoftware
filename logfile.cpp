@@ -23,7 +23,14 @@ void logfile::setlogevent(QString string){
 //  tmp.append("]");
     tmp.append(string);
     tmp.append("\n");
-    eventlog.push_back(tmp);
+    if(eventlog.size() < eventlog.max_size()){
+        eventlog.push_back(tmp);
+    }
+    else{
+        savetofile();
+        clearlog();
+        eventlog.push_back(tmp);
+    }
     return;
 }
 
@@ -59,4 +66,8 @@ bool logfile::savetofile(){
     else{
         return false;
     }
+}
+
+void logfile::clearlog(){
+    eventlog.clear();
 }

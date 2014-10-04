@@ -14,6 +14,7 @@ public:
     QString getlogentry(unsigned int);
     void setlogevent(QString);
     bool savetofile();
+    void clearlog();
 private:
     QString gettimestamp(bool);
     std::vector<QString> eventlog;

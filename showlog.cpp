@@ -44,3 +44,12 @@ void showlog::update(){
     }
 
 }
+
+void showlog::on_clearlog_clicked()
+{
+    ptr_logfile->clearlog();
+    lastentry = 0;
+    ui->logviewer->clear();
+    QTextCursor cursor(ui->logviewer->textCursor());
+    cursor.movePosition(QTextCursor::End,QTextCursor::MoveAnchor);
+}

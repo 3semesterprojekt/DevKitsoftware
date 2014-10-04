@@ -51,6 +51,28 @@
     <bool>true</bool>
    </property>
   </widget>
+  <widget class="QPushButton" name="clearlog">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>60</y>
+     <width>81</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="text">
+    <string>Clear Log</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

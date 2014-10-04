@@ -54,7 +54,7 @@
     <enum>Qt::NoFocus</enum>
    </property>
    <property name="text">
-    <string>Add 0ml of Water</string>
+    <string>Add 0dl of Water</string>
    </property>
   </widget>
   <widget class="QPushButton" name="windowButton">
