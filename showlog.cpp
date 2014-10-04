@@ -9,7 +9,7 @@ showlog::showlog(QWidget *parent) :
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint);   //hide title bar
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
-    timer->start(500);
+    timer->start(1000); //updated every second
 }
 
 showlog::~showlog()
@@ -25,6 +25,7 @@ void showlog::on_return_2_clicked()
 void showlog::init(logfile * ptr){
     ptr_logfile = ptr;
     ui->logviewer->setPlainText("");
+    lastentry = ptr_logfile->getlognumber();
     for(unsigned int i = 0; i< ptr_logfile->getlognumber(); i++){
         QTextCursor cursor(ui->logviewer->textCursor());
         cursor.movePosition(QTextCursor::End,QTextCursor::MoveAnchor);
@@ -34,6 +35,12 @@ void showlog::init(logfile * ptr){
 }
 
 void showlog::update(){
-    //code to update and redraw any new log entries
+    while(lastentry < ptr_logfile->getlognumber()){
+        QTextCursor cursor(ui->logviewer->textCursor());
+        cursor.movePosition(QTextCursor::End,QTextCursor::MoveAnchor);
+        ui->logviewer->setTextCursor(cursor);
+        ui->logviewer->insertPlainText(ptr_logfile->getlogentry(lastentry));
+        lastentry++;
+    }
 
 }

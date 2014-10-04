@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "currentdata.h"
+#include "control.h"
 #include <QTimer>
 
 namespace Ui {
@@ -16,7 +17,7 @@ class SetManual : public QWidget
 public:
     explicit SetManual(QWidget *parent = 0);
     ~SetManual();
-    void init(CurrentData*);
+    void init(CurrentData*, control *);
 
 private slots:
     void on_return_2_clicked();
@@ -31,6 +32,7 @@ private slots:
 private:
     Ui::SetManual *ui;
     CurrentData* ptr_currentdata;
+    control* ptr_control;
     QTimer *timer;
 };
 

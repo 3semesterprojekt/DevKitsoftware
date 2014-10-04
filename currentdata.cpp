@@ -2,11 +2,11 @@
 
 CurrentData::CurrentData(){
 
-    mintemp = 15;
-    maxtemp = 25;
+    mintemp = 0;
+    maxtemp = 0;
     currenttemp = 23;
-    targetwater = 30;
-    currentwater = 19;
+    targetwater = 0;
+    currentwater = 430;
     currentwindowstate = 0;
     currentheaterstate = 0;
     overridewindow = 0;

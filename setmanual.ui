@@ -102,6 +102,9 @@
    <property name="styleSheet">
     <string notr="true"/>
    </property>
+   <property name="maximum">
+    <number>10</number>
+   </property>
    <property name="orientation">
     <enum>Qt::Vertical</enum>
    </property>

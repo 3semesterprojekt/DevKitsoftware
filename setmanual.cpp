@@ -19,8 +19,9 @@ void SetManual::on_return_2_clicked()
     this->close();
 }
 
-void SetManual::init(CurrentData * ptr){
+void SetManual::init(CurrentData * ptr, control * ptr2){
     ptr_currentdata = ptr;
+    ptr_control = ptr2;
     ui->windowButton->setEnabled(ptr_currentdata->getoverridewindow());
     ui->overrideWindowBox->setChecked(ptr_currentdata->getoverridewindow());
     ui->heaterButton->setEnabled(ptr_currentdata->getoverrideheater());
@@ -75,6 +76,7 @@ void SetManual::on_windowButton_clicked()
 
 void SetManual::on_waterButton_clicked()
 {
+    ptr_control->dispensewater(ui->waterSlider->value());
     ui->waterButton->setText("Adding Water ...");
     ui->waterButton->setEnabled(false);
     timer  = new QTimer(this);

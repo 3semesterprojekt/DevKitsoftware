@@ -18,9 +18,9 @@ unsigned int logfile::getlognumber(){
 
 void logfile::setlogevent(QString string){
     QString tmp = "";
-    tmp.append("[");
-    tmp.append(gettimestamp(true));
-    tmp.append("]");
+//  tmp.append("[");
+//  tmp.append(gettimestamp(true));
+//  tmp.append("]");
     tmp.append(string);
     tmp.append("\n");
     eventlog.push_back(tmp);

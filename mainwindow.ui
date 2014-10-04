@@ -120,7 +120,7 @@
     <property name="font">
      <font>
       <family>gargi</family>
-      <pointsize>14</pointsize>
+      <pointsize>26</pointsize>
       <weight>75</weight>
       <italic>true</italic>
       <bold>true</bold>
@@ -128,7 +128,7 @@
      </font>
     </property>
     <property name="text">
-     <string>This really fancy name/logo</string>
+     <string>Greenhouse 3000</string>
     </property>
    </widget>
   </widget>

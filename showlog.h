@@ -25,6 +25,7 @@ private slots:
 private:
     Ui::showlog *ui;
     logfile* ptr_logfile;
+    unsigned int lastentry;
 };
 
 #endif // SHOWLOG_H
