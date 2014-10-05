@@ -23,8 +23,8 @@ SOURCES += main.cpp\
     showlog.cpp \
     currentdata.cpp \
     logfile.cpp \
-    connection.cpp \
-    control.cpp
+    control.cpp \
+    connection.cpp
 
 HEADERS  += mainwindow.h \
     showdata.h \
@@ -33,8 +33,8 @@ HEADERS  += mainwindow.h \
     showlog.h \
     currentdata.h \
     logfile.h \
-    connection.h \
-    control.h
+    control.h \
+    connection.h
 
 FORMS    += mainwindow.ui \
     showdata.ui \

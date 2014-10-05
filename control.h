@@ -17,6 +17,7 @@ private:
     CurrentData* ptr_currentdata;
     connection* ptr_connection;
     int waterqueue;
+    qint64 lastwater;
 
 };
 

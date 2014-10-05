@@ -1,5 +1,4 @@
 #include "connection.h"
-#include <QDebug>
 
 connection::connection()
 {
@@ -26,7 +25,7 @@ int connection::transfer(int device, int cmd){
     int lsb_setting = 0;    //0 means MSb first, 1 means LSb first
     ioctl(spiDev, SPI_IOC_WR_LSB_FIRST, &lsb_setting);
 
-    int bits_per_word = 0; // 0 equals default (8)
+    int bits_per_word = 8; // 0 equals default (8)
     ioctl(spiDev, SPI_IOC_WR_BITS_PER_WORD, &bits_per_word);
 
     struct spi_ioc_transfer xfer;
@@ -58,7 +57,7 @@ int connection::transfer(int device, int cmd){
     xfer.speed_hz = 1 * 1000 * 1000;
     xfer.cs_change = 1;
     xfer.bits_per_word = 8;
-    xfer.delay_usecs = 0; //todo: set corect delay
+    xfer.delay_usecs = 0; //todo: set correct delay
     res = ioctl(spiDev, SPI_IOC_MESSAGE(1), &xfer);
 
     return (int)rxbuffer[0];

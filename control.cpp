@@ -3,7 +3,8 @@
 #define TEMPUNDERMAX 2
 control::control()
 {
-    waterqueue = 2;
+    waterqueue = 0;
+    lastwater = QDateTime::currentMSecsSinceEpoch() - (2 * 60 * 1000);
 }
 
 void control::init(logfile * ptr_log, CurrentData * ptr_data){
@@ -14,6 +15,7 @@ void control::init(logfile * ptr_log, CurrentData * ptr_data){
 
 
 void control::checkvalues(){
+    //todo: calls are commentet out to debug
     //ptr_currentdata->setcurrenttemp(ptr_connection->gettemp());
     //ptr_currentdata->setcurrentwater(ptr_connection->getwater());
 
@@ -37,7 +39,7 @@ void control::checkvalues(){
     }
 
     if(ptr_currentdata->getoverridewindow() == false && ptr_currentdata->getautotemp() == true){ //window on auto
-        if(ptr_currentdata->getcurrenttemp() > ptr_currentdata->getmaxtemp()){ //temperatur is higher than maxtemp
+        if(ptr_currentdata->getcurrenttemp() > ptr_currentdata->getmaxtemp() && ptr_currentdata->getcurrentwindowstate() == false){ //temperatur is higher than maxtemp and window is closed
             ptr_connection->setwindow(true);    //open window
             ptr_currentdata->setcurrentwindowstate(true);
             ptr_logfile->setlogevent("Window has been opened");
@@ -55,17 +57,24 @@ void control::checkvalues(){
     }
 
     if(ptr_currentdata->getautowater() == true && ptr_currentdata->getcurrentwater() < ptr_currentdata->gettargetwater()){ //water is on auto and to low
-        //todo: add delay between 2 dispenses
-        ptr_connection->givewater();    //dispense water
-        ptr_logfile->setlogevent("Dispenced 1dl of water");
+        if(QDateTime::currentMSecsSinceEpoch() - lastwater >= (2 * 60 *1000)){ //only dispence water every 2 minutes
+            waterqueue++;
+            lastwater = QDateTime::currentMSecsSinceEpoch();
+        }
     }
     if( waterqueue > 0){
         ptr_connection->givewater();    //despense water
         waterqueue--;
         QString tmp = "";
-        tmp.append("Dispenced 1dl of water with ");
-        tmp.append(QString::number(waterqueue));
-        tmp.append("dl stil to go");
+        if(waterqueue == 0){
+            tmp.append("Dispenced 1dl of water");
+        }
+        else{
+            tmp.append("Dispenced 1dl of water with ");
+            tmp.append(QString::number(waterqueue));
+            tmp.append("dl stil to go");
+        }
+
         ptr_logfile->setlogevent(tmp);
     }
 }
