@@ -1,4 +1,5 @@
 #include "connection.h"
+#include <QDebug>
 
 connection::connection()
 {
@@ -9,6 +10,7 @@ int connection::transfer(int device, int cmd){
 
     int res = 0;
     int spiDev;
+    int len = 1;
     if(device == 1){
         spiDev = open("/dev/spidev1.0", O_RDWR);
     }
@@ -16,6 +18,8 @@ int connection::transfer(int device, int cmd){
         spiDev = open("/dev/spidev1.1", O_RDWR);
     }
     else{
+        qDebug() << "ERROR: wrong spidev device chosen! ";
+        exit(0);
         //just hope it doesn't happend
     }
 
@@ -30,8 +34,8 @@ int connection::transfer(int device, int cmd){
 
     struct spi_ioc_transfer xfer;
     memset(&xfer, 0, sizeof(xfer));
-    char txbuffer[1];
-    char rxbuffer[1];
+    char txbuffer[len];
+    char rxbuffer[len];
     switch(cmd){
     case 1: txbuffer[0] = 0x01; //gettemp
         break;
@@ -53,14 +57,20 @@ int connection::transfer(int device, int cmd){
     }
     xfer.tx_buf = (unsigned long)txbuffer;
     xfer.rx_buf = (unsigned long)rxbuffer;
-    xfer.len = 1;
+    xfer.len = len;
     xfer.speed_hz = 1 * 1000 * 1000;
     xfer.cs_change = 1;
-    xfer.bits_per_word = 8;
+    xfer.bits_per_word = bits_per_word;
     xfer.delay_usecs = 0; //todo: set correct delay
     res = ioctl(spiDev, SPI_IOC_MESSAGE(1), &xfer);
+    qDebug() << (int)rxbuffer[0];
 
-    return (int)rxbuffer[0];
+    if(res == len){
+        return (int)rxbuffer[0];
+    }
+    else{
+        return -1;
+    }
 }
 
 int connection::gettemp(){
