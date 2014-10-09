@@ -27,7 +27,7 @@ private slots:
     void on_windowButton_clicked();
     void on_waterButton_clicked();
     void on_waterSlider_valueChanged(int value);
-    void waterdone();
+    void waterDone();
 
 private:
     Ui::SetManual *ui;

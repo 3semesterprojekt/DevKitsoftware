@@ -22,17 +22,17 @@ void SetManual::on_return_2_clicked()
 void SetManual::init(CurrentData * ptr, control * ptr2){
     ptr_currentdata = ptr;
     ptr_control = ptr2;
-    ui->windowButton->setEnabled(ptr_currentdata->getoverridewindow());
-    ui->overrideWindowBox->setChecked(ptr_currentdata->getoverridewindow());
-    ui->heaterButton->setEnabled(ptr_currentdata->getoverrideheater());
-    ui->overrideHeaterBox->setChecked(ptr_currentdata->getoverrideheater());
-    if(ptr_currentdata->getmanualheaterstate()){
+    ui->windowButton->setEnabled(ptr_currentdata->getOverrideWindow());
+    ui->overrideWindowBox->setChecked(ptr_currentdata->getOverrideWindow());
+    ui->heaterButton->setEnabled(ptr_currentdata->getOverrideHeater());
+    ui->overrideHeaterBox->setChecked(ptr_currentdata->getOverrideHeater());
+    if(ptr_currentdata->getManualHeaterState()){
         ui->heaterButton->setText("Stop Heater");
     }
     else{
         ui->heaterButton->setText("Start Heater");
     }
-    if(ptr_currentdata->getmanualwindowstate()){
+    if(ptr_currentdata->getManualWindowState()){
         ui->windowButton->setText("Close Windows");
     }
     else{
@@ -43,19 +43,19 @@ void SetManual::init(CurrentData * ptr, control * ptr2){
 void SetManual::on_overrideHeaterBox_toggled(bool checked)
 {
     ui->heaterButton->setEnabled(checked);
-    ptr_currentdata->setoverrideheater(checked);
+    ptr_currentdata->setOverrideHeater(checked);
 }
 
 void SetManual::on_overrideWindowBox_toggled(bool checked)
 {
     ui->windowButton->setEnabled(checked);
-    ptr_currentdata->setoverridewindow(checked);
+    ptr_currentdata->setOverrideWindow(checked);
 }
 
 void SetManual::on_heaterButton_clicked()
 {
-    ptr_currentdata->setmanualheaterstate(!ptr_currentdata->getmanualheaterstate());
-    if(ptr_currentdata->getmanualheaterstate()){
+    ptr_currentdata->setManualHeaterState(!ptr_currentdata->getManualHeaterState());
+    if(ptr_currentdata->getManualHeaterState()){
         ui->heaterButton->setText("Stop Heater");
     }
     else{
@@ -65,8 +65,8 @@ void SetManual::on_heaterButton_clicked()
 
 void SetManual::on_windowButton_clicked()
 {
-    ptr_currentdata->setmanualwindowstate(!ptr_currentdata->getmanualwindowstate());
-    if(ptr_currentdata->getmanualwindowstate()){
+    ptr_currentdata->setManualWindowState(!ptr_currentdata->getManualWindowState());
+    if(ptr_currentdata->getManualWindowState()){
         ui->windowButton->setText("Close Windows");
     }
     else{
@@ -76,11 +76,11 @@ void SetManual::on_windowButton_clicked()
 
 void SetManual::on_waterButton_clicked()
 {
-    ptr_control->dispensewater(ui->waterSlider->value());
+    ptr_control->dispenseWater(ui->waterSlider->value());
     ui->waterButton->setText("Adding Water ...");
     ui->waterButton->setEnabled(false);
     timer  = new QTimer(this);
-    QTimer::singleShot(5000, this, SLOT(waterdone()));
+    QTimer::singleShot(5000, this, SLOT(waterDone()));
 }
 
 void SetManual::on_waterSlider_valueChanged(int value)
@@ -91,7 +91,7 @@ void SetManual::on_waterSlider_valueChanged(int value)
     ui->waterButton->setText(s);
 }
 
-void SetManual::waterdone(){
+void SetManual::waterDone(){
     QString s = "Add 0 ml of water ";
     ui->waterButton->setText(s);
     ui->waterButton->setEnabled(true);

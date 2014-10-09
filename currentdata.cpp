@@ -2,122 +2,122 @@
 
 CurrentData::CurrentData(){
 
-    mintemp = 20;
-    maxtemp = 26;
-    currenttemp = 23;
-    targetwater = 45;
-    currentwater = 47;
-    currentwindowstate = 0;
-    currentheaterstate = 0;
-    overridewindow = 0;
-    overrideheater = 0;
-    manualwindowstate = 0;
-    manualheaterstate = 0;
-    autotemp = 1;
-    autowater = 1;
+    minTemp = 20;
+    maxTemp = 26;
+    currentTemp = 23;
+    targetHumidity = 45;
+    currentHumidity = 47;
+    currentWindowState = 0;
+    currentHeaterState = 0;
+    overrideWindow = 0;
+    overrideHeater = 0;
+    manualWindowState = 0;
+    manualHeaterState = 0;
+    autoTemp = 1;
+    autoHumidity = 1;
 }
 
-int CurrentData::getmintemp(){
-    return mintemp;
+int CurrentData::getMinTemp(){
+    return minTemp;
 }
 
-void CurrentData::setmintemp(int tmp){
-    mintemp = tmp;
+void CurrentData::setMinTemp(int tmp){
+    minTemp = tmp;
 }
 
-int CurrentData::getmaxtemp(){
-    return maxtemp;
+int CurrentData::getMaxTemp(){
+    return maxTemp;
 }
 
-void CurrentData::setmaxtemp(int tmp){
-    maxtemp = tmp;
+void CurrentData::setMaxTemp(int tmp){
+    maxTemp = tmp;
 }
 
-int CurrentData::getcurrenttemp(){
-    return currenttemp;
+int CurrentData::getCurrentTemp(){
+    return currentTemp;
 }
 
-void CurrentData::setcurrenttemp(int tmp){
-    currenttemp = tmp;
+void CurrentData::setCurrentTemp(int tmp){
+    currentTemp = tmp;
 }
 
-int CurrentData::gettargetwater(){
-    return targetwater;
+int CurrentData::getTargetHumidity(){
+    return targetHumidity;
 }
 
-void CurrentData::settargetwater(int tmp){
-    targetwater = tmp;
+void CurrentData::setTargetHumidity(int tmp){
+    targetHumidity = tmp;
 }
 
-int CurrentData::getcurrentwater(){
-    return currentwater;
+int CurrentData::getCurrentHumidity(){
+    return currentHumidity;
 }
 
-void CurrentData::setcurrentwater(int tmp){
-    currentwater = tmp;
+void CurrentData::setCurrentHumidity(int tmp){
+    currentHumidity = tmp;
 }
 
-bool CurrentData::getcurrentwindowstate(){
-    return currentwindowstate;
+bool CurrentData::getCurrentWindowState(){
+    return currentWindowState;
 }
 
-void CurrentData::setcurrentwindowstate(bool tmp){
-    currentwindowstate = tmp;
+void CurrentData::setCurrentWindowState(bool tmp){
+    currentWindowState = tmp;
 }
 
-bool CurrentData::getcurrentheaterstate(){
-    return currentheaterstate;
+bool CurrentData::getCurrentHeaterState(){
+    return currentHeaterState;
 }
 
-void CurrentData::setcurrentheaterstate(bool tmp){
-    currentheaterstate = tmp;
+void CurrentData::setCurrentHeaterState(bool tmp){
+    currentHeaterState = tmp;
 }
 
-bool CurrentData::getoverridewindow(){
-    return overridewindow;
+bool CurrentData::getOverrideWindow(){
+    return overrideWindow;
 }
 
-void CurrentData::setoverridewindow(bool tmp){
-    overridewindow = tmp;
+void CurrentData::setOverrideWindow(bool tmp){
+    overrideWindow = tmp;
 }
 
-bool CurrentData::getoverrideheater(){
-    return overrideheater;
+bool CurrentData::getOverrideHeater(){
+    return overrideHeater;
 }
 
-void CurrentData::setoverrideheater(bool tmp){
-    overrideheater = tmp;
+void CurrentData::setOverrideHeater(bool tmp){
+    overrideHeater = tmp;
 }
 
-bool CurrentData::getmanualwindowstate(){
-    return manualwindowstate;
+bool CurrentData::getManualWindowState(){
+    return manualWindowState;
 }
 
-void CurrentData::setmanualwindowstate(bool tmp){
-    manualwindowstate = tmp;
+void CurrentData::setManualWindowState(bool tmp){
+    manualWindowState = tmp;
 }
 
-bool CurrentData::getmanualheaterstate(){
-    return manualheaterstate;
+bool CurrentData::getManualHeaterState(){
+    return manualHeaterState;
 }
 
-void CurrentData::setmanualheaterstate(bool tmp){
-    manualheaterstate = tmp;
+void CurrentData::setManualHeaterState(bool tmp){
+    manualHeaterState = tmp;
 }
 
-bool CurrentData::getautotemp(){
-    return autotemp;
+bool CurrentData::getAutoTemp(){
+    return autoTemp;
 }
 
-void CurrentData::setautotemp(bool tmp){
-    autotemp = tmp;
+void CurrentData::setAutoTemp(bool tmp){
+    autoTemp = tmp;
 }
 
-bool CurrentData::getautowater(){
-    return autowater;
+bool CurrentData::getAutoHumidity(){
+    return autoHumidity;
 }
 
-void CurrentData::setautowater(bool tmp){
-    autowater = tmp;
+void CurrentData::setAutoHumidity(bool tmp){
+    autoHumidity = tmp;
 }
 

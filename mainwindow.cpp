@@ -53,7 +53,7 @@ void MainWindow::on_showlog_clicked()
     ptr_ShowLog->show();
 }
 void MainWindow::update(){
-    ptr_control->checkvalues();
+    ptr_control->checkValues();
     //qDebug() << "VALUES:" << endl;
     //qDebug() << ptr_currentdata->getautotemp()<< endl;
     //qDebug() << ptr_currentdata->getautowater()<< endl;

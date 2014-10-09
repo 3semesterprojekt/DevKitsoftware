@@ -73,37 +73,37 @@ int connection::transfer(int device, int cmd){
     }
 }
 
-int connection::gettemp(){
-    int temp = transfer(tempdev, gettempcmd);
+int connection::getTemp(){
+    int temp = transfer(tempDev, getTempCmd);
     return (temp - 127);
 }
 
-int connection::getwater(){
-    int water = transfer(waterdev, getwatercmd);
+int connection::getHumidity(){
+    int water = transfer(waterDev, getWaterCmd);
     return water;
 }
 
-void connection::setwindow(bool state){
+void connection::setWindow(bool state){
     if(state){
-        transfer(tempdev, openwindowcmd);
+        transfer(tempDev, openWindowCmd);
     }
     else{
-        transfer(tempdev, closewindowcmd);
+        transfer(tempDev, closeWindowCmd);
     }
     return;
 }
 
-void connection::setheater(bool state){
+void connection::setHeater(bool state){
     if(state){
-        transfer(tempdev, startheatercmd);
+        transfer(tempDev, startHeaterCmd);
     }
     else{
-        transfer(tempdev, stopheatercmd);
+        transfer(tempDev, stopHeaterCmd);
     }
     return;
 }
 
-void connection::givewater(){
-    transfer(waterdev, addwatercmd);
+void connection::giveWater(){
+    transfer(waterDev, addWaterCmd);
     return;
 }

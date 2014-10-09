@@ -24,11 +24,11 @@ void ShowData::on_return_2_clicked()
 
 void ShowData::init(CurrentData* ptr){
     ptr_currentdata = ptr;
-    ui->templcd->display(ptr_currentdata->getcurrenttemp());
-    ui->ohmlcd->display(ptr_currentdata->getcurrentwater());
+    ui->templcd->display(ptr_currentdata->getCurrentTemp());
+    ui->ohmlcd->display(ptr_currentdata->getCurrentHumidity());
 }
 
 void ShowData::update(){
-    ui->templcd->display(ptr_currentdata->getcurrenttemp());
-    ui->ohmlcd->display(ptr_currentdata->getcurrentwater());
+    ui->templcd->display(ptr_currentdata->getCurrentTemp());
+    ui->ohmlcd->display(ptr_currentdata->getCurrentHumidity());
 }

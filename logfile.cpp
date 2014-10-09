@@ -3,38 +3,38 @@
 logfile::logfile(){
 }
 
-QString logfile::getlogentry(unsigned int number){
-    if(eventlog.size()>number){
-        return eventlog.at(number);
+QString logfile::getLogEntry(unsigned int number){
+    if(eventLog.size()>number){
+        return eventLog.at(number);
     }
     else{
         return "ERROR";
     }
 }
 
-unsigned int logfile::getlognumber(){
-    return eventlog.size();
+unsigned int logfile::getLogNumber(){
+    return eventLog.size();
 }
 
-void logfile::setlogevent(QString string){
+void logfile::setLogEvent(QString string){
     QString tmp = "";
 //  tmp.append("[");
 //  tmp.append(gettimestamp(true));
 //  tmp.append("]");
     tmp.append(string);
     tmp.append("\n");
-    if(eventlog.size() < eventlog.max_size()){
-        eventlog.push_back(tmp);
+    if(eventLog.size() < eventLog.max_size()){
+        eventLog.push_back(tmp);
     }
     else{
-        savetofile();
-        clearlog();
-        eventlog.push_back(tmp);
+        saveToFile();
+        clearLog();
+        eventLog.push_back(tmp);
     }
     return;
 }
 
-QString logfile::gettimestamp(bool mode){ //mode = false gives date while mode = true gives datetime
+QString logfile::getTimestamp(bool mode){ //mode = false gives date while mode = true gives datetime
     QDateTime tmp;
     if(mode){
         return tmp.currentDateTime().toString();
@@ -44,9 +44,9 @@ QString logfile::gettimestamp(bool mode){ //mode = false gives date while mode =
     }
 }
 
-bool logfile::savetofile(){
+bool logfile::saveToFile(){
     QString filename = "logfiles/logfile";
-    filename.append(gettimestamp(false));
+    filename.append(getTimestamp(false));
     filename.append(".txt");
     QFile file(filename);
     if(file.open(QIODevice::WriteOnly)){
@@ -55,9 +55,9 @@ bool logfile::savetofile(){
 
         stream << "This is the automaticly createt greenhouse logfile" << endl;
         stream << "##################################################" << endl;
-        for(unsigned int i = 0; i < eventlog.size(); i++){
+        for(unsigned int i = 0; i < eventLog.size(); i++){
 
-            stream << eventlog.at(i) << endl;
+            stream << eventLog.at(i) << endl;
         }
         file.close();
         return true;
@@ -68,6 +68,6 @@ bool logfile::savetofile(){
     }
 }
 
-void logfile::clearlog(){
-    eventlog.clear();
+void logfile::clearLog(){
+    eventLog.clear();
 }

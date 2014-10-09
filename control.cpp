@@ -3,8 +3,8 @@
 #define TEMPUNDERMAX 2
 control::control()
 {
-    waterqueue = 0;
-    lastwater = QDateTime::currentMSecsSinceEpoch() - (2 * 60 * 1000);
+    waterQueue = 0;
+    lastWater = QDateTime::currentMSecsSinceEpoch() - (2 * 60 * 1000);
 }
 
 void control::init(logfile * ptr_log, CurrentData * ptr_data){
@@ -14,71 +14,71 @@ void control::init(logfile * ptr_log, CurrentData * ptr_data){
 }
 
 
-void control::checkvalues(){
+void control::checkValues(){
     //todo: calls are commentet out to debug
     //ptr_currentdata->setcurrenttemp(ptr_connection->gettemp());
     //ptr_currentdata->setcurrentwater(ptr_connection->getwater());
 
-    if(ptr_currentdata->getoverrideheater() == false && ptr_currentdata->getautotemp() == true){ //heater on auto
-        if(ptr_currentdata->getcurrenttemp() < ptr_currentdata->getmintemp() && ptr_currentdata->getcurrentheaterstate() == false){ //temperatur is lower that mintemp and heater is off
-                ptr_connection->setheater(true);    //turn heater on
-                ptr_currentdata->setcurrentheaterstate(true);
-                ptr_logfile->setlogevent("Heater has been turned on");
+    if(ptr_currentdata->getOverrideHeater() == false && ptr_currentdata->getAutoTemp() == true){ //heater on auto
+        if(ptr_currentdata->getCurrentTemp() < ptr_currentdata->getMinTemp() && ptr_currentdata->getCurrentHeaterState() == false){ //temperatur is lower that mintemp and heater is off
+                ptr_connection->setHeater(true);    //turn heater on
+                ptr_currentdata->setCurrentHeaterState(true);
+                ptr_logfile->setLogEvent("Heater has been turned on");
         }
 
-        if(ptr_currentdata->getcurrenttemp() >= ptr_currentdata->getmintemp() + TEMPOVERMIN && ptr_currentdata->getcurrentheaterstate() == true){ //its warm enough, the heater is on
-            ptr_connection->setheater(false);    //turn heater of
-            ptr_currentdata->setcurrentheaterstate(false);
-            ptr_logfile->setlogevent("Heater has been turned off");
+        if(ptr_currentdata->getCurrentTemp() >= ptr_currentdata->getMinTemp() + TEMPOVERMIN && ptr_currentdata->getCurrentHeaterState() == true){ //its warm enough, the heater is on
+            ptr_connection->setHeater(false);    //turn heater of
+            ptr_currentdata->setCurrentHeaterState(false);
+            ptr_logfile->setLogEvent("Heater has been turned off");
         }
     }
-    if(ptr_currentdata->getoverrideheater() == true && ptr_currentdata->getcurrentheaterstate() != ptr_currentdata->getmanualheaterstate()){ //heater is on manual override but not set correct
-        ptr_connection->setheater(ptr_currentdata->getmanualheaterstate());    //togle heater
-        ptr_currentdata->setcurrentheaterstate(ptr_currentdata->getmanualheaterstate());
+    if(ptr_currentdata->getOverrideHeater() == true && ptr_currentdata->getCurrentHeaterState() != ptr_currentdata->getManualHeaterState()){ //heater is on manual override but not set correct
+        ptr_connection->setHeater(ptr_currentdata->getManualHeaterState());    //togle heater
+        ptr_currentdata->setCurrentHeaterState(ptr_currentdata->getManualHeaterState());
 
     }
 
-    if(ptr_currentdata->getoverridewindow() == false && ptr_currentdata->getautotemp() == true){ //window on auto
-        if(ptr_currentdata->getcurrenttemp() > ptr_currentdata->getmaxtemp() && ptr_currentdata->getcurrentwindowstate() == false){ //temperatur is higher than maxtemp and window is closed
-            ptr_connection->setwindow(true);    //open window
-            ptr_currentdata->setcurrentwindowstate(true);
-            ptr_logfile->setlogevent("Window has been opened");
+    if(ptr_currentdata->getOverrideWindow() == false && ptr_currentdata->getAutoTemp() == true){ //window on auto
+        if(ptr_currentdata->getCurrentTemp() > ptr_currentdata->getMaxTemp() && ptr_currentdata->getCurrentWindowState() == false){ //temperatur is higher than maxtemp and window is closed
+            ptr_connection->setWindow(true);    //open window
+            ptr_currentdata->setCurrentWindowState(true);
+            ptr_logfile->setLogEvent("Window has been opened");
         }
-        if(ptr_currentdata->getcurrenttemp() <= ptr_currentdata->getmaxtemp() - TEMPUNDERMAX && ptr_currentdata->getcurrentwindowstate() == true){ //temperatur is low enough and window is open
-            ptr_connection->setwindow(false);    //close window
-            ptr_currentdata->setcurrentwindowstate(false);
-            ptr_logfile->setlogevent("Windows has been closed");
+        if(ptr_currentdata->getCurrentTemp() <= ptr_currentdata->getMaxTemp() - TEMPUNDERMAX && ptr_currentdata->getCurrentWindowState() == true){ //temperatur is low enough and window is open
+            ptr_connection->setWindow(false);    //close window
+            ptr_currentdata->setCurrentWindowState(false);
+            ptr_logfile->setLogEvent("Windows has been closed");
         }
     }
 
-    if(ptr_currentdata->getoverridewindow() == true && ptr_currentdata->getcurrentwindowstate() != ptr_currentdata->getmanualwindowstate()){ //window is on manual override but not set correct
-        ptr_connection->setwindow(ptr_currentdata->getmanualwindowstate());    //togle window
-        ptr_currentdata->setcurrentwindowstate(ptr_currentdata->getmanualwindowstate());
+    if(ptr_currentdata->getOverrideWindow() == true && ptr_currentdata->getCurrentWindowState() != ptr_currentdata->getManualWindowState()){ //window is on manual override but not set correct
+        ptr_connection->setWindow(ptr_currentdata->getManualWindowState());    //togle window
+        ptr_currentdata->setCurrentWindowState(ptr_currentdata->getManualWindowState());
     }
 
-    if(ptr_currentdata->getautowater() == true && ptr_currentdata->getcurrentwater() < ptr_currentdata->gettargetwater()){ //water is on auto and to low
-        if(QDateTime::currentMSecsSinceEpoch() - lastwater >= (2 * 60 *1000)){ //only dispence water every 2 minutes
-            waterqueue++;
-            lastwater = QDateTime::currentMSecsSinceEpoch();
+    if(ptr_currentdata->getAutoHumidity() == true && ptr_currentdata->getCurrentHumidity() < ptr_currentdata->getTargetHumidity()){ //water is on auto and to low
+        if(QDateTime::currentMSecsSinceEpoch() - lastWater >= (2 * 60 *1000)){ //only dispence water every 2 minutes
+            waterQueue++;
+            lastWater = QDateTime::currentMSecsSinceEpoch();
         }
     }
-    if( waterqueue > 0){
-        ptr_connection->givewater();    //despense water
-        waterqueue--;
+    if( waterQueue > 0){
+        ptr_connection->giveWater();    //despense water
+        waterQueue--;
         QString tmp = "";
-        if(waterqueue == 0){
+        if(waterQueue == 0){
             tmp.append("Dispenced 1dl of water");
         }
         else{
             tmp.append("Dispenced 1dl of water with ");
-            tmp.append(QString::number(waterqueue));
+            tmp.append(QString::number(waterQueue));
             tmp.append("dl stil to go");
         }
 
-        ptr_logfile->setlogevent(tmp);
+        ptr_logfile->setLogEvent(tmp);
     }
 }
 
-void control::dispensewater(int extrawater){
-    waterqueue += extrawater;
+void control::dispenseWater(int extraWater){
+    waterQueue += extraWater;
 }

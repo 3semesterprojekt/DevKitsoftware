@@ -10,14 +10,14 @@ class logfile
 {
 public:
     logfile();
-    unsigned int getlognumber();
-    QString getlogentry(unsigned int);
-    void setlogevent(QString);
-    bool savetofile();
-    void clearlog();
+    unsigned int getLogNumber();
+    QString getLogEntry(unsigned int);
+    void setLogEvent(QString);
+    bool saveToFile();
+    void clearLog();
 private:
-    QString gettimestamp(bool);
-    std::vector<QString> eventlog;
+    QString getTimestamp(bool mode);
+    std::vector<QString> eventLog;
 };
 
 #endif // LOGFILE_H
