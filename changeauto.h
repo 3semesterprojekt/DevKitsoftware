@@ -18,17 +18,17 @@ public:
     void init(CurrentData*);
 
 private slots:
-    void on_return_2_clicked();
-    void on_ohmBox_toggled(bool checked);
+    void on_return_clicked();
+    void on_humidityBox_toggled(bool checked);
     void on_tempBox_toggled(bool checked);
-    void on_ohmSlider_valueChanged(int value);
-    void on_maxtempSlider_valueChanged(int value);
-    void on_mintempSlider_valueChanged(int value);
+    void on_humiditySlider_valueChanged(int value);
+    void on_maxTempSlider_valueChanged(int value);
+    void on_minTempSlider_valueChanged(int value);
 
 private:
     Ui::ChangeAuto *ui;
     void update();
-    CurrentData* ptr_currentdata;
+    CurrentData* ptr_currentData;
 };
 
 #endif // CHANGEAUTO_H

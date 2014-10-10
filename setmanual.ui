@@ -35,7 +35,7 @@
     <string>return</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="waterButton">
+  <widget class="QPushButton" name="humidityButton">
    <property name="geometry">
     <rect>
      <x>45</x>
@@ -81,7 +81,7 @@
     <string>Open Windows</string>
    </property>
   </widget>
-  <widget class="QSlider" name="waterSlider">
+  <widget class="QSlider" name="humiditySlider">
    <property name="geometry">
     <rect>
      <x>20</x>

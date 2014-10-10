@@ -20,18 +20,18 @@ public:
     void init(CurrentData*, control *);
 
 private slots:
-    void on_return_2_clicked();
+    void on_return_clicked();
     void on_overrideHeaterBox_toggled(bool checked);
     void on_overrideWindowBox_toggled(bool checked);
     void on_heaterButton_clicked();
     void on_windowButton_clicked();
-    void on_waterButton_clicked();
-    void on_waterSlider_valueChanged(int value);
+    void on_humidityButton_clicked();
+    void on_humiditySlider_valueChanged(int value);
     void waterDone();
 
 private:
     Ui::SetManual *ui;
-    CurrentData* ptr_currentdata;
+    CurrentData* ptr_currentData;
     control* ptr_control;
     QTimer *timer;
 };

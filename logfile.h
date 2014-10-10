@@ -6,10 +6,10 @@
 #include <QFile>
 #include <QTextStream>
 
-class logfile
+class logFile
 {
 public:
-    logfile();
+    logFile();
     unsigned int getLogNumber();
     QString getLogEntry(unsigned int);
     void setLogEvent(QString);

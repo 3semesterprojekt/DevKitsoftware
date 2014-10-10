@@ -1,9 +1,9 @@
 #include "showlog.h"
 #include "ui_showlog.h"
 
-showlog::showlog(QWidget *parent) :
+showLog::showLog(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::showlog)
+    ui(new Ui::showLog)
 {
     ui->setupUi(this);
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint);   //hide title bar
@@ -12,44 +12,44 @@ showlog::showlog(QWidget *parent) :
     timer->start(1000); //updated every second
 }
 
-showlog::~showlog()
+showLog::~showLog()
 {
     delete ui;
 }
 
-void showlog::on_return_2_clicked()
+void showLog::on_return_clicked()
 {
     this->close();
 }
 
-void showlog::init(logfile * ptr){
-    ptr_logfile = ptr;
-    ui->logviewer->setPlainText("");
-    lastEntry = ptr_logfile->getLogNumber();
-    for(unsigned int i = 0; i< ptr_logfile->getLogNumber(); i++){
-        QTextCursor cursor(ui->logviewer->textCursor());
+void showLog::init(logFile * ptr){
+    ptr_logFile = ptr;
+    ui->logViewer->setPlainText("");
+    lastEntry = ptr_logFile->getLogNumber();
+    for(unsigned int i = 0; i< ptr_logFile->getLogNumber(); i++){
+        QTextCursor cursor(ui->logViewer->textCursor());
         cursor.movePosition(QTextCursor::End,QTextCursor::MoveAnchor);
-        ui->logviewer->setTextCursor(cursor);
-        ui->logviewer->insertPlainText(ptr_logfile->getLogEntry(i));
+        ui->logViewer->setTextCursor(cursor);
+        ui->logViewer->insertPlainText(ptr_logFile->getLogEntry(i));
     }
 }
 
-void showlog::update(){
-    while(lastEntry < ptr_logfile->getLogNumber()){
-        QTextCursor cursor(ui->logviewer->textCursor());
+void showLog::update(){
+    while(lastEntry < ptr_logFile->getLogNumber()){
+        QTextCursor cursor(ui->logViewer->textCursor());
         cursor.movePosition(QTextCursor::End,QTextCursor::MoveAnchor);
-        ui->logviewer->setTextCursor(cursor);
-        ui->logviewer->insertPlainText(ptr_logfile->getLogEntry(lastEntry));
+        ui->logViewer->setTextCursor(cursor);
+        ui->logViewer->insertPlainText(ptr_logFile->getLogEntry(lastEntry));
         lastEntry++;
     }
 
 }
 
-void showlog::on_clearlog_clicked()
+void showLog::on_clearLog_clicked()
 {
-    ptr_logfile->clearLog();
+    ptr_logFile->clearLog();
     lastEntry = 0;
-    ui->logviewer->clear();
-    QTextCursor cursor(ui->logviewer->textCursor());
+    ui->logViewer->clear();
+    QTextCursor cursor(ui->logViewer->textCursor());
     cursor.movePosition(QTextCursor::End,QTextCursor::MoveAnchor);
 }

@@ -24,15 +24,15 @@ public:
     ~MainWindow();
 
 private:
-    CurrentData* ptr_currentdata;
-    logfile* ptr_logfile;
+    CurrentData* ptr_currentData;
+    logFile* ptr_logFile;
     control* ptr_control;
 
 private slots:
-    void on_showdata_clicked();
-    void on_setmanual_clicked();
-    void on_changeauto_clicked();
-    void on_showlog_clicked();
+    void on_showData_clicked();
+    void on_setManual_clicked();
+    void on_changeAuto_clicked();
+    void on_showLog_clicked();
     void update();
 
 private:

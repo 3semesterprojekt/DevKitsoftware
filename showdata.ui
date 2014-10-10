@@ -35,7 +35,7 @@
     <string>return</string>
    </property>
   </widget>
-  <widget class="QLCDNumber" name="ohmlcd">
+  <widget class="QLCDNumber" name="humidityLcd">
    <property name="geometry">
     <rect>
      <x>60</x>
@@ -48,7 +48,7 @@
     <number>0</number>
    </property>
   </widget>
-  <widget class="QLCDNumber" name="templcd">
+  <widget class="QLCDNumber" name="tempLcd">
    <property name="geometry">
     <rect>
      <x>270</x>

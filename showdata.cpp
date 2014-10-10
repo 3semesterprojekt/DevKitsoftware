@@ -17,18 +17,18 @@ ShowData::~ShowData()
     delete ui;
 }
 
-void ShowData::on_return_2_clicked()
+void ShowData::on_return_clicked()
 {
     this->close();
 }
 
 void ShowData::init(CurrentData* ptr){
-    ptr_currentdata = ptr;
-    ui->templcd->display(ptr_currentdata->getCurrentTemp());
-    ui->ohmlcd->display(ptr_currentdata->getCurrentHumidity());
+    ptr_currentData = ptr;
+    ui->tempLcd->display(ptr_currentData->getCurrentTemp());
+    ui->humidityLcd->display(ptr_currentData->getCurrentHumidity());
 }
 
 void ShowData::update(){
-    ui->templcd->display(ptr_currentdata->getCurrentTemp());
-    ui->ohmlcd->display(ptr_currentdata->getCurrentHumidity());
+    ui->tempLcd->display(ptr_currentData->getCurrentTemp());
+    ui->humidityLcd->display(ptr_currentData->getCurrentHumidity());
 }

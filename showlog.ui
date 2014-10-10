@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>showlog</class>
- <widget class="QWidget" name="showlog">
+ <class>showLog</class>
+ <widget class="QWidget" name="showLog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -35,7 +35,7 @@
     <string>return</string>
    </property>
   </widget>
-  <widget class="QPlainTextEdit" name="logviewer">
+  <widget class="QPlainTextEdit" name="logViewer">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -51,7 +51,7 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QPushButton" name="clearlog">
+  <widget class="QPushButton" name="clearLog">
    <property name="geometry">
     <rect>
      <x>380</x>

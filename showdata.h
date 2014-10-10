@@ -19,12 +19,12 @@ public:
     void init(CurrentData*);
 
 private slots:
-    void on_return_2_clicked();
+    void on_return_clicked();
     void update();
 
 private:
     Ui::ShowData *ui;
-    CurrentData* ptr_currentdata;
+    CurrentData* ptr_currentData;
 };
 
 #endif // SHOWDATA_H

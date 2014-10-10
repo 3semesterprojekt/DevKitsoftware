@@ -6,27 +6,27 @@
 #include <QTimer>
 
 namespace Ui {
-class showlog;
+class showLog;
 }
 
-class showlog : public QWidget
+class showLog : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit showlog(QWidget *parent = 0);
-    ~showlog();
-    void init(logfile*);
+    explicit showLog(QWidget *parent = 0);
+    ~showLog();
+    void init(logFile*);
 
 private slots:
-    void on_return_2_clicked();
+    void on_return_clicked();
     void update();
 
-    void on_clearlog_clicked();
+    void on_clearLog_clicked();
 
 private:
-    Ui::showlog *ui;
-    logfile* ptr_logfile;
+    Ui::showLog *ui;
+    logFile* ptr_logFile;
     unsigned int lastEntry;
 };
 

@@ -20,7 +20,7 @@
    <property name="autoFillBackground">
     <bool>false</bool>
    </property>
-   <widget class="QPushButton" name="changeauto">
+   <widget class="QPushButton" name="changeAuto">
     <property name="geometry">
      <rect>
       <x>11</x>
@@ -42,7 +42,7 @@
      <string>Automatic Settings</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="setmanual">
+   <widget class="QPushButton" name="setManual">
     <property name="geometry">
      <rect>
       <x>167</x>
@@ -64,7 +64,7 @@
      <string>Manual Settings</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="showdata">
+   <widget class="QPushButton" name="showData">
     <property name="geometry">
      <rect>
       <x>323</x>
@@ -86,7 +86,7 @@
      <string>Current Data</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="showlog">
+   <widget class="QPushButton" name="showLog">
     <property name="geometry">
      <rect>
       <x>340</x>

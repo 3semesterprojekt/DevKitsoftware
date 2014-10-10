@@ -1,9 +1,9 @@
 #include "logfile.h"
 
-logfile::logfile(){
+logFile::logFile(){
 }
 
-QString logfile::getLogEntry(unsigned int number){
+QString logFile::getLogEntry(unsigned int number){
     if(eventLog.size()>number){
         return eventLog.at(number);
     }
@@ -12,11 +12,11 @@ QString logfile::getLogEntry(unsigned int number){
     }
 }
 
-unsigned int logfile::getLogNumber(){
+unsigned int logFile::getLogNumber(){
     return eventLog.size();
 }
 
-void logfile::setLogEvent(QString string){
+void logFile::setLogEvent(QString string){
     QString tmp = "";
 //  tmp.append("[");
 //  tmp.append(gettimestamp(true));
@@ -34,7 +34,7 @@ void logfile::setLogEvent(QString string){
     return;
 }
 
-QString logfile::getTimestamp(bool mode){ //mode = false gives date while mode = true gives datetime
+QString logFile::getTimestamp(bool mode){ //mode = false gives date while mode = true gives datetime
     QDateTime tmp;
     if(mode){
         return tmp.currentDateTime().toString();
@@ -44,7 +44,7 @@ QString logfile::getTimestamp(bool mode){ //mode = false gives date while mode =
     }
 }
 
-bool logfile::saveToFile(){
+bool logFile::saveToFile(){
     QString filename = "logfiles/logfile";
     filename.append(getTimestamp(false));
     filename.append(".txt");
@@ -68,6 +68,6 @@ bool logfile::saveToFile(){
     }
 }
 
-void logfile::clearLog(){
+void logFile::clearLog(){
     eventLog.clear();
 }

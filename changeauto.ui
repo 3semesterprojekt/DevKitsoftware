@@ -35,7 +35,7 @@
     <string>return</string>
    </property>
   </widget>
-  <widget class="QLCDNumber" name="templcd">
+  <widget class="QLCDNumber" name="tempLcd">
    <property name="geometry">
     <rect>
      <x>290</x>
@@ -48,7 +48,7 @@
     <number>0</number>
    </property>
   </widget>
-  <widget class="QSlider" name="ohmSlider">
+  <widget class="QSlider" name="humiditySlider">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -133,7 +133,7 @@ height: 20px;
     <string>Humidity in %</string>
    </property>
   </widget>
-  <widget class="QSlider" name="mintempSlider">
+  <widget class="QSlider" name="minTempSlider">
    <property name="geometry">
     <rect>
      <x>230</x>
@@ -161,7 +161,7 @@ height: 20px;
     <enum>Qt::Vertical</enum>
    </property>
   </widget>
-  <widget class="QCheckBox" name="ohmBox">
+  <widget class="QCheckBox" name="humidityBox">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -195,7 +195,7 @@ height: 20px;
     </size>
    </property>
   </widget>
-  <widget class="QLCDNumber" name="ohmlcd">
+  <widget class="QLCDNumber" name="humidityLcd">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -208,7 +208,7 @@ height: 20px;
     <number>0</number>
    </property>
   </widget>
-  <widget class="QSlider" name="maxtempSlider">
+  <widget class="QSlider" name="maxTempSlider">
    <property name="geometry">
     <rect>
      <x>260</x>

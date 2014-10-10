@@ -9,12 +9,12 @@ class control
 {
 public:
     control();
-    void init(logfile*,CurrentData*);
+    void init(logFile*,CurrentData*);
     void checkValues();
     void dispenseWater(int);
 private:
-    logfile* ptr_logfile;
-    CurrentData* ptr_currentdata;
+    logFile* ptr_logFile;
+    CurrentData* ptr_currentData;
     connection* ptr_connection;
     int waterQueue;
     qint64 lastWater;
