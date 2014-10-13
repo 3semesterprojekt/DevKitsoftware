@@ -19,7 +19,7 @@ public:
     void init(CurrentData*);
 
 private slots:
-    void on_return_clicked();
+    void on_returnButton_clicked();
     void update();
 
 private:

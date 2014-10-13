@@ -17,7 +17,7 @@ ShowData::~ShowData()
     delete ui;
 }
 
-void ShowData::on_return_clicked()
+void ShowData::on_returnButton_clicked()
 {
     this->close();
 }

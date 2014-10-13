@@ -19,7 +19,7 @@ public:
     void init(logFile*);
 
 private slots:
-    void on_return_clicked();
+    void on_returnButton_clicked();
     void update();
 
     void on_clearLog_clicked();

@@ -18,7 +18,7 @@ public:
     void init(CurrentData*);
 
 private slots:
-    void on_return_clicked();
+    void on_returnButton_clicked();
     void on_humidityBox_toggled(bool checked);
     void on_tempBox_toggled(bool checked);
     void on_humiditySlider_valueChanged(int value);

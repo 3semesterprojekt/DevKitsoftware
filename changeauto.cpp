@@ -30,7 +30,7 @@ void ChangeAuto::update(){
 
 }
 
-void ChangeAuto::on_return_clicked()
+void ChangeAuto::on_returnButton_clicked()
 {
     this->close();
 }

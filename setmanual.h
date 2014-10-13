@@ -20,7 +20,7 @@ public:
     void init(CurrentData*, control *);
 
 private slots:
-    void on_return_clicked();
+    void on_returnButton_clicked();
     void on_overrideHeaterBox_toggled(bool checked);
     void on_overrideWindowBox_toggled(bool checked);
     void on_heaterButton_clicked();

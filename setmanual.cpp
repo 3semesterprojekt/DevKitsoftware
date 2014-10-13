@@ -14,7 +14,7 @@ SetManual::~SetManual()
     delete ui;
 }
 
-void SetManual::on_return_clicked()
+void SetManual::on_returnButton_clicked()
 {
     this->close();
 }

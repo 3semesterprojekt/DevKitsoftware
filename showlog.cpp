@@ -17,7 +17,7 @@ showLog::~showLog()
     delete ui;
 }
 
-void showLog::on_return_clicked()
+void showLog::on_returnButton_clicked()
 {
     this->close();
 }
