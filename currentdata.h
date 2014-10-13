@@ -7,31 +7,31 @@ public:
     CurrentData();
 
     int getMinTemp();
-    void setMinTemp(int);
+    void setMinTemp(int value);
     int getMaxTemp();
-    void setMaxTemp(int);
+    void setMaxTemp(int value);
     int getCurrentTemp();
-    void setCurrentTemp(int);
+    void setCurrentTemp(int value);
     int getTargetHumidity();
-    void setTargetHumidity(int);
+    void setTargetHumidity(int value);
     int getCurrentHumidity();
-    void setCurrentHumidity(int);
+    void setCurrentHumidity(int value);
     bool getCurrentWindowState();
-    void setCurrentWindowState(bool);
+    void setCurrentWindowState(bool state);
     bool getCurrentHeaterState();
-    void setCurrentHeaterState(bool);
+    void setCurrentHeaterState(bool state);
     bool getOverrideWindow();
-    void setOverrideWindow(bool);
+    void setOverrideWindow(bool state);
     bool getOverrideHeater();
-    void setOverrideHeater(bool);
+    void setOverrideHeater(bool state);
     bool getManualWindowState();
-    void setManualWindowState(bool);
+    void setManualWindowState(bool state);
     bool getManualHeaterState();
-    void setManualHeaterState(bool);
+    void setManualHeaterState(bool state);
     bool getAutoTemp();
-    void setAutoTemp(bool);
+    void setAutoTemp(bool state);
     bool getAutoHumidity();
-    void setAutoHumidity(bool);
+    void setAutoHumidity(bool state);
 
 private:
     int minTemp;    //minimum automatic temperatur

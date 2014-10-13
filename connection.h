@@ -20,12 +20,12 @@ public:
     connection();
     int getTemp();
     int getHumidity();
-    void setWindow(bool);
-    void setHeater(bool);
+    void setWindow(bool state);
+    void setHeater(bool state);
     void giveWater();
 
 private:
-    int transfer(int, int);
+    int transfer(int deviceID, int command);
 
     static const int tempDev = 1;
     static const int waterDev = 2;

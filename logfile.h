@@ -11,8 +11,8 @@ class logFile
 public:
     logFile();
     unsigned int getLogNumber();
-    QString getLogEntry(unsigned int);
-    void setLogEvent(QString);
+    QString getLogEntry(unsigned int number);
+    void setLogEvent(QString logString);
     bool saveToFile();
     void clearLog();
 private:

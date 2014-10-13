@@ -11,7 +11,7 @@ public:
     control();
     void init(logFile*,CurrentData*);
     void checkValues();
-    void dispenseWater(int);
+    void dispenseWater(int amount);
 private:
     logFile* ptr_logFile;
     CurrentData* ptr_currentData;
