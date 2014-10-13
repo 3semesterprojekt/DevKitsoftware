@@ -8,7 +8,9 @@ showWeather::showWeather(QWidget *parent) :
     ui(new Ui::showWeather)
 {
     ui->setupUi(this);
+#ifdef __arm__
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint);   //hide title bar
+#endif
 
 
     QUrl imageUrl("http://www.dmi.dk/uploads/tx_dmidatastore/webservice/k/d/_/n/g/femdgn_dk.png");

@@ -31,6 +31,7 @@ void logFile::setLogEvent(QString string){
         clearLog();
         eventLog.push_back(tmp);
     }
+    emit logFileUpdated();
     return;
 }
 

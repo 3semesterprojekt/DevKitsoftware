@@ -11,48 +11,49 @@ void control::init(logFile * ptr_log, CurrentData * ptr_data){
     ptr_logFile = ptr_log;
     ptr_currentData = ptr_data;
     ptr_connection = new connection;
+    device = 1; //TODO: set current device (later UC)
 }
 
 
 void control::checkValues(){
     //todo: calls are commentet out to debug
-    //ptr_currentdata->setcurrenttemp(ptr_connection->gettemp());
-    //ptr_currentdata->setcurrentwater(ptr_connection->getwater());
+    //ptr_currentdata->setcurrenttemp(ptr_connection->gettemp(device));
+    //ptr_currentdata->setcurrentwater(ptr_connection->getwater(device));
 
     if(ptr_currentData->getOverrideHeater() == false && ptr_currentData->getAutoTemp() == true){ //heater on auto
         if(ptr_currentData->getCurrentTemp() < ptr_currentData->getMinTemp() && ptr_currentData->getCurrentHeaterState() == false){ //temperatur is lower that mintemp and heater is off
-                ptr_connection->setHeater(true);    //turn heater on
+                ptr_connection->setHeater(device, true);    //turn heater on
                 ptr_currentData->setCurrentHeaterState(true);
                 ptr_logFile->setLogEvent("Heater has been turned on");
         }
 
         if(ptr_currentData->getCurrentTemp() >= ptr_currentData->getMinTemp() + TEMPOVERMIN && ptr_currentData->getCurrentHeaterState() == true){ //its warm enough, the heater is on
-            ptr_connection->setHeater(false);    //turn heater of
+            ptr_connection->setHeater(device, false);    //turn heater of
             ptr_currentData->setCurrentHeaterState(false);
             ptr_logFile->setLogEvent("Heater has been turned off");
         }
     }
     if(ptr_currentData->getOverrideHeater() == true && ptr_currentData->getCurrentHeaterState() != ptr_currentData->getManualHeaterState()){ //heater is on manual override but not set correct
-        ptr_connection->setHeater(ptr_currentData->getManualHeaterState());    //togle heater
+        ptr_connection->setHeater(device, ptr_currentData->getManualHeaterState());    //togle heater
         ptr_currentData->setCurrentHeaterState(ptr_currentData->getManualHeaterState());
 
     }
 
     if(ptr_currentData->getOverrideWindow() == false && ptr_currentData->getAutoTemp() == true){ //window on auto
         if(ptr_currentData->getCurrentTemp() > ptr_currentData->getMaxTemp() && ptr_currentData->getCurrentWindowState() == false){ //temperatur is higher than maxtemp and window is closed
-            ptr_connection->setWindow(true);    //open window
+            ptr_connection->setWindow(device, true);    //open window
             ptr_currentData->setCurrentWindowState(true);
             ptr_logFile->setLogEvent("Window has been opened");
         }
         if(ptr_currentData->getCurrentTemp() <= ptr_currentData->getMaxTemp() - TEMPUNDERMAX && ptr_currentData->getCurrentWindowState() == true){ //temperatur is low enough and window is open
-            ptr_connection->setWindow(false);    //close window
+            ptr_connection->setWindow(device, false);    //close window
             ptr_currentData->setCurrentWindowState(false);
             ptr_logFile->setLogEvent("Windows has been closed");
         }
     }
 
     if(ptr_currentData->getOverrideWindow() == true && ptr_currentData->getCurrentWindowState() != ptr_currentData->getManualWindowState()){ //window is on manual override but not set correct
-        ptr_connection->setWindow(ptr_currentData->getManualWindowState());    //togle window
+        ptr_connection->setWindow(device, ptr_currentData->getManualWindowState());    //togle window
         ptr_currentData->setCurrentWindowState(ptr_currentData->getManualWindowState());
     }
 
@@ -63,7 +64,7 @@ void control::checkValues(){
         }
     }
     if( waterQueue > 0){
-        ptr_connection->giveWater();    //despense water
+        ptr_connection->giveWater(device);    //despense water
         waterQueue--;
         QString tmp = "";
         if(waterQueue == 0){

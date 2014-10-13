@@ -6,7 +6,9 @@ SetManual::SetManual(QWidget *parent) :
     ui(new Ui::SetManual)
 {
     ui->setupUi(this);
+#ifdef __arm__
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint);   //hide title bar
+#endif
 }
 
 SetManual::~SetManual()
@@ -79,7 +81,6 @@ void SetManual::on_humidityButton_clicked()
     ptr_control->dispenseWater(ui->humiditySlider->value());
     ui->humidityButton->setText("Adding Water ...");
     ui->humidityButton->setEnabled(false);
-    timer  = new QTimer(this);
     QTimer::singleShot(5000, this, SLOT(waterDone()));
 }
 

@@ -6,7 +6,9 @@ ChangeAuto::ChangeAuto(QWidget *parent) :
     ui(new Ui::ChangeAuto)
 {
     ui->setupUi(this);
+#ifdef __arm__
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint);   //hide title bar
+#endif
 }
 
 ChangeAuto::~ChangeAuto()

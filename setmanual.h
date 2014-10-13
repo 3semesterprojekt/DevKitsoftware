@@ -33,7 +33,6 @@ private:
     Ui::SetManual *ui;
     CurrentData* ptr_currentData;
     control* ptr_control;
-    QTimer *timer;
 };
 
 #endif // SETMANUAL_H

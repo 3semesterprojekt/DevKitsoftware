@@ -6,10 +6,9 @@ ShowData::ShowData(QWidget *parent) :
     ui(new Ui::ShowData)
 {
     ui->setupUi(this);
+#ifdef __arm__
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint);   //hide title bar
-    QTimer *timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(update()));
-    timer->start(5000);
+#endif
 }
 
 ShowData::~ShowData()
@@ -26,6 +25,7 @@ void ShowData::init(CurrentData* ptr){
     ptr_currentData = ptr;
     ui->tempLcd->display(ptr_currentData->getCurrentTemp());
     ui->humidityLcd->display(ptr_currentData->getCurrentHumidity());
+    connect(ptr_currentData, SIGNAL(currentDataChanged()), this, SLOT(update()));
 }
 
 void ShowData::update(){

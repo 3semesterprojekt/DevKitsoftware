@@ -18,17 +18,15 @@ class connection
 {
 public:
     connection();
-    int getTemp();
-    int getHumidity();
-    void setWindow(bool state);
-    void setHeater(bool state);
-    void giveWater();
+    int getTemp(int device);
+    int getHumidity(int device);
+    void setWindow(int device, bool state);
+    void setHeater(int device, bool state);
+    void giveWater(int device);
 
 private:
     int transfer(int deviceID, int command);
 
-    static const int tempDev = 1;
-    static const int waterDev = 2;
     static const int getTempCmd = 0x01;
     static const int getWaterCmd = 0x02;
     static const int openWindowCmd = 0x05;

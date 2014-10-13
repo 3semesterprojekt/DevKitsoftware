@@ -3,7 +3,6 @@
 
 #include <QWidget>
 #include "logfile.h"
-#include <QTimer>
 
 namespace Ui {
 class showLog;
@@ -20,9 +19,8 @@ public:
 
 private slots:
     void on_returnButton_clicked();
-    void update();
-
     void on_clearLog_clicked();
+    void update();
 
 private:
     Ui::showLog *ui;

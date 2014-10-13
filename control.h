@@ -18,6 +18,7 @@ private:
     connection* ptr_connection;
     int waterQueue;
     qint64 lastWater;
+    int device;
 
 };
 

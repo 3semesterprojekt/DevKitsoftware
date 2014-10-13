@@ -6,10 +6,9 @@ showLog::showLog(QWidget *parent) :
     ui(new Ui::showLog)
 {
     ui->setupUi(this);
+#ifdef __arm__
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint);   //hide title bar
-    QTimer *timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(update()));
-    timer->start(1000); //updated every second
+#endif
 }
 
 showLog::~showLog()
@@ -32,6 +31,7 @@ void showLog::init(logFile * ptr){
         ui->logViewer->setTextCursor(cursor);
         ui->logViewer->insertPlainText(ptr_logFile->getLogEntry(i));
     }
+    connect(ptr_logFile, SIGNAL(logFileUpdated()), this, SLOT(update()));
 }
 
 void showLog::update(){

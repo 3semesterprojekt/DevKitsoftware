@@ -1,8 +1,10 @@
 #ifndef CURRENTDATA_H
 #define CURRENTDATA_H
+#include <QObject>
 
-class CurrentData
+class CurrentData : public QObject
 {
+    Q_OBJECT
 public:
     CurrentData();
 
@@ -47,6 +49,8 @@ private:
     bool manualHeaterState;
     bool autoTemp;  //is the temperatur in automatic mode
     bool autoHumidity; //is the water in automatic mode
+signals:
+    void currentDataChanged(void);
 };
 
 #endif  //CURRENTDATA_H

@@ -10,7 +10,7 @@ int connection::transfer(int device, int cmd){
 
     int res = 0;
     int spiDev;
-    int len = 1;
+    int len = 4;
     if(device == 1){
         spiDev = open("/dev/spidev1.0", O_RDWR);
     }
@@ -36,25 +36,11 @@ int connection::transfer(int device, int cmd){
     memset(&xfer, 0, sizeof(xfer));
     char txbuffer[len];
     char rxbuffer[len];
-    switch(cmd){
-    case 1: txbuffer[0] = 0x01; //gettemp
-        break;
-    case 2: txbuffer[0] = 0x02; //getwater
-        break;
-    case 3: txbuffer[0] = 0x03; //turn on heater
-        break;
-    case 4: txbuffer[0] = 0x04; //turn off heater
-        break;
-    case 5: txbuffer[0] = 0x05; //open window
-        break;
-    case 6: txbuffer[0] = 0x06; //close window
-        break;
-    case 7: txbuffer[0] = 0x07; //water plant
-        break;
-    default: txbuffer[0] = 0x00;
+    txbuffer[0] = 0x01;
+    txbuffer[1] = 0x02;
+    txbuffer[2] = 0x03;
+    txbuffer[3] = 0x04;
 
-        break;
-    }
     xfer.tx_buf = (unsigned long)txbuffer;
     xfer.rx_buf = (unsigned long)rxbuffer;
     xfer.len = len;
@@ -63,47 +49,41 @@ int connection::transfer(int device, int cmd){
     xfer.bits_per_word = bits_per_word;
     xfer.delay_usecs = 0; //todo: set correct delay
     res = ioctl(spiDev, SPI_IOC_MESSAGE(1), &xfer);
-    qDebug() << (int)rxbuffer[0];
 
-    if(res == len){
-        return (int)rxbuffer[0];
-    }
-    else{
-        return -1;
-    }
+    return 0;
 }
 
-int connection::getTemp(){
-    int temp = transfer(tempDev, getTempCmd);
+int connection::getTemp(int device){
+    int temp = transfer(device, getTempCmd);
     return (temp - 127);
 }
 
-int connection::getHumidity(){
-    int water = transfer(waterDev, getWaterCmd);
+int connection::getHumidity(int device){
+    int water = transfer(device, getWaterCmd);
     return water;
 }
 
-void connection::setWindow(bool state){
+void connection::setWindow(int device, bool state){
     if(state){
-        transfer(tempDev, openWindowCmd);
+        transfer(device, openWindowCmd);
     }
     else{
-        transfer(tempDev, closeWindowCmd);
+        transfer(device, closeWindowCmd);
     }
     return;
 }
 
-void connection::setHeater(bool state){
+void connection::setHeater(int device, bool state){
     if(state){
-        transfer(tempDev, startHeaterCmd);
+        transfer(device, startHeaterCmd);
     }
     else{
-        transfer(tempDev, stopHeaterCmd);
+        transfer(device, stopHeaterCmd);
     }
     return;
 }
 
-void connection::giveWater(){
-    transfer(waterDev, addWaterCmd);
+void connection::giveWater(int device){
+    transfer(device, addWaterCmd);
     return;
 }

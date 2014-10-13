@@ -5,9 +5,11 @@
 #include <QDateTime>
 #include <QFile>
 #include <QTextStream>
+#include <QObject>
 
-class logFile
+class logFile : public QObject
 {
+    Q_OBJECT
 public:
     logFile();
     unsigned int getLogNumber();
@@ -19,6 +21,8 @@ public:
 private:
     QString getTimestamp(bool mode);
     std::vector<QString> eventLog;
+signals:
+    void logFileUpdated(void);
 };
 
 #endif // LOGFILE_H

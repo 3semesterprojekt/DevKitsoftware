@@ -2,7 +2,6 @@
 #define SHOWDATA_H
 
 #include <QWidget>
-#include <QTimer>
 #include "currentdata.h"
 
 namespace Ui {

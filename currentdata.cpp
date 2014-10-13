@@ -39,6 +39,7 @@ int CurrentData::getCurrentTemp(){
 
 void CurrentData::setCurrentTemp(int tmp){
     currentTemp = tmp;
+    emit currentDataChanged();
 }
 
 int CurrentData::getTargetHumidity(){
@@ -55,6 +56,7 @@ int CurrentData::getCurrentHumidity(){
 
 void CurrentData::setCurrentHumidity(int tmp){
     currentHumidity = tmp;
+    emit currentDataChanged();
 }
 
 bool CurrentData::getCurrentWindowState(){

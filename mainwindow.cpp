@@ -5,7 +5,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+#ifdef __arm__
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint);   //hide title bar
+#endif
     ui->label->setStyleSheet("QLabel {color : green;}");
     ptr_logFile = new logFile;
     ptr_currentData = new CurrentData;
