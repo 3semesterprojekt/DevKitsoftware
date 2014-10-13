@@ -10,7 +10,7 @@
 #include "currentdata.h"
 #include "logfile.h"
 #include "control.h"
-
+#include "showweather.h"
 namespace Ui {
 class MainWindow;
 }
@@ -34,6 +34,8 @@ private slots:
     void on_changeAuto_clicked();
     void on_showLog_clicked();
     void update();
+
+    void on_showWeather_clicked();
 
 private:
     Ui::MainWindow *ui;

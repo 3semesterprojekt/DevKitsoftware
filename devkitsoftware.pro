@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
-
+QT += network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = devkitsoftware
@@ -24,7 +24,9 @@ SOURCES += main.cpp\
     currentdata.cpp \
     logfile.cpp \
     control.cpp \
-    connection.cpp
+    connection.cpp \
+    showweather.cpp \
+    filedownloader.cpp
 
 HEADERS  += mainwindow.h \
     showdata.h \
@@ -34,10 +36,15 @@ HEADERS  += mainwindow.h \
     currentdata.h \
     logfile.h \
     control.h \
-    connection.h
+    connection.h \
+    showweather.h \
+    filedownloader.h
 
 FORMS    += mainwindow.ui \
     showdata.ui \
     changeauto.ui \
     setmanual.ui \
-    showlog.ui
+    showlog.ui \
+    showweather.ui
+
+#endif // FILEDOWNLOADER_H

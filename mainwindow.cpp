@@ -70,3 +70,11 @@ void MainWindow::update(){
     //qDebug() << ptr_currentData->getoverridewindow()<< endl;
     //qDebug() << ptr_currentData->gettargetwater()<< endl;
 }
+
+void MainWindow::on_showWeather_clicked()
+{
+    showWeather* ptr_ShowWeather = new showWeather;
+    ptr_ShowWeather->setAttribute(Qt::WA_DeleteOnClose);
+
+    ptr_ShowWeather->show();
+}
