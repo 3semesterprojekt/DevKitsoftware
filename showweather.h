@@ -3,7 +3,6 @@
 
 #include <QWidget>
 #include <QtWebKit/QtWebKit>
-#include <QDebug>
 
 namespace Ui {
 class showWeather;
