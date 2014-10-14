@@ -30,11 +30,13 @@ void showWeather::on_returnButton_clicked()
 
 void showWeather::loadImage()
 {
-    QPixmap buttonImage;
-    buttonImage.loadFromData(m_pImgCtrl->downloadedData());
-    ui->label_3->setPixmap(
-        buttonImage.scaled(32, 20, Qt::IgnoreAspectRatio, Qt::FastTransformation));
-    ui->label_3->setPixmap(buttonImage);
+    QPixmap Image;
+    Image.loadFromData(m_pImgCtrl->downloadedData());
+    int i = 5;
+    Image.scaledToHeight(i);
+    ui->label_3->setScaledContents(true);
+    ui->label_3->setPixmap(Image);
+
 }
 
 
