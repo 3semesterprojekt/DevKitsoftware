@@ -26,6 +26,10 @@ public:
 
 private:
     int transfer(int deviceID, int command);
+    char txbuffer[4];
+    char rxbuffer[4];
+    int temp;
+    int humidity;
 
     static const int getTempCmd = 0x01;
     static const int getWaterCmd = 0x02;
