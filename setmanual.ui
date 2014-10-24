@@ -199,6 +199,22 @@ height: 20px;
     </size>
    </property>
   </widget>
+  <widget class="QComboBox" name="deviceComboBox">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>131</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="sizeAdjustPolicy">
+    <enum>QComboBox::AdjustToContents</enum>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

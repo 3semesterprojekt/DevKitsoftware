@@ -17,7 +17,7 @@ class SetManual : public QWidget
 public:
     explicit SetManual(QWidget *parent = 0);
     ~SetManual();
-    void init(CurrentData*, control *);
+    void init(std::vector<CurrentData*>*, control *);
 
 private slots:
     void on_returnButton_clicked();
@@ -29,10 +29,14 @@ private slots:
     void on_humiditySlider_valueChanged(int value);
     void waterDone();
 
+    void on_deviceComboBox_currentIndexChanged(int index);
+
 private:
     Ui::SetManual *ui;
     CurrentData* ptr_currentData;
+    std::vector<CurrentData*>* ptr_currentDataVector;
     control* ptr_control;
+    int device;
 };
 
 #endif // SETMANUAL_H

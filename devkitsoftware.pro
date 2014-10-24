@@ -46,5 +46,3 @@ FORMS    += mainwindow.ui \
     setmanual.ui \
     showlog.ui \
     showweather.ui
-
-#endif // FILEDOWNLOADER_H

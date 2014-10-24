@@ -1,6 +1,7 @@
 #ifndef CURRENTDATA_H
 #define CURRENTDATA_H
 #include <QObject>
+#include <QString>
 
 class CurrentData : public QObject
 {
@@ -34,6 +35,8 @@ public:
     void setAutoTemp(bool state);
     bool getAutoHumidity();
     void setAutoHumidity(bool state);
+    QString getDeviceName();
+    void setDeviceName(QString name);
 
 private:
     int minTemp;    //minimum automatic temperatur
@@ -49,8 +52,10 @@ private:
     bool manualHeaterState;
     bool autoTemp;  //is the temperatur in automatic mode
     bool autoHumidity; //is the water in automatic mode
+    QString deviceName;
 signals:
     void currentDataChanged(void);
+    void statusChanged(void);
 };
 
 #endif  //CURRENTDATA_H

@@ -9,12 +9,16 @@ MainWindow::MainWindow(QWidget *parent) :
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint);   //hide title bar
 #endif
     ui->label->setStyleSheet("QLabel {color : green;}");
+    numberOfUnits = 1;
     ptr_logFile = new logFile;
-    ptr_currentData = new CurrentData;
+    ptr_currentDataVector = new std::vector<CurrentData*>;
+    ptr_currentDataVector->push_back(new CurrentData);
+    ptr_currentDataVector->at(0)->setDeviceName("SPIDEV1.0");
     ptr_control = new control;
-    ptr_control->init(ptr_logFile,ptr_currentData);
+    ptr_control->init(ptr_logFile,ptr_currentDataVector->at(0));
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
+    //connect(ptr_currentDataVector->at(0), SIGNAL(statusChanged()), this, SLOT(changeStatusLabel()));
     timer->start(1000); //every 1 second
 }
 
@@ -27,7 +31,7 @@ void MainWindow::on_showData_clicked()
 {
     ShowData* ptr_ShowData = new ShowData;
     ptr_ShowData->setAttribute(Qt::WA_DeleteOnClose);
-    ptr_ShowData->init(ptr_currentData);
+    ptr_ShowData->init(ptr_currentDataVector);
     ptr_ShowData->show();
 }
 
@@ -35,7 +39,7 @@ void MainWindow::on_setManual_clicked()
 {
     SetManual* ptr_SetManual = new SetManual;
     ptr_SetManual->setAttribute(Qt::WA_DeleteOnClose);
-    ptr_SetManual->init(ptr_currentData, ptr_control);
+    ptr_SetManual->init(ptr_currentDataVector, ptr_control);
     ptr_SetManual->show();
 }
 
@@ -43,7 +47,7 @@ void MainWindow::on_changeAuto_clicked()
 {
     ChangeAuto* ptr_ChangeAuto = new ChangeAuto;
     ptr_ChangeAuto->setAttribute(Qt::WA_DeleteOnClose);
-    ptr_ChangeAuto->init(ptr_currentData);
+    ptr_ChangeAuto->init(ptr_currentDataVector);
     ptr_ChangeAuto->show();
 }
 
@@ -54,23 +58,46 @@ void MainWindow::on_showLog_clicked()
     ptr_ShowLog->init(ptr_logFile);
     ptr_ShowLog->show();
 }
+
 void MainWindow::update(){
-    ptr_control->checkValues();
-    //qDebug() << "VALUES:" << endl;
-    //qDebug() << ptr_currentData->getautotemp()<< endl;
-    //qDebug() << ptr_currentData->getautowater()<< endl;
-    //qDebug() << ptr_currentData->getcurrentheaterstate()<< endl;
-    //qDebug() << ptr_currentData->getcurrenttemp()<< endl;
-    //qDebug() << ptr_currentData->getcurrentwater()<< endl;
-    //qDebug() << ptr_currentData->getcurrentwindowstate()<< endl;
-    //qDebug() << ptr_currentData->getmanualheaterstate()<< endl;
-    //qDebug() << ptr_currentData->getmanualwindowstate()<< endl;
-    //qDebug() << ptr_currentData->getmaxtemp()<< endl;
-    //qDebug() << ptr_currentData->getmintemp()<< endl;
-    //qDebug() << ptr_currentData->getoverrideheater()<< endl;
-    //qDebug() << ptr_currentData->getoverrideheater()<< endl;
-    //qDebug() << ptr_currentData->getoverridewindow()<< endl;
-    //qDebug() << ptr_currentData->gettargetwater()<< endl;
+    for(int i = 0; i < numberOfUnits; i++){
+        ptr_control->checkValues(i);
+    }
+}
+
+void MainWindow::changeStatusLabel(){
+    QString tmp = "";
+
+    if(ptr_currentDataVector->at(0)->getAutoTemp() == true){ //temp on auto
+        tmp.append("Automatic Temperatur Control ON");
+    }
+    else{ //humidity control off
+        tmp.append("Automatic Temperatur Control OFF");
+    }
+
+    if(ptr_currentDataVector->at(0)->getAutoHumidity() == true){ //humidity on auto
+        tmp.append("Automatic Humidity Control ON");
+    }
+    else{ //humidity control off
+        tmp.append("Automatic Humidity Control OFF");
+    }
+
+    if(ptr_currentDataVector->at(0)->getOverrideHeater() == true){
+        tmp.append("Heater Override ON");
+    }
+    else{
+        tmp.append("Heater Override OFF");
+    }
+
+    if(ptr_currentDataVector->at(0)->getOverrideWindow() == true){
+        tmp.append("Window Override ON");
+    }
+    else{
+        tmp.append("Window Override OFF");
+    }
+
+    ui->statusLabel->setText(tmp);
+    return;
 }
 
 void MainWindow::on_showWeather_clicked()

@@ -111,16 +111,16 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>321</width>
+      <x>15</x>
+      <y>10</y>
+      <width>341</width>
       <height>51</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>gargi</family>
-      <pointsize>26</pointsize>
+      <pointsize>30</pointsize>
       <weight>75</weight>
       <italic>true</italic>
       <bold>true</bold>
@@ -153,16 +153,19 @@
      <string>Show Weather</string>
     </property>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>480</width>
-     <height>20</height>
-    </rect>
-   </property>
+   <widget class="QLabel" name="statusLabel">
+    <property name="geometry">
+     <rect>
+      <x>16</x>
+      <y>245</y>
+      <width>441</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

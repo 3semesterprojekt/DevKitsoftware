@@ -2,7 +2,6 @@
 #define SHOWWEATHER_H
 
 #include <QWidget>
-#include <QtWebKit/QtWebKit>
 
 namespace Ui {
 class showWeather;

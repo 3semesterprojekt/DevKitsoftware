@@ -9,6 +9,7 @@ SetManual::SetManual(QWidget *parent) :
 #ifdef __arm__
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint);   //hide title bar
 #endif
+    device = 0;
 }
 
 SetManual::~SetManual()
@@ -21,8 +22,13 @@ void SetManual::on_returnButton_clicked()
     this->close();
 }
 
-void SetManual::init(CurrentData * ptr, control * ptr2){
-    ptr_currentData = ptr;
+void SetManual::init(std::vector<CurrentData*>* ptr, control * ptr2){
+    ptr_currentDataVector = ptr;
+    for(unsigned int i = 0; i < ptr_currentDataVector->size(); i++){
+        ui->deviceComboBox->addItem(ptr_currentDataVector->at(i)->getDeviceName());
+    }
+    ui->deviceComboBox->setCurrentIndex(0);
+    ptr_currentData = ptr_currentDataVector->at(0);
     ptr_control = ptr2;
     ui->windowButton->setEnabled(ptr_currentData->getOverrideWindow());
     ui->overrideWindowBox->setChecked(ptr_currentData->getOverrideWindow());
@@ -78,7 +84,7 @@ void SetManual::on_windowButton_clicked()
 
 void SetManual::on_humidityButton_clicked()
 {
-    ptr_control->dispenseWater(ui->humiditySlider->value());
+    ptr_control->dispenseWater(device, ui->humiditySlider->value());
     ui->humidityButton->setText("Adding Water ...");
     ui->humidityButton->setEnabled(false);
     QTimer::singleShot(5000, this, SLOT(waterDone()));
@@ -98,4 +104,9 @@ void SetManual::waterDone(){
     ui->humidityButton->setEnabled(true);
     ui->humiditySlider->setSliderPosition(0);
 
+}
+
+void SetManual::on_deviceComboBox_currentIndexChanged(int index)
+{
+    ptr_currentData = ptr_currentDataVector->at(index);
 }

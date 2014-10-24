@@ -4,21 +4,23 @@
 #include "logfile.h"
 #include "currentdata.h"
 #include "connection.h"
+#include <vector>
 
 class control
 {
 public:
     control();
     void init(logFile*,CurrentData*);
-    void checkValues();
-    void dispenseWater(int amount);
+    void checkValues(int newDevice);
+    void dispenseWater(int device, int amount);
 private:
     logFile* ptr_logFile;
     CurrentData* ptr_currentData;
     connection* ptr_connection;
-    int waterQueue;
+    std::vector<int> waterQueue;
     qint64 lastWater;
     int device;
+    int numberOfDevices;
 
 };
 

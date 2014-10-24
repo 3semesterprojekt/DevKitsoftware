@@ -15,7 +15,7 @@ class ChangeAuto : public QWidget
 public:
     explicit ChangeAuto(QWidget *parent = 0);
     ~ChangeAuto();
-    void init(CurrentData*);
+    void init(std::vector<CurrentData*>* ptr);
 
 private slots:
     void on_returnButton_clicked();
@@ -25,10 +25,13 @@ private slots:
     void on_maxTempSlider_valueChanged(int value);
     void on_minTempSlider_valueChanged(int value);
 
+    void on_deviceComboBox_currentIndexChanged(int index);
+
 private:
     Ui::ChangeAuto *ui;
     void update();
     CurrentData* ptr_currentData;
+    std::vector<CurrentData*>* ptr_currentDataVector;
 };
 
 #endif // CHANGEAUTO_H

@@ -81,6 +81,7 @@ bool CurrentData::getOverrideWindow(){
 
 void CurrentData::setOverrideWindow(bool tmp){
     overrideWindow = tmp;
+    emit statusChanged();
 }
 
 bool CurrentData::getOverrideHeater(){
@@ -89,6 +90,7 @@ bool CurrentData::getOverrideHeater(){
 
 void CurrentData::setOverrideHeater(bool tmp){
     overrideHeater = tmp;
+    emit statusChanged();
 }
 
 bool CurrentData::getManualWindowState(){
@@ -113,6 +115,7 @@ bool CurrentData::getAutoTemp(){
 
 void CurrentData::setAutoTemp(bool tmp){
     autoTemp = tmp;
+    emit statusChanged();
 }
 
 bool CurrentData::getAutoHumidity(){
@@ -121,5 +124,14 @@ bool CurrentData::getAutoHumidity(){
 
 void CurrentData::setAutoHumidity(bool tmp){
     autoHumidity = tmp;
+    emit statusChanged();
 }
 
+void CurrentData::setDeviceName(QString name){
+    deviceName = name;
+    return;
+}
+
+QString CurrentData::getDeviceName(){
+    return deviceName;
+}

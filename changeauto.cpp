@@ -16,8 +16,13 @@ ChangeAuto::~ChangeAuto()
     delete ui;
 }
 
-void ChangeAuto::init(CurrentData *ptr){
-    ptr_currentData = ptr;
+void ChangeAuto::init(std::vector<CurrentData*>* ptr){
+    ptr_currentDataVector = ptr;
+    for(unsigned int i = 0; i < ptr_currentDataVector->size(); i++){
+        ui->deviceComboBox->addItem(ptr_currentDataVector->at(i)->getDeviceName());
+    }
+    ui->deviceComboBox->setCurrentIndex(0);
+    ptr_currentData = ptr_currentDataVector->at(0);
     ui->templabel->setText("minimum temperatur");
     ui->tempLcd->display(ptr_currentData->getMinTemp());
     ui->minTempSlider->setSliderPosition(ptr_currentData->getMinTemp());
@@ -77,4 +82,9 @@ void ChangeAuto::on_minTempSlider_valueChanged(int value)
     }
     ui->templabel->setText("minimum temperatur");
     ui->tempLcd->display(ptr_currentData->getMinTemp());
+}
+
+void ChangeAuto::on_deviceComboBox_currentIndexChanged(int index)
+{
+    ptr_currentData = ptr_currentDataVector->at(index);
 }

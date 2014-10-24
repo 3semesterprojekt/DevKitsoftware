@@ -18,8 +18,9 @@ class connection
 {
 public:
     connection();
-    int getTemp(int device);
-    int getHumidity(int device);
+    int getTemp();
+    int getHumidity();
+    void getValues(int device);
     void setWindow(int device, bool state);
     void setHeater(int device, bool state);
     void giveWater(int device);
@@ -31,13 +32,14 @@ private:
     int temp;
     int humidity;
 
-    static const int getTempCmd = 0x01;
-    static const int getWaterCmd = 0x02;
-    static const int openWindowCmd = 0x05;
-    static const int closeWindowCmd = 0x06;
-    static const int startHeaterCmd = 0x03;
-    static const int stopHeaterCmd = 0x04;
-    static const int addWaterCmd = 0x07;
+    enum SPICommands{
+        NOTHING = 0,
+        OPENWINDOW = 1,
+        CLOSEWINDOW = 2,
+        STARTHEATER = 3,
+        STOPHEATER = 4,
+        ADDWATER = 5
+    };
 };
 
 #endif // CONNECTION_H

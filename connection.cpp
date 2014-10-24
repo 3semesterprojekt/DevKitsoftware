@@ -12,23 +12,41 @@ int connection::transfer(int device, int cmd){
 
     int res = 0;
     int spiDev;
-    if(device == 1){
+    switch(device){
+    case 0:
         spiDev = open("/dev/spidev1.0", O_RDWR);
-    }
-    else if(device == 2){
-        spiDev = open("/dev/spidev1.1", O_RDWR);
-    }
-    else{
+        break;
+    case 1:
+        spiDev = open("/dev/spidev1.3", O_RDWR);
+        break;
+    default:
         qDebug() << "ERROR: wrong spidev device chosen! ";
         exit(0);
         //just hope it doesn't happend
+        break;
     }
 
     //set commands using the tx buffer
-    txbuffer[0] = 0x01;
-    txbuffer[1] = 0x02;
-    txbuffer[2] = 0x03;
-    txbuffer[3] = 0x04;
+    switch(cmd){
+    case NOTHING: txbuffer[0] = 0x00;
+        break;
+    case OPENWINDOW: txbuffer[0] = 0x01;
+        break;
+    case CLOSEWINDOW: txbuffer[0] = 0x02;
+        break;
+    case STARTHEATER: txbuffer[0] = 0x03;
+        break;
+    case STOPHEATER: txbuffer[0] = 0x04;
+        break;
+    case ADDWATER: txbuffer[0] = 0x05;
+        break;
+    default: txbuffer[0] = 0x00;
+        break;
+
+    }
+    txbuffer[1] = 0x00;
+    txbuffer[2] = 0x00;
+    txbuffer[3] = 0x00;
 
     int mode = SPI_MODE0;   //setting SPI mode
     ioctl(spiDev, SPI_IOC_WR_MODE, &mode);
@@ -55,42 +73,44 @@ int connection::transfer(int device, int cmd){
     humidity = 0; //TODO: insert humidity from rx
     temp = 0; //TODO: insert temp from rx
 
-    qDebug() << "temp: " << temp;
-    qDebug() << "humidity: " << humidity;
+    //qDebug() << "temp: " << temp;
+    //qDebug() << "humidity: " << humidity;
     return 0;
 }
 
-int connection::getTemp(int device){
-    transfer(device, getTempCmd);
+int connection::getTemp(){
     return temp;
 }
 
-int connection::getHumidity(int device){
-    transfer(device, getWaterCmd);
+int connection::getHumidity(){
     return humidity;
 }
 
+void connection::getValues(int device){
+    transfer(device, NOTHING);
+    return;
+}
 void connection::setWindow(int device, bool state){
     if(state){
-        transfer(device, openWindowCmd);
+        transfer(device, OPENWINDOW);
     }
     else{
-        transfer(device, closeWindowCmd);
+        transfer(device, CLOSEWINDOW);
     }
     return;
 }
 
 void connection::setHeater(int device, bool state){
     if(state){
-        transfer(device, startHeaterCmd);
+        transfer(device, STARTHEATER);
     }
     else{
-        transfer(device, stopHeaterCmd);
+        transfer(device, STOPHEATER);
     }
     return;
 }
 
 void connection::giveWater(int device){
-    transfer(device, addWaterCmd);
+    transfer(device, ADDWATER);
     return;
 }

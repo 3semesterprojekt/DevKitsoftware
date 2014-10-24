@@ -11,6 +11,10 @@
 #include "logfile.h"
 #include "control.h"
 #include "showweather.h"
+#include <QString>
+#include <vector>
+#include <QDebug>
+
 namespace Ui {
 class MainWindow;
 }
@@ -24,9 +28,10 @@ public:
     ~MainWindow();
 
 private:
-    CurrentData* ptr_currentData;
     logFile* ptr_logFile;
     control* ptr_control;
+    int numberOfUnits;
+    std::vector<CurrentData*> *ptr_currentDataVector;
 
 private slots:
     void on_showData_clicked();
@@ -34,7 +39,7 @@ private slots:
     void on_changeAuto_clicked();
     void on_showLog_clicked();
     void update();
-
+    void changeStatusLabel();
     void on_showWeather_clicked();
 
 private:

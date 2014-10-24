@@ -21,8 +21,13 @@ void ShowData::on_returnButton_clicked()
     this->close();
 }
 
-void ShowData::init(CurrentData* ptr){
-    ptr_currentData = ptr;
+void ShowData::init(std::vector<CurrentData*>* ptr){
+    ptr_currentDataVector = ptr;
+    for(unsigned int i = 0; i < ptr_currentDataVector->size(); i++){
+        ui->deviceComboBox->addItem(ptr_currentDataVector->at(i)->getDeviceName());
+    }
+    ui->deviceComboBox->setCurrentIndex(0);
+    ptr_currentData = ptr_currentDataVector->at(0);
     ui->tempLcd->display(ptr_currentData->getCurrentTemp());
     ui->humidityLcd->display(ptr_currentData->getCurrentHumidity());
     connect(ptr_currentData, SIGNAL(currentDataChanged()), this, SLOT(update()));
@@ -31,4 +36,9 @@ void ShowData::init(CurrentData* ptr){
 void ShowData::update(){
     ui->tempLcd->display(ptr_currentData->getCurrentTemp());
     ui->humidityLcd->display(ptr_currentData->getCurrentHumidity());
+}
+
+void ShowData::on_deviceComboBox_currentIndexChanged(int index)
+{
+        ptr_currentData = ptr_currentDataVector->at(index);
 }
