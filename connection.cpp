@@ -105,25 +105,25 @@ void connection::getValues(int device){
 }
 void connection::setWindow(int device, bool state){
     if(state){
-        //transfer(device, OPENWINDOW);
+        transfer(device, OPENWINDOW);
     }
     else{
-        //transfer(device, CLOSEWINDOW);
+        transfer(device, CLOSEWINDOW);
     }
     return;
 }
 
 void connection::setHeater(int device, bool state){
     if(state){
-        //transfer(device, STARTHEATER);
+        transfer(device, STARTHEATER);
     }
     else{
-        //transfer(device, STOPHEATER);
+        transfer(device, STOPHEATER);
     }
     return;
 }
 
 void connection::giveWater(int device){
-    //transfer(device, ADDWATER);
+    transfer(device, ADDWATER);
     return;
 }
