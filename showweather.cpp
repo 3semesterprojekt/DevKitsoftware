@@ -17,7 +17,6 @@ showWeather::showWeather(QWidget *parent) :
     m_pImgCtrl = new FileDownloader(imageUrl,this);//download image
     connect(m_pImgCtrl,SIGNAL(downloaded()),SLOT(loadImage()));
 
-
 }
 
 showWeather::~showWeather()

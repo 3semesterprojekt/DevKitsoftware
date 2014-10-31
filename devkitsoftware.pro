@@ -6,6 +6,7 @@
 
 QT       += core gui
 QT += network
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = devkitsoftware
@@ -26,7 +27,8 @@ SOURCES += main.cpp\
     control.cpp \
     connection.cpp \
     showweather.cpp \
-    filedownloader.cpp
+    filedownloader.cpp \
+    showbiolex.cpp
 
 HEADERS  += mainwindow.h \
     showdata.h \
@@ -38,11 +40,13 @@ HEADERS  += mainwindow.h \
     control.h \
     connection.h \
     showweather.h \
-    filedownloader.h
+    filedownloader.h \
+    showbiolex.h
 
 FORMS    += mainwindow.ui \
     showdata.ui \
     changeauto.ui \
     setmanual.ui \
     showlog.ui \
-    showweather.ui
+    showweather.ui \
+    showbiolex.ui
