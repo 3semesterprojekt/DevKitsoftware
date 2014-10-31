@@ -28,8 +28,8 @@ public:
 
 private:
     int transfer(int deviceID, int command);
-    char txbuffer[5];
-    char rxbuffer[5];
+    char txbuffer[3];
+    char rxbuffer[3];
     int temp;
     int humidity;
     int outTemp;

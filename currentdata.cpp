@@ -4,10 +4,10 @@ CurrentData::CurrentData(){
 
     minTemp = 20;
     maxTemp = 26;
-    currentTemp = 23;
-    currentOutTemp = 15;
+    currentTemp = 0;
+    currentOutTemp = 0;
     targetHumidity = 45;
-    currentHumidity = 47;
+    currentHumidity = 0;
     currentWindowState = 0;
     currentHeaterState = 0;
     overrideWindow = 0;
@@ -39,7 +39,9 @@ int CurrentData::getCurrentTemp(){
 }
 
 void CurrentData::setCurrentTemp(int tmp){
-    currentTemp = tmp;
+    if(tmp < 50 && tmp > -10){
+        currentTemp = tmp;
+    }
     emit currentDataChanged();
 }
 
@@ -48,7 +50,9 @@ int CurrentData::getCurrentOutTemp(){
 }
 
 void CurrentData::setCurrentOutTemp(int tmp){
-    currentOutTemp = tmp;
+    if(tmp < 50 && tmp > -10){
+        currentOutTemp = tmp;
+    }
     emit currentDataChanged();
 }
 
@@ -57,7 +61,9 @@ int CurrentData::getTargetHumidity(){
 }
 
 void CurrentData::setTargetHumidity(int tmp){
-    targetHumidity = tmp;
+    if(tmp < 100 && tmp > 0){
+        targetHumidity = tmp;
+    }
 }
 
 int CurrentData::getCurrentHumidity(){

@@ -46,9 +46,6 @@ int connection::transfer(int device, int cmd){
     }
     txbuffer[1] = 0x00;
     txbuffer[2] = 0x00;
-    txbuffer[3] = 0x00;
-    txbuffer[4] = 0x00;
-    txbuffer[5] = 0x00;
 
     int mode = SPI_MODE0;   //setting SPI mode
     ioctl(spiDev, SPI_IOC_WR_MODE, &mode);
@@ -64,7 +61,7 @@ int connection::transfer(int device, int cmd){
 
     xfer.tx_buf = (unsigned long)txbuffer;
     xfer.rx_buf = (unsigned long)rxbuffer;
-    xfer.len = 5;
+    xfer.len = 3;
     xfer.speed_hz = 1 * 1000 * 1000;
     xfer.cs_change = 0;
     xfer.bits_per_word = bits_per_word;
@@ -72,16 +69,17 @@ int connection::transfer(int device, int cmd){
     res = ioctl(spiDev, SPI_IOC_MESSAGE(1), &xfer);
 
     //DEBUG
-    qDebug() << "0: " << (unsigned int)rxbuffer[0]; //humidity?
+    qDebug() << "0: " << (unsigned int)rxbuffer[0]; //humidity
     qDebug() << "1: " << (unsigned int)rxbuffer[1]; //indoor temp (000)
-    qDebug() << "2: " << (unsigned int)rxbuffer[2]; //indoor temp decimal
-    qDebug() << "3: " << (unsigned int)rxbuffer[3]; //outdoor temp (111)
-    qDebug() << "4: " << (unsigned int)rxbuffer[4]; //outdoor temp decimal
+    qDebug() << "2: " << (unsigned int)rxbuffer[2]; //outdoor temp (111)
+
+
+    //TODO: check if values make sence
 
     //get humidity and temperatur from rx buffer
-    humidity = (unsigned int) rxbuffer[0]; //TODO: insert humidity from rx
-    temp = (unsigned int) rxbuffer[1]; //TODO: insert temp from rx
-    outTemp = (unsigned int) rxbuffer[3]; //TODO: insert outdoor temp from rx
+    humidity = (unsigned int) rxbuffer[0];
+    temp = (unsigned int) rxbuffer[1];
+    outTemp = (unsigned int) rxbuffer[2];
 
     qDebug() << "temp: " << temp;
     qDebug() << "humidity: " << humidity;
