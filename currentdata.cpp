@@ -5,6 +5,7 @@ CurrentData::CurrentData(){
     minTemp = 20;
     maxTemp = 26;
     currentTemp = 23;
+    currentOutTemp = 15;
     targetHumidity = 45;
     currentHumidity = 47;
     currentWindowState = 0;
@@ -39,6 +40,15 @@ int CurrentData::getCurrentTemp(){
 
 void CurrentData::setCurrentTemp(int tmp){
     currentTemp = tmp;
+    emit currentDataChanged();
+}
+
+int CurrentData::getCurrentOutTemp(){
+    return currentOutTemp;
+}
+
+void CurrentData::setCurrentOutTemp(int tmp){
+    currentOutTemp = tmp;
     emit currentDataChanged();
 }
 

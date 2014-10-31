@@ -21,8 +21,9 @@ void control::checkValues(int newDevice){
     device = newDevice;
     ptr_connection->getValues(device);
     //TODO: calls are commentet out to debug
-    //ptr_currentData->setCurrentTemp(ptr_connection->getTemp());
-    //ptr_currentData->setCurrentHumidity(ptr_connection->getHumidity());
+    ptr_currentData->setCurrentTemp(ptr_connection->getTemp());
+    ptr_currentData->setCurrentHumidity(ptr_connection->getHumidity());
+    ptr_currentData->setCurrentOutTemp(ptr_connection->getOutTemp());
 
     if(ptr_currentData->getOverrideHeater() == false && ptr_currentData->getAutoTemp() == true){ //heater on auto
         if(ptr_currentData->getCurrentTemp() < ptr_currentData->getMinTemp() && ptr_currentData->getCurrentHeaterState() == false){ //temperatur is lower that mintemp and heater is off

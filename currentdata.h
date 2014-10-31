@@ -37,6 +37,8 @@ public:
     void setAutoHumidity(bool state);
     QString getDeviceName();
     void setDeviceName(QString name);
+    int getCurrentOutTemp();
+    void setCurrentOutTemp(int temp);
 
 private:
     int minTemp;    //minimum automatic temperatur
@@ -53,6 +55,7 @@ private:
     bool autoTemp;  //is the temperatur in automatic mode
     bool autoHumidity; //is the water in automatic mode
     QString deviceName;
+    int currentOutTemp;
 signals:
     void currentDataChanged(void);
     void statusChanged(void);

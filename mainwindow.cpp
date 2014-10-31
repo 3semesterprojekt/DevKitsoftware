@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
     //connect(ptr_currentDataVector->at(0), SIGNAL(statusChanged()), this, SLOT(changeStatusLabel()));
-    timer->start(1000); //every 1 second
+    timer->start(10000); //every 10 second
 }
 
 MainWindow::~MainWindow()

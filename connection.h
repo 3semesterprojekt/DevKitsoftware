@@ -19,6 +19,7 @@ class connection
 public:
     connection();
     int getTemp();
+    int getOutTemp();
     int getHumidity();
     void getValues(int device);
     void setWindow(int device, bool state);
@@ -27,10 +28,11 @@ public:
 
 private:
     int transfer(int deviceID, int command);
-    char txbuffer[4];
-    char rxbuffer[4];
+    char txbuffer[5];
+    char rxbuffer[5];
     int temp;
     int humidity;
+    int outTemp;
 
     enum SPICommands{
         NOTHING = 0,
