@@ -11,6 +11,7 @@
 #include "logfile.h"
 #include "control.h"
 #include "showweather.h"
+#include "showbiolex.h"
 #include <QString>
 #include <vector>
 #include <QDebug>
@@ -41,6 +42,7 @@ private slots:
     void update();
     void changeStatusLabel();
     void on_showWeather_clicked();
+    void on_showBiolex_clicked();
 
 private:
     Ui::MainWindow *ui;
