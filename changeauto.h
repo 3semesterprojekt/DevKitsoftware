@@ -24,7 +24,6 @@ private slots:
     void on_humiditySlider_valueChanged(int value);
     void on_maxTempSlider_valueChanged(int value);
     void on_minTempSlider_valueChanged(int value);
-
     void on_deviceComboBox_currentIndexChanged(int index);
 
 private:

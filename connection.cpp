@@ -25,27 +25,53 @@ int connection::transfer(int device, int cmd){
         //just hope it doesn't happend
         break;
     }
-
+    qDebug() << "cmd: " << cmd;
     //set commands using the tx buffer
     switch(cmd){
-    case NOTHING: txbuffer[0] = 0x00;
+    case NOTHING:
+        txbuffer[0] = 0x00;
+        txbuffer[1] = 0x00;
+        txbuffer[2] = 0x00;
+        txbuffer[3] = 0x00;
         break;
-    case OPENWINDOW: txbuffer[0] = 0x01;
+    case OPENWINDOW:
+        txbuffer[0] = 0x01;
+        txbuffer[1] = 0x01;
+        txbuffer[2] = 0x01;
+        txbuffer[3] = 0x01;
         break;
-    case CLOSEWINDOW: txbuffer[0] = 0x02;
+    case CLOSEWINDOW:
+        txbuffer[0] = 0x02;
+        txbuffer[1] = 0x02;
+        txbuffer[2] = 0x02;
+        txbuffer[3] = 0x02;
         break;
-    case STARTHEATER: txbuffer[0] = 0x03;
+    case STARTHEATER:
+        txbuffer[0] = 0x03;
+        txbuffer[1] = 0x03;
+        txbuffer[2] = 0x03;
+        txbuffer[3] = 0x03;
         break;
-    case STOPHEATER: txbuffer[0] = 0x04;
+    case STOPHEATER:
+        txbuffer[0] = 0x04;
+        txbuffer[1] = 0x04;
+        txbuffer[2] = 0x04;
+        txbuffer[3] = 0x04;
         break;
-    case ADDWATER: txbuffer[0] = 0x05;
+    case ADDWATER:
+        txbuffer[0] = 0x05;
+        txbuffer[1] = 0x05;
+        txbuffer[2] = 0x05;
+        txbuffer[3] = 0x05;
         break;
-    default: txbuffer[0] = 0x00;
+    default:
+        txbuffer[0] = 0x00;
+        txbuffer[1] = 0x00;
+        txbuffer[2] = 0x00;
+        txbuffer[3] = 0x00;
         break;
 
     }
-    txbuffer[1] = 0x00;
-    txbuffer[2] = 0x00;
 
     int mode = SPI_MODE0;   //setting SPI mode
     ioctl(spiDev, SPI_IOC_WR_MODE, &mode);
@@ -68,22 +94,19 @@ int connection::transfer(int device, int cmd){
     xfer.delay_usecs = 150; //todo: set correct delay
     res = ioctl(spiDev, SPI_IOC_MESSAGE(1), &xfer);
 
-    //DEBUG
-    qDebug() << "0: " << (unsigned int)rxbuffer[0]; //humidity
-    qDebug() << "1: " << (unsigned int)rxbuffer[1]; //indoor temp (000)
-    qDebug() << "2: " << (unsigned int)rxbuffer[2]; //outdoor temp (111)
-
-
     //TODO: check if values make sence
+//    if((rxbuffer[0] ^ rxbuffer[1] ^ rxbuffer[2]) == rxbuffer[3]){
+        humidity = (unsigned int) rxbuffer[0];
+        temp = (unsigned int) rxbuffer[1];
+        outTemp = (unsigned int) rxbuffer[2];
 
-    //get humidity and temperatur from rx buffer
-    humidity = (unsigned int) rxbuffer[0];
-    temp = (unsigned int) rxbuffer[1];
-    outTemp = (unsigned int) rxbuffer[2];
-
-    qDebug() << "temp: " << temp;
-    qDebug() << "humidity: " << humidity;
-    qDebug() << "outTemp: " << outTemp;
+        qDebug() << "temp: " << temp;
+        qDebug() << "humidity: " << humidity;
+        qDebug() << "outTemp: " << outTemp;
+//    }
+//    else{
+//        qDebug() << "SPI DATA FAIL!";
+//    }
     return 0;
 }
 
