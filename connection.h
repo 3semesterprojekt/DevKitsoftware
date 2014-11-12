@@ -7,6 +7,7 @@
 #include <string.h>
 #include <sys/ioctl.h>
 #include <linux/spi/spidev.h>
+#include <vector>
 
 #define SPI_MODE0 0x00
 #define SPI_MODE1 0x01
@@ -27,21 +28,14 @@ public:
     void giveWater(int device);
 
 private:
-    int transfer(int deviceID, int command);
+    int transfer(int deviceID);
     char txbuffer[4];
     char rxbuffer[4];
     int temp;
     int humidity;
     int outTemp;
-
-    enum SPICommands{
-        NOTHING = 0,
-        OPENWINDOW = 1,
-        CLOSEWINDOW = 2,
-        STARTHEATER = 3,
-        STOPHEATER = 4,
-        ADDWATER = 5
-    };
+    std::vector<bool> heater;
+    std::vector<bool> window;
+    std::vector<bool> water;
 };
-
 #endif // CONNECTION_H
