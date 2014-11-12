@@ -80,7 +80,7 @@ void control::checkValues(int newDevice){
         }
     }
     if( waterQueue.at(device) > 0){
-        ptr_connection->giveWater(device);    //despense water
+        ptr_connection->giveWater(device);    //dispense water
         waterQueue.at(device)--;
         QString tmp = "";
         if(waterQueue.at(device) == 0){

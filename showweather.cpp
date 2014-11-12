@@ -1,7 +1,7 @@
 #include "showweather.h"
 #include "ui_showweather.h"
 #include "filedownloader.h"
-FileDownloader* m_pImgCtrl;
+FileDownloader* m_pFile;
 
 showWeather::showWeather(QWidget *parent) :
     QWidget(parent),
@@ -14,8 +14,8 @@ showWeather::showWeather(QWidget *parent) :
 
 
     QUrl imageUrl("http://www.dmi.dk/uploads/tx_dmidatastore/webservice/k/d/_/n/g/femdgn_dk.png");
-    m_pImgCtrl = new FileDownloader(imageUrl,this);//download image
-    connect(m_pImgCtrl,SIGNAL(downloaded()),SLOT(loadImage()));
+    m_pFile = new FileDownloader(imageUrl,this);//download image
+    connect(m_pFile,SIGNAL(downloaded()),SLOT(loadImage()));
 
 }
 
@@ -32,7 +32,7 @@ void showWeather::on_returnButton_clicked()
 void showWeather::loadImage()
 {
     QPixmap Image;
-    Image.loadFromData(m_pImgCtrl->downloadedData());
+    Image.loadFromData(m_pFile->downloadedData());
     int i = 5;
     Image.scaledToHeight(i);
     ui->label_3->setScaledContents(true);
