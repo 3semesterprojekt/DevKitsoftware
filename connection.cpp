@@ -88,7 +88,7 @@ int connection::transfer(int device, int cmd){
     xfer.tx_buf = (unsigned long)txbuffer;
     xfer.rx_buf = (unsigned long)rxbuffer;
     xfer.len = 3;
-    xfer.speed_hz = 1 * 1000 * 1000;
+    xfer.speed_hz = 100 * 1000; //100 KHz
     xfer.cs_change = 0;
     xfer.bits_per_word = bits_per_word;
     xfer.delay_usecs = 150; //todo: set correct delay
@@ -103,6 +103,7 @@ int connection::transfer(int device, int cmd){
         qDebug() << "temp: " << temp;
         qDebug() << "humidity: " << humidity;
         qDebug() << "outTemp: " << outTemp;
+        qDebug() << "-------------------------";
 //    }
 //    else{
 //        qDebug() << "SPI DATA FAIL!";
