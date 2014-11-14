@@ -3,12 +3,11 @@
 #include <QDebug>
 #include <QTextBrowser>
 
+//TODO: better names
+//TODO: set status til true og adjust text naa plant changed
+//TODO: add recommendation to other plant
 
-
-
-
-ShowBiolex::ShowBiolex(QWidget *parent) :
-    QDialog(parent),
+ShowBiolex::ShowBiolex(QWidget *parent) : QDialog(parent),
     ui(new Ui::ShowBiolex)
 {
     ui->setupUi(this);
@@ -16,7 +15,9 @@ ShowBiolex::ShowBiolex(QWidget *parent) :
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint);   //hide title bar
 #endif
 
-
+    status = true;
+    plantSwitch = 0;
+    ui->recbutton->adjustSize();
 }
 
 ShowBiolex::~ShowBiolex()
@@ -29,13 +30,23 @@ void ShowBiolex::on_pushButton_clicked() // read tomato wiki
     plantSwitch = 1;
     QString tomatText;
     tomatText = "The tomato is the edible, often red fruit/berry of the nightshade Solanum lycopersicum,[1][2] commonly known as a tomato plant. The species originated in the South American Andes[2] and its use as a food originated in Mexico, and spread throughout the world following the Spanish colonization of the Americas. Its many varieties are now widely grown, sometimes in greenhouses in cooler climates.";
-
+    ui->recbutton->setText("Recommendations");
+    ui->recbutton->adjustSize();
+    status = true;
 
 
     ui->textBrowser->setText(tomatText);
 
 
 
+}
+
+void ShowBiolex::init(std::vector<CurrentData *> * ptr){
+    ptr_currentDataVector = ptr;
+    for(unsigned int i = 0; i < ptr_currentDataVector->size(); i++){
+        ui->deviceComboBox->addItem(ptr_currentDataVector->at(i)->getDeviceName());
+    }
+    ptr_currentData = ptr_currentDataVector->at(0);
 }
 
 void ShowBiolex::on_pushButton_2_clicked()
@@ -69,40 +80,57 @@ void ShowBiolex::on_recbutton_clicked()
 
 
     qDebug() << "plant switch: " << plantSwitch;
-    ui->recbutton->setText("Apply Recommendations");
-    ui->recbutton->setSizeIncrement(3,0);
-    switch(plantSwitch)// switchcase with the different events
-    {
-        case 1:
+    if(status){
+        switch(plantSwitch)// switchcase with the different events
+        {
+            case 1:{ //tomato
+                ui->textBrowser->setText(recommendationsTomato);
+                ui->recbutton->setText("Apply Recommendations");
+                ui->recbutton->adjustSize();
+                break;
+            }
+            case 2: //cucumber
 
-        ui->textBrowser->setText(recommendationsTomato);
-
-
-
-           //ui->recbutton->click();// apply recommendations on click.
-
-    {
-        //ptr_currentData->setTargetHumidity(20);
-        //uiauto->humidityLcd->display(ptr_currentData->getTargetHumidity());
-        //ptr_currentData->setMinTemp(20);
-        //uiauto->tempLcd->display(ptr_currentData->getMinTemp());
-        //ptr_currentData->setMaxTemp(30);
-       // uiauto->tempLcd->display(ptr_currentData->getMaxTemp());
-
-    }
             break;
-        case 2: //cucumber
 
-        break;
+            case 3: // grape
 
-        case 3: // grape
+            break;
+        default:
+            return;
 
-        break;
-    default:
-        return;
+        }
+        status = false;
 
     }
+    else{
+        switch(plantSwitch)// switchcase with the different events
+        {
+            case 1:{ //tomato
+                ui->recbutton->setText("Recommendations");
+                ui->recbutton->adjustSize();
+                ptr_currentData->setTargetHumidity(20);
+                ptr_currentData->setMinTemp(20);
+                ptr_currentData->setMaxTemp(30);
+                ui->textBrowser->setText("Tomato setting applied");
+                status = true;
+                break;
+            }
+            case 2: //cucumber
 
+            break;
 
+            case 3: // grape
 
+            break;
+        default:
+            return;
+
+        }
+    }
+}
+
+void ShowBiolex::on_deviceComboBox_currentIndexChanged(int index)
+{
+    ptr_currentData = ptr_currentDataVector->at(index);
 }

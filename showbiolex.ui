@@ -16,7 +16,7 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>40</x>
+     <x>220</x>
      <y>0</y>
      <width>291</width>
      <height>51</height>
@@ -136,17 +136,20 @@
     <string>Recommendations</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_6">
+  <widget class="QComboBox" name="deviceComboBox">
    <property name="geometry">
     <rect>
-     <x>240</x>
-     <y>230</y>
-     <width>81</width>
-     <height>23</height>
+     <x>10</x>
+     <y>10</y>
+     <width>131</width>
+     <height>21</height>
     </rect>
    </property>
-   <property name="text">
-    <string/>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="sizeAdjustPolicy">
+    <enum>QComboBox::AdjustToContents</enum>
    </property>
   </widget>
  </widget>

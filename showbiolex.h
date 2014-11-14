@@ -1,10 +1,9 @@
 #ifndef SHOWBIOLEX_H
 #define SHOWBIOLEX_H
 #include "changeauto.h"
-#include "ui_changeauto.h"
-
 #include "currentdata.h"
 #include <QDialog>
+#include <vector>
 
 namespace Ui {
 class ShowBiolex;
@@ -17,6 +16,8 @@ class ShowBiolex : public QDialog
 public:
     explicit ShowBiolex(QWidget *parent = 0);
     ~ShowBiolex();
+
+    void init(std::vector<CurrentData*>*);
 
 private slots:
     void on_pushButton_clicked();
@@ -31,14 +32,17 @@ private slots:
 
 
 
+    void on_deviceComboBox_currentIndexChanged(int index);
+
 private:
+    std::vector<CurrentData*>* ptr_currentDataVector;
     Ui::ShowBiolex *ui;
-    Ui::ChangeAuto *uiauto;
     int plantSwitch; // for switch
     CurrentData *ptr_currentData;
     QString recommendationsTomato;
     QString recommendationsCucumber;
     QString recommendationsGrape;
+    bool status;
 };
 
 #endif // SHOWBIOLEX_H

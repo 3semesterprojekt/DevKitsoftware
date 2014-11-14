@@ -114,7 +114,7 @@ void MainWindow::on_showBiolex_clicked()
 {
     ShowBiolex* ptr_BioLex = new ShowBiolex;
     ptr_BioLex->setAttribute(Qt::WA_DeleteOnClose);
-
+    ptr_BioLex->init(ptr_currentDataVector);
     ptr_BioLex->show();
 }
 
