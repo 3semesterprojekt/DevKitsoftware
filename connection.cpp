@@ -29,9 +29,9 @@ int connection::transfer(int device){
         break;
     }
     //set commands using the tx buffer
-    txbuffer[0] = (heater.at(device)?0xF0:0x00);
-    txbuffer[1] = (window.at(device)?0xF0:0x00);
-    txbuffer[2] = (water.at(device)?0xF0:0x00);
+    txbuffer[0] = (heater.at(device)?0xAA:0x00);
+    txbuffer[1] = (window.at(device)?0xAA:0x00);
+    txbuffer[2] = (water.at(device)?0xAA:0x00);
     txbuffer[3] = txbuffer[0] ^ txbuffer[1] ^ txbuffer[2];
 
     qDebug() << "heater: " <<(unsigned int)txbuffer[0];
@@ -59,7 +59,6 @@ int connection::transfer(int device){
     xfer.delay_usecs = 150; //todo: set correct delay
     res = ioctl(spiDev, SPI_IOC_MESSAGE(1), &xfer);
 
-    //TODO: check if values make sence
     if((rxbuffer[0] ^ rxbuffer[1] ^ rxbuffer[2]) == rxbuffer[3]){
         humidity = (unsigned int) rxbuffer[0];
         temp = (unsigned int) rxbuffer[1];
@@ -68,6 +67,7 @@ int connection::transfer(int device){
         qDebug() << "temp: " << temp;
         qDebug() << "humidity: " << humidity;
         qDebug() << "outTemp: " << outTemp;
+        qDebug() << "checksum" << (unsigned int)rxbuffer[3];
         qDebug() << "-------------------------";
     }
     else{
@@ -95,16 +95,12 @@ void connection::getValues(int device){
     return;
 }
 void connection::setWindow(int device, bool state){
-    if(state){
-        window.at(device) = state;
-    }
+    window.at(device) = state;
     return;
 }
 
 void connection::setHeater(int device, bool state){
-    if(state){
-        heater.at(device) = state;
-    }
+    heater.at(device) = state;
     return;
 }
 

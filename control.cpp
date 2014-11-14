@@ -14,13 +14,14 @@ void control::init(logFile * ptr_log, CurrentData * ptr_data){
     ptr_logFile = ptr_log;
     ptr_currentData = ptr_data;
     ptr_connection = new connection;
+    connect(ptr_currentData, SIGNAL(manualOverrideChanged(int)), this, SLOT(update(int)));
 }
 
 
 void control::checkValues(int newDevice){
     device = newDevice;
     ptr_connection->getValues(device);
-    //TODO: calls are commentet out to debug
+
     ptr_currentData->setCurrentTemp(ptr_connection->getTemp());
     ptr_currentData->setCurrentHumidity(ptr_connection->getHumidity());
     ptr_currentData->setCurrentOutTemp(ptr_connection->getOutTemp());
@@ -98,4 +99,47 @@ void control::checkValues(int newDevice){
 
 void control::dispenseWater(int device, int extraWater){
     waterQueue.at(device) += extraWater;
+}
+
+void control::update(int device){ //react fast on manual override
+
+    if(ptr_currentData->getOverrideHeater() == true && ptr_currentData->getCurrentHeaterState() != ptr_currentData->getManualHeaterState()){ //heater is on manual override but not set correct
+        ptr_connection->setHeater(device, ptr_currentData->getManualHeaterState());    //togle heater
+        ptr_currentData->setCurrentHeaterState(ptr_currentData->getManualHeaterState());
+        if(ptr_currentData->getManualHeaterState() == true){
+            ptr_logFile->setLogEvent("Heater has been turned on");
+        }
+        else{
+            ptr_logFile->setLogEvent("Heater has been turned off");
+        }
+    }
+
+    if(ptr_currentData->getOverrideWindow() == true && ptr_currentData->getCurrentWindowState() != ptr_currentData->getManualWindowState()){ //window is on manual override but not set correct
+        ptr_connection->setWindow(device, ptr_currentData->getManualWindowState());    //togle window
+        ptr_currentData->setCurrentWindowState(ptr_currentData->getManualWindowState());
+        if(ptr_currentData->getManualWindowState() == true){
+            ptr_logFile->setLogEvent("Window has been opened");
+        }
+        else{
+            ptr_logFile->setLogEvent("Window has been closed");
+        }
+    }
+
+    if( waterQueue.at(device) > 0){
+        ptr_connection->giveWater(device);    //dispense water
+        waterQueue.at(device)--;
+        QString tmp = "";
+        if(waterQueue.at(device) == 0){
+            tmp.append("Dispenced 1dl of water");
+        }
+        else{
+            tmp.append("Dispenced 1dl of water with ");
+            tmp.append(QString::number(waterQueue.at(device)));
+            tmp.append("dl stil to go");
+        }
+
+        ptr_logFile->setLogEvent(tmp);
+    }
+
+    ptr_connection->getValues(device);
 }

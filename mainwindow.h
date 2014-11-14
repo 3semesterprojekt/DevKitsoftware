@@ -44,6 +44,8 @@ private slots:
     void on_showWeather_clicked();
     void on_showBiolex_clicked();
 
+    void on_editUnit_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

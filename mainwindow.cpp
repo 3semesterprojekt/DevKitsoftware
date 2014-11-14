@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ptr_currentDataVector = new std::vector<CurrentData*>;
     ptr_currentDataVector->push_back(new CurrentData);
     ptr_currentDataVector->at(0)->setDeviceName("SPIDEV1.0");
+    ptr_currentDataVector->at(0)->setDeviceID(0);
     ptr_control = new control;
     ptr_control->init(ptr_logFile,ptr_currentDataVector->at(0));
     QTimer *timer = new QTimer(this);
@@ -115,4 +116,9 @@ void MainWindow::on_showBiolex_clicked()
     ptr_BioLex->setAttribute(Qt::WA_DeleteOnClose);
 
     ptr_BioLex->show();
+}
+
+void MainWindow::on_editUnit_clicked()
+{
+
 }

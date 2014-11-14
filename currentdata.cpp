@@ -3,7 +3,7 @@
 CurrentData::CurrentData(){
 
     minTemp = 20;
-    maxTemp = 26;
+    maxTemp = 30;
     currentTemp = 0;
     currentOutTemp = 0;
     targetHumidity = 45;
@@ -14,8 +14,8 @@ CurrentData::CurrentData(){
     overrideHeater = 0;
     manualWindowState = 0;
     manualHeaterState = 0;
-    autoTemp = 1;
-    autoHumidity = 1;
+    autoTemp = 0;
+    autoHumidity = 0;
 }
 
 int CurrentData::getMinTemp(){
@@ -115,6 +115,7 @@ bool CurrentData::getManualWindowState(){
 
 void CurrentData::setManualWindowState(bool tmp){
     manualWindowState = tmp;
+    emit manualOverrideChanged(deviceID);
 }
 
 bool CurrentData::getManualHeaterState(){
@@ -123,6 +124,7 @@ bool CurrentData::getManualHeaterState(){
 
 void CurrentData::setManualHeaterState(bool tmp){
     manualHeaterState = tmp;
+    emit manualOverrideChanged(deviceID);
 }
 
 bool CurrentData::getAutoTemp(){
@@ -150,4 +152,12 @@ void CurrentData::setDeviceName(QString name){
 
 QString CurrentData::getDeviceName(){
     return deviceName;
+}
+
+void CurrentData::setDeviceID(int id){
+    deviceID = id;
+}
+
+int CurrentData::getDeviceID(){
+    return deviceID;
 }

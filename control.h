@@ -5,9 +5,11 @@
 #include "currentdata.h"
 #include "connection.h"
 #include <vector>
+#include <qdebug.h>
 
-class control
+class control: public QObject
 {
+    Q_OBJECT
 public:
     control();
     void init(logFile*,CurrentData*);
@@ -21,7 +23,8 @@ private:
     qint64 lastWater;
     int device;
     int numberOfDevices;
-
+private slots:
+    void update(int);
 };
 
 #endif // CONTROL_H

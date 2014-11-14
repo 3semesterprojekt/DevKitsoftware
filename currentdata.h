@@ -39,6 +39,8 @@ public:
     void setDeviceName(QString name);
     int getCurrentOutTemp();
     void setCurrentOutTemp(int temp);
+    void setDeviceID(int id);
+    int getDeviceID();
 
 private:
     int minTemp;    //minimum automatic temperatur
@@ -56,8 +58,10 @@ private:
     bool autoHumidity; //is the water in automatic mode
     QString deviceName;
     int currentOutTemp;
+    int deviceID;
 signals:
     void currentDataChanged(void);
+    void manualOverrideChanged(int);
     void statusChanged(void);
 };
 

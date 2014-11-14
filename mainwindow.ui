@@ -192,9 +192,9 @@
    <widget class="QPushButton" name="showBiolex">
     <property name="geometry">
      <rect>
-      <x>290</x>
+      <x>280</x>
       <y>10</y>
-      <width>61</width>
+      <width>75</width>
       <height>31</height>
      </rect>
     </property>
@@ -209,6 +209,28 @@
     </property>
     <property name="text">
      <string>Biolex</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="editUnit">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>50</y>
+      <width>75</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="text">
+     <string>Edit Units</string>
     </property>
    </widget>
   </widget>
