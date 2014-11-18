@@ -59,7 +59,7 @@ int connection::transfer(int device){
     xfer.delay_usecs = 150; //todo: set correct delay
     res = ioctl(spiDev, SPI_IOC_MESSAGE(1), &xfer);
 
-    if((rxbuffer[0] ^ rxbuffer[1] ^ rxbuffer[2]) == rxbuffer[3]){
+    if((rxbuffer[0] ^ rxbuffer[1] ^ rxbuffer[2]) == rxbuffer[3] && !(rxbuffer[0] == rxbuffer[1] == rxbuffer[2] == rxbuffer[3] == (255 || 0))){
         humidity = (unsigned int) rxbuffer[0];
         temp = (unsigned int) rxbuffer[1];
         outTemp = (unsigned int) rxbuffer[2];
