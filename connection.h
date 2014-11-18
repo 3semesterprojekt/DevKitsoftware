@@ -28,7 +28,6 @@ public:
     void giveWater(int device);
 
 private:
-    int transfer(int deviceID);
     char txbuffer[4];
     char rxbuffer[4];
     int temp;

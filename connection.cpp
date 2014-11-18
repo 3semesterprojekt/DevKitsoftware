@@ -11,8 +11,7 @@ connection::connection()
 }
 
 
-int connection::transfer(int device){
-
+void connection::getValues(int device){
     int res = 0;
     int spiDev;
     switch(device){
@@ -75,7 +74,7 @@ int connection::transfer(int device){
         qDebug() << "-------------------------";
     }
     water.at(device) = false;
-    return 0;
+    return;
 }
 
 int connection::getTemp(){
@@ -90,10 +89,6 @@ int connection::getHumidity(){
     return humidity;
 }
 
-void connection::getValues(int device){
-    transfer(device);
-    return;
-}
 void connection::setWindow(int device, bool state){
     window.at(device) = state;
     return;
