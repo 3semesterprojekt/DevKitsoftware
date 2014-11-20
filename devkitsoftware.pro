@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui sql
 QT += network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -28,7 +28,8 @@ SOURCES += main.cpp\
     connection.cpp \
     showweather.cpp \
     filedownloader.cpp \
-    showbiolex.cpp
+    showbiolex.cpp \
+    database.cpp
 
 HEADERS  += mainwindow.h \
     showdata.h \
@@ -41,7 +42,8 @@ HEADERS  += mainwindow.h \
     connection.h \
     showweather.h \
     filedownloader.h \
-    showbiolex.h
+    showbiolex.h \
+    database.h
 
 FORMS    += mainwindow.ui \
     showdata.ui \

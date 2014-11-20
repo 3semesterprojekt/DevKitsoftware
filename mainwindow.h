@@ -15,6 +15,8 @@
 #include <QString>
 #include <vector>
 #include <QDebug>
+#include "database.h"
+#include "showbiolex.h"
 
 namespace Ui {
 class MainWindow;
@@ -33,6 +35,12 @@ private:
     control* ptr_control;
     int numberOfUnits;
     std::vector<CurrentData*> *ptr_currentDataVector;
+
+    QSqlDatabase mydb;
+    ShowBiolex* ptr_bio;
+    CurrentData* ptr_currentData;
+    Database* ptr_database;
+
 
 private slots:
     void on_showData_clicked();

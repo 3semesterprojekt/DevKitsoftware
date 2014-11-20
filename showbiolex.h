@@ -19,20 +19,22 @@ public:
 
     void init(std::vector<CurrentData*>*);
 
+    void setHumMinMaxTemp(int humidity, int minTemp, int maxTemp);
+
 private slots:
-    void on_pushButton_clicked();
-
-    void on_pushButton_2_clicked();
-
-    void on_pushButton_3_clicked();
-
-    void on_pushButton_4_clicked();
-
     void on_recbutton_clicked();
 
 
 
     void on_deviceComboBox_currentIndexChanged(int index);
+
+    void on_GrapeButton_clicked();
+
+    void on_CucumberButton_clicked();
+
+    void on_TomatoButton_clicked();
+
+    void on_ReturnButton_clicked();
 
 private:
     std::vector<CurrentData*>* ptr_currentDataVector;

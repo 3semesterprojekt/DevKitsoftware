@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="BiolexLabel">
    <property name="geometry">
     <rect>
      <x>220</x>
@@ -31,7 +31,7 @@
     <string>Biolex</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="TomatoButton">
    <property name="geometry">
     <rect>
      <x>370</x>
@@ -50,7 +50,7 @@
     <string>Tomato</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="CucumberButton">
    <property name="geometry">
     <rect>
      <x>370</x>
@@ -69,7 +69,7 @@
     <string>Cucumber</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_3">
+  <widget class="QPushButton" name="GrapeButton">
    <property name="geometry">
     <rect>
      <x>370</x>
@@ -98,7 +98,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_4">
+  <widget class="QPushButton" name="ReturnButton">
    <property name="geometry">
     <rect>
      <x>370</x>

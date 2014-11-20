@@ -39,6 +39,7 @@ void ChangeAuto::update(){
 
 void ChangeAuto::on_returnButton_clicked()
 {
+    // write hum, minTemp and maxTemp to db.
     this->close();
 }
 

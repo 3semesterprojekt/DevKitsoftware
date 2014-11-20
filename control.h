@@ -6,6 +6,7 @@
 #include "connection.h"
 #include <vector>
 #include <qdebug.h>
+#include "database.h"
 
 class control: public QObject
 {
@@ -21,6 +22,7 @@ private:
     connection* ptr_connection;
     std::vector<int> waterQueue;
     qint64 lastWater;
+    Database* ptr_database;
     int device;
     int numberOfDevices;
 private slots:

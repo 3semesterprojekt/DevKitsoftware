@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -17,10 +18,31 @@ MainWindow::MainWindow(QWidget *parent) :
     ptr_currentDataVector->at(0)->setDeviceID(0);
     ptr_control = new control;
     ptr_control->init(ptr_logFile,ptr_currentDataVector->at(0));
+    ptr_bio = new ShowBiolex;
+    ptr_bio->init(ptr_currentDataVector);
+    ptr_currentData = new CurrentData;
+    ptr_database = new Database;
+
+
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
     //connect(ptr_currentDataVector->at(0), SIGNAL(statusChanged()), this, SLOT(changeStatusLabel()));
     timer->start(10000); //every 10 second
+
+    // get settargethumidity, min and max temp from local db and set
+    // get window opened states from local db.
+
+    ptr_database->SystemValuesInit(ptr_currentDataVector);
+
+
+
+
+
+
+
+
+
+
 }
 
 MainWindow::~MainWindow()
