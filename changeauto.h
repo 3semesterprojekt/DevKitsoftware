@@ -3,16 +3,20 @@
 
 #include <QWidget>
 #include "currentdata.h"
+#include "database.h"
 
 namespace Ui {
 class ChangeAuto;
 }
+
+class Database;
 
 class ChangeAuto : public QWidget
 {
     Q_OBJECT
 
 public:
+
     explicit ChangeAuto(QWidget *parent = 0);
     ~ChangeAuto();
     void init(std::vector<CurrentData*>* ptr);
@@ -31,6 +35,8 @@ private:
     void update();
     CurrentData* ptr_currentData;
     std::vector<CurrentData*>* ptr_currentDataVector;
+    Database* ptr_database;
+
 };
 
 #endif // CHANGEAUTO_H

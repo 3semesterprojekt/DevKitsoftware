@@ -64,7 +64,10 @@ void ShowBiolex::on_GrapeButton_clicked()
 
 void ShowBiolex::on_ReturnButton_clicked()
 {
+    ptr_database = new Database;
     this->close();
+    ptr_database->WriteAutoConfigRow(ptr_currentDataVector);
+
 }
 
 void ShowBiolex::setHumMinMaxTemp(int hum, int minTemp, int maxTemp)
@@ -74,10 +77,13 @@ void ShowBiolex::setHumMinMaxTemp(int hum, int minTemp, int maxTemp)
     ptr_currentData->setMinTemp(minTemp);
     ptr_currentData->setMaxTemp(maxTemp);
 
+
+
 }
 
-void ShowBiolex::on_recbutton_clicked() // TODO: find good recommendations for all 3 plants
+void ShowBiolex::on_recbutton_clicked() // find good recommendations for all 3 plants
 {
+
     // create a list of recommendations for the values and set them to the changeAuto settings.
     recommendationsTomato = "Recommendations for tomato: humidity: 20 %, min: 20 c, max 30 c";
     recommendationsCucumber = "Recommendations for tomato: humidity: 20 %, min: 20 c, max 30 c";

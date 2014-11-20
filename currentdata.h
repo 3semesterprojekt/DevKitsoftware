@@ -3,6 +3,7 @@
 #include <QObject>
 #include <QString>
 
+
 class CurrentData : public QObject
 {
     Q_OBJECT
@@ -59,6 +60,7 @@ private:
     QString deviceName;
     int currentOutTemp;
     int deviceID;
+
 signals:
     void currentDataChanged(void);
     void manualOverrideChanged(int);

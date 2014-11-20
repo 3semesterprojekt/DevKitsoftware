@@ -39,8 +39,9 @@ void ChangeAuto::update(){
 
 void ChangeAuto::on_returnButton_clicked()
 {
-    // write hum, minTemp and maxTemp to db.
+    ptr_database = new Database;// write hum, minTemp and maxTemp to db.
     this->close();
+    ptr_database->WriteAutoConfigRow(ptr_currentDataVector);
 }
 
 void ChangeAuto::on_humidityBox_toggled(bool checked)

@@ -78,7 +78,7 @@ void Database::SystemValuesInit(std::vector<CurrentData *> * ptr){
     ptr_currentData->setTargetHumidity(hum);
     ptr_currentData->setMinTemp(minTemp);
     ptr_currentData->setMaxTemp(maxTemp);// setting autoconfig
-    mydb.close();
+
 
 }
 
@@ -107,7 +107,7 @@ void Database::WriteAutoConfigRow(std::vector<CurrentData *> * ptr) // write an 
 
 
     qry.exec(QString("insert into main.%1 values (%2,%3,%4,%5)").arg(table).arg(id).arg(hum).arg(minTemp).arg(maxTemp));
-    qDebug() << qry.lastError();
+    qDebug() << "AutoConfig row written" << qry.lastError();
 
     mydb.close();
 }

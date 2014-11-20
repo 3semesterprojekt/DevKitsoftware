@@ -16,6 +16,7 @@ public:
     void SystemValuesInit(std::vector<CurrentData *> * ptr);
     void AddToDb(QString data ,QString tableName, QString column);
 
+
     void SendToBackend();
     QString dbName;
 
@@ -27,10 +28,12 @@ public:
     void WriteAutoConfigRow(std::vector<CurrentData *> * ptr);
     void WriteSensorRow(QString sensorName, int measurement);
 
+    Database *ptr_database;
+
 private:
 
 
-    ShowBiolex* ptr_bio;
+
     CurrentData* ptr_currentData;
     std::vector<CurrentData*> *ptr_currentDataVector;
 

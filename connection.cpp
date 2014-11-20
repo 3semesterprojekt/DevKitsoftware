@@ -8,10 +8,12 @@ connection::connection()
     heater.assign(2,false);
     window.assign(2,false);
     water.assign(2,false);
+
 }
 
 
 void connection::getValues(int device){
+    ptr_database = new Database;
     int res = 0;
     int spiDev;
     switch(device){
@@ -68,6 +70,10 @@ void connection::getValues(int device){
         qDebug() << "outTemp: " << outTemp;
         qDebug() << "checksum" << (unsigned int)rxbuffer[3];
         qDebug() << "-------------------------";
+        ptr_database->WriteSensorRow("Humidity",humidity);
+        ptr_database->WriteSensorRow("IndoorTemp",temp);
+        ptr_database->WriteSensorRow("OutdoorTemp",outTemp);
+
     }
     else{
         qDebug() << "SPI DATA FAIL!";

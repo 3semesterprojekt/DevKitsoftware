@@ -8,6 +8,7 @@
 #include <sys/ioctl.h>
 #include <linux/spi/spidev.h>
 #include <vector>
+#include "database.h"
 
 #define SPI_MODE0 0x00
 #define SPI_MODE1 0x01
@@ -36,5 +37,6 @@ private:
     std::vector<bool> heater;
     std::vector<bool> window;
     std::vector<bool> water;
+    Database* ptr_database;
 };
 #endif // CONNECTION_H
