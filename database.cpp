@@ -14,13 +14,14 @@ Database::Database()
 
 void Database::SystemValuesInit(std::vector<CurrentData *> * ptr){
 
+    qDebug() << "sql drivers: " << QSqlDatabase::drivers();
     // get settargethumidity, min and max temp from local db and set
 // get window opened states from local db.
     ptr_currentDataVector = ptr;
     ptr_currentData = ptr_currentDataVector->at(0);
 
     mydb = QSqlDatabase::addDatabase("QSQLITE");
-    mydb.setDatabaseName("/home/root/ghdb.sqlite"); // database path on devkit
+    mydb.setDatabaseName("/home/stud/ghdb.sqlite"); // database path on devkit
     mydb.open();
     if(mydb.open())
         {
