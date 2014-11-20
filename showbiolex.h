@@ -19,7 +19,7 @@ public:
     explicit ShowBiolex(QWidget *parent = 0);
     ~ShowBiolex();
 
-    void init(std::vector<CurrentData*>*);
+    void init(std::vector<CurrentData*>* ptr, Database* ptr2);
 
     void setHumMinMaxTemp(int humidity, int minTemp, int maxTemp);
 
@@ -27,8 +27,6 @@ public:
 
 private slots:
     void on_recbutton_clicked();
-
-
 
     void on_deviceComboBox_currentIndexChanged(int index);
 

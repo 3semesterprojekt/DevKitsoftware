@@ -19,7 +19,7 @@ public:
 
     explicit ChangeAuto(QWidget *parent = 0);
     ~ChangeAuto();
-    void init(std::vector<CurrentData*>* ptr);
+    void init(std::vector<CurrentData*>* ptr, Database* ptr2);
 
 private slots:
     void on_returnButton_clicked();

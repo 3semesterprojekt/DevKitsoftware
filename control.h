@@ -13,7 +13,7 @@ class control: public QObject
     Q_OBJECT
 public:
     control();
-    void init(logFile*,CurrentData*);
+    void init(logFile*,CurrentData*, Database*);
     void checkValues(int newDevice);
     void dispenseWater(int device, int amount);
 private:

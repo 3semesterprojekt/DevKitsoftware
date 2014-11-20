@@ -27,6 +27,7 @@ public:
     void setWindow(int device, bool state);
     void setHeater(int device, bool state);
     void giveWater(int device);
+    void init(Database* ptr);
 
 private:
     char txbuffer[4];

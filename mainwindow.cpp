@@ -17,12 +17,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ptr_currentDataVector->at(0)->setDeviceName("SPIDEV1.0");
     ptr_currentDataVector->at(0)->setDeviceID(0);
     ptr_control = new control;
-    ptr_control->init(ptr_logFile,ptr_currentDataVector->at(0));
-    ptr_bio = new ShowBiolex;
-    ptr_bio->init(ptr_currentDataVector);
-    ptr_currentData = new CurrentData;
     ptr_database = new Database;
-
+    ptr_control->init(ptr_logFile,ptr_currentDataVector->at(0),ptr_database);
+    ptr_bio = new ShowBiolex;
+    ptr_bio->init(ptr_currentDataVector, ptr_database);
 
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
@@ -64,7 +62,7 @@ void MainWindow::on_changeAuto_clicked()
 {
     ChangeAuto* ptr_ChangeAuto = new ChangeAuto;
     ptr_ChangeAuto->setAttribute(Qt::WA_DeleteOnClose);
-    ptr_ChangeAuto->init(ptr_currentDataVector);
+    ptr_ChangeAuto->init(ptr_currentDataVector, ptr_database);
     ptr_ChangeAuto->show();
 }
 
@@ -130,7 +128,7 @@ void MainWindow::on_showBiolex_clicked()
 {
     ShowBiolex* ptr_BioLex = new ShowBiolex;
     ptr_BioLex->setAttribute(Qt::WA_DeleteOnClose);
-    ptr_BioLex->init(ptr_currentDataVector);
+    ptr_BioLex->init(ptr_currentDataVector, ptr_database);
     ptr_BioLex->show();
 }
 

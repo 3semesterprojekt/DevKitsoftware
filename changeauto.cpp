@@ -16,7 +16,7 @@ ChangeAuto::~ChangeAuto()
     delete ui;
 }
 
-void ChangeAuto::init(std::vector<CurrentData*>* ptr){
+void ChangeAuto::init(std::vector<CurrentData*>* ptr, Database* ptr2){
     ptr_currentDataVector = ptr;
     for(unsigned int i = 0; i < ptr_currentDataVector->size(); i++){
         ui->deviceComboBox->addItem(ptr_currentDataVector->at(i)->getDeviceName());
@@ -31,6 +31,7 @@ void ChangeAuto::init(std::vector<CurrentData*>* ptr){
     ui->humiditySlider->setSliderPosition(ptr_currentData->getTargetHumidity());
     ui->humidityBox->setChecked(ptr_currentData->getAutoHumidity());
     ui->tempBox->setChecked(ptr_currentData->getAutoTemp());
+    ptr_database = ptr2;
 }
 void ChangeAuto::update(){
 
@@ -39,9 +40,8 @@ void ChangeAuto::update(){
 
 void ChangeAuto::on_returnButton_clicked()
 {
-    ptr_database = new Database;// write hum, minTemp and maxTemp to db.
-    this->close();
     ptr_database->WriteAutoConfigRow(ptr_currentDataVector);
+    this->close();
 }
 
 void ChangeAuto::on_humidityBox_toggled(bool checked)

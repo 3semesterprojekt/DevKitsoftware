@@ -36,12 +36,13 @@ void ShowBiolex::on_TomatoButton_clicked()
     ui->textBrowser->setText(tomatText);
 }
 
-void ShowBiolex::init(std::vector<CurrentData *> * ptr){
+void ShowBiolex::init(std::vector<CurrentData *> * ptr, Database* ptr2){
     ptr_currentDataVector = ptr;
     for(unsigned int i = 0; i < ptr_currentDataVector->size(); i++){
         ui->deviceComboBox->addItem(ptr_currentDataVector->at(i)->getDeviceName());
     }
     ptr_currentData = ptr_currentDataVector->at(0);
+    ptr_database = ptr2;
 }
 void ShowBiolex::on_CucumberButton_clicked()
 {
@@ -64,10 +65,8 @@ void ShowBiolex::on_GrapeButton_clicked()
 
 void ShowBiolex::on_ReturnButton_clicked()
 {
-    ptr_database = new Database;
-    this->close();
     ptr_database->WriteAutoConfigRow(ptr_currentDataVector);
-
+    this->close();
 }
 
 void ShowBiolex::setHumMinMaxTemp(int hum, int minTemp, int maxTemp)

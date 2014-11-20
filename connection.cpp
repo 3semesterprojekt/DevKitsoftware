@@ -11,9 +11,11 @@ connection::connection()
 
 }
 
+void connection::init(Database* ptr){
+    ptr_database = ptr;
+}
 
 void connection::getValues(int device){
-    ptr_database = new Database;
     int res = 0;
     int spiDev;
     switch(device){
@@ -70,9 +72,9 @@ void connection::getValues(int device){
         qDebug() << "outTemp: " << outTemp;
         qDebug() << "checksum" << (unsigned int)rxbuffer[3];
         qDebug() << "-------------------------";
-        ptr_database->WriteSensorRow("Humidity",humidity);
-        ptr_database->WriteSensorRow("IndoorTemp",temp);
-        ptr_database->WriteSensorRow("OutdoorTemp",outTemp);
+        //ptr_database->WriteSensorRow("Humidity",humidity);
+        //ptr_database->WriteSensorRow("IndoorTemp",temp);
+        //ptr_database->WriteSensorRow("OutdoorTemp",outTemp);
 
     }
     else{

@@ -17,13 +17,10 @@ void Database::SystemValuesInit(std::vector<CurrentData *> * ptr){
     // get settargethumidity, min and max temp from local db and set
 // get window opened states from local db.
     ptr_currentDataVector = ptr;
-
-    ptr_currentData = new CurrentData;
-
     ptr_currentData = ptr_currentDataVector->at(0);
 
     mydb = QSqlDatabase::addDatabase("QSQLITE");
-    mydb.setDatabaseName("/home/stud/sqlite/ghdb.sqlite"); // database path on devkit
+    mydb.setDatabaseName("/home/root/ghdb.sqlite"); // database path on devkit
     mydb.open();
     if(mydb.open())
         {
@@ -85,9 +82,6 @@ void Database::SystemValuesInit(std::vector<CurrentData *> * ptr){
 void Database::WriteAutoConfigRow(std::vector<CurrentData *> * ptr) // write an autoconfig row DONE
 {
     mydb.open();
-    ptr_currentDataVector = ptr;
-    ptr_currentData = new CurrentData;
-    ptr_currentData = ptr_currentDataVector->at(0);
 
     QSqlQuery qry;
     QString table = "AutoConfig";
@@ -117,7 +111,6 @@ void Database::WriteAutoConfigRow(std::vector<CurrentData *> * ptr) // write an 
 void Database::WriteMeasurementRow(bool water, int deviceNumber) // writes a row in table Measurement DONE
 {
     mydb.open();
-    ptr_currentData = new CurrentData;
 
     QString table = "Measurement";
     QString column = "MeasurementId";
