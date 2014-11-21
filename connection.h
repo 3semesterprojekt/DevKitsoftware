@@ -30,8 +30,8 @@ public:
     void init(Database* ptr);
 
 private:
-    char txbuffer[4];
-    char rxbuffer[4];
+    char txbuffer[1];
+    char rxbuffer[1];
     int temp;
     int humidity;
     int outTemp;
