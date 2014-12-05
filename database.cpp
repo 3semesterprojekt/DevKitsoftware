@@ -8,19 +8,18 @@
 
 Database::Database()
 {
-
-
 }
 
 void Database::SystemValuesInit(std::vector<CurrentData *> * ptr){
 
     qDebug() << "sql drivers: " << QSqlDatabase::drivers();
     // get settargethumidity, min and max temp from local db and set
-// get window opened states from local db.
+    // get window opened states from local db.
     ptr_currentDataVector = ptr;
     ptr_currentData = ptr_currentDataVector->at(0);
 
     mydb = QSqlDatabase::addDatabase("QSQLITE");
+
     Open(mydb);
 
     QSqlQuery qry;
@@ -90,12 +89,14 @@ void Database::WriteAutoConfigRow(std::vector<CurrentData *> * ptr) // write an 
       qDebug() << "Current humidity: " << hum;
       int minTemp = ptr_currentData->getMinTemp();
       int maxTemp = ptr_currentData->getMaxTemp();
+      QDateTime t = QDateTime::currentDateTime();
+      QString time = t.toString();
 
 
-    qry.exec(QString("insert into main.%1 values (%2,%3,%4,%5)").arg(table).arg(id).arg(hum).arg(minTemp).arg(maxTemp));
+    qry.exec(QString("insert into main.%1 values (%2,%3,%4,%5,'%6')").arg(table).arg(id).arg(hum).arg(minTemp).arg(maxTemp).arg(time));
     qDebug() << "AutoConfig row written" << qry.lastError();
 
-    mydb.close();
+    //mydb.close();
 }
 
 
@@ -125,21 +126,18 @@ void Database::WriteMeasurementRow(bool water, int deviceNumber) // writes a row
     QDateTime t = QDateTime::currentDateTime();
     qDebug() << "Time: "<< t;
 
-    QString time = t.toString();// TODO: get time
+    QString time = t.toString();
     bool openWindow = ptr_currentData->getCurrentWindowState();
-    bool autoMode = true;// todo get system mode
     bool startHeater = ptr_currentData->getCurrentHeaterState();
     bool startWater = water;
 
 
-    qry.exec(QString("insert into main.'%1' values ('%2','%3','%4','%5','%6','%7','%8','%9','%10','%11')").arg(table).arg(Id).arg(humidity).arg(indoorTemp).arg(outdoorTemp).arg(time).arg(openWindow).arg(autoMode).arg(startHeater).arg(startWater).arg(deviceNumber));
+    qry.exec(QString("insert into main.'%1' values ('%2','%3','%4','%5','%6','%7','%8','%9','%10')").arg(table).arg(Id).arg(humidity).arg(indoorTemp).arg(outdoorTemp).arg(time).arg(openWindow).arg(startHeater).arg(startWater).arg(deviceNumber));
     qDebug() << qry.lastError();
-
-
 
     qDebug() << "Row written in table measurementRow " << qry.lastError();
 
-    mydb.close();
+    //mydb.close();
 }
 
 void Database::WriteSensorRow(QString sensorName, int measurement) // done
@@ -148,11 +146,9 @@ void Database::WriteSensorRow(QString sensorName, int measurement) // done
     QSqlQuery qry;
     QString table = "Sensor";
     QString column = "SensorId";
-    // read from db
-
     int Id;
+    // read from db
     qry.exec("SELECT * FROM main."+table+" WHERE "+column+"=(SELECT max("+column+") FROM main."+table+")"); // select max id row
-
 
     qry.first();
     Id = qry.value(0).toInt();
@@ -162,38 +158,38 @@ void Database::WriteSensorRow(QString sensorName, int measurement) // done
 
     QDateTime t = QDateTime::currentDateTime();
     QString time = t.toString();
-    QString ti= time;
+
     qDebug() << "Time: "<< t;
 
     qry.exec(QString("insert into main.%1 values ('%2','%3','%4','%5')").arg(table).arg(Id).arg(sensorName).arg(measurement).arg(time));
-    qDebug() << qry.lastError();
-    mydb.close();
+    //qDebug() << qry.lastError();
+    //mydb.close();
 
 }
 
 
 
-void Database::SendToBackend()
-{
-    // send whole local db to backend
-    // do this every...
-}
+
 
 void Database::Close()
 {
     mydb.close();
 }
 
-
 void Database::Open(QSqlDatabase mydb){
-    mydb.setDatabaseName("/home/stud/ghdb.sqlite"); // database path on devkit
+#ifdef __arm__
+    mydb.setDatabaseName("/home/root/ghdb.sqlite"); // database path on devkit
+#else
+    mydb.setDatabaseName("/home/stud/sqlite/ghdb.sqlite"); // database path on PC
+#endif
     mydb.open();
     if(mydb.open())
-    {
-        qDebug() << "Database connection established";
-    }
+        {
+    qDebug() << "Database connection established";
+        }
     else
-    {
-        qDebug() << "Database connection error";
-    }
+        {
+    qDebug() << "Database connection error";
+        }
 }
+

@@ -29,7 +29,8 @@ SOURCES += main.cpp\
     showweather.cpp \
     filedownloader.cpp \
     showbiolex.cpp \
-    database.cpp
+    database.cpp \
+    showdatabase.cpp
 
 HEADERS  += mainwindow.h \
     showdata.h \
@@ -43,7 +44,8 @@ HEADERS  += mainwindow.h \
     showweather.h \
     filedownloader.h \
     showbiolex.h \
-    database.h
+    database.h \
+    showdatabase.h
 
 FORMS    += mainwindow.ui \
     showdata.ui \
@@ -51,4 +53,5 @@ FORMS    += mainwindow.ui \
     setmanual.ui \
     showlog.ui \
     showweather.ui \
-    showbiolex.ui
+    showbiolex.ui \
+    showdatabase.ui
