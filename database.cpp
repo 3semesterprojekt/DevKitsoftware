@@ -21,16 +21,7 @@ void Database::SystemValuesInit(std::vector<CurrentData *> * ptr){
     ptr_currentData = ptr_currentDataVector->at(0);
 
     mydb = QSqlDatabase::addDatabase("QSQLITE");
-    mydb.setDatabaseName("/home/stud/ghdb.sqlite"); // database path on devkit
-    mydb.open();
-    if(mydb.open())
-        {
-    qDebug() << "Database connection established";
-        }
-    else
-        {
-    qDebug() << "Database connection error";
-        }
+    Open(mydb);
 
     QSqlQuery qry;
     QString tableRead = "AutoConfig";
@@ -193,3 +184,16 @@ void Database::Close()
     mydb.close();
 }
 
+
+void Database::Open(QSqlDatabase mydb){
+    mydb.setDatabaseName("/home/stud/ghdb.sqlite"); // database path on devkit
+    mydb.open();
+    if(mydb.open())
+    {
+        qDebug() << "Database connection established";
+    }
+    else
+    {
+        qDebug() << "Database connection error";
+    }
+}

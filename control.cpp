@@ -10,11 +10,11 @@ control::control() // TODO create db inserts for every event
     lastWater = QDateTime::currentMSecsSinceEpoch() - (2 * 60 * 1000);
 }
 
-void control::init(logFile * ptr_log, CurrentData * ptr_data, Database* ptr2){
+void control::init(logFile * ptr_log, CurrentData * ptr_data, Database* ptr_db){
     ptr_logFile = ptr_log;
     ptr_currentData = ptr_data;
     ptr_connection = new connection;
-    ptr_database = ptr2;
+    ptr_database = ptr_db;
     connect(ptr_currentData, SIGNAL(manualOverrideChanged(int)), this, SLOT(update(int)));
     ptr_connection->init(ptr_database);
 }

@@ -21,6 +21,7 @@ public:
     QString dbName;
 
     void Close();
+    void Open(QSqlDatabase);
 
     QSqlDatabase mydb;
 
