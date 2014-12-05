@@ -4,6 +4,7 @@
 #ifdef __arm__
 
 #endif
+//test
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
