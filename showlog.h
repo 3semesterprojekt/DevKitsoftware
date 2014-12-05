@@ -22,6 +22,8 @@ private slots:
     void on_clearLog_clicked();
     void update();
 
+    void on_pushButton_clicked();
+
 private:
     Ui::showLog *ui;
     logFile* ptr_logFile;

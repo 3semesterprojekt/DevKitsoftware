@@ -1,5 +1,6 @@
 #include "showlog.h"
 #include "ui_showlog.h"
+#include "showdatabase.h"
 
 showLog::showLog(QWidget *parent) :
     QWidget(parent),
@@ -52,4 +53,12 @@ void showLog::on_clearLog_clicked()
     ui->logViewer->clear();
     QTextCursor cursor(ui->logViewer->textCursor());
     cursor.movePosition(QTextCursor::End,QTextCursor::MoveAnchor);
+}
+
+void showLog::on_pushButton_clicked()
+{
+    ShowDatabase* ptr_showDatabase= new ShowDatabase;
+    ptr_showDatabase->setAttribute(Qt::WA_DeleteOnClose);
+    ptr_showDatabase->Init();
+    ptr_showDatabase->show();
 }

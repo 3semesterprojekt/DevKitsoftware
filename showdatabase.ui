@@ -32,6 +32,15 @@
      <height>23</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
    <property name="text">
     <string>AutoConfig</string>
    </property>
@@ -39,11 +48,20 @@
   <widget class="QPushButton" name="btn_measurement">
    <property name="geometry">
     <rect>
-     <x>190</x>
+     <x>180</x>
      <y>240</y>
-     <width>91</width>
+     <width>101</width>
      <height>23</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
    </property>
    <property name="text">
     <string>Measurement</string>
@@ -58,6 +76,15 @@
      <height>23</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
    <property name="text">
     <string>Sensor</string>
    </property>
@@ -71,6 +98,15 @@
      <height>23</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
    <property name="text">
     <string>Clear Table</string>
    </property>
@@ -83,6 +119,15 @@
      <width>81</width>
      <height>23</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
    </property>
    <property name="text">
     <string>return</string>

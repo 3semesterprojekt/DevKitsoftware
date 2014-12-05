@@ -43,20 +43,22 @@ void Database::SystemValuesInit(std::vector<CurrentData *> * ptr){
     QString table2 = "Measurement";
     QString column2 = "MeasurementId";
     bool windowOpen;
+    bool heaterOn;
 
 
     qry.exec("SELECT * FROM main.'"+table2+"' WHERE MeasurementId=(SELECT max(MeasurementId) FROM main.'"+table2+"')"); // select max id row
 
     qry.first();
-    windowOpen = qry.value(5).toBool();
 
+    windowOpen = qry.value(5).toBool();
+    heaterOn = qry.value(6).toBool();
 
     qDebug() << "Window open state " << windowOpen;
 
-    bool heaterState = windowOpen;
 
-
-    ptr_currentData->setCurrentHeaterState(heaterState);// load window og heater states
+    ptr_currentData->setCurrentWindowState(windowOpen);// load window og heater states
+    ptr_currentData->setCurrentHeaterState(heaterOn);
+    qDebug()<< "Current window and heaterstate: " << windowOpen << heaterOn;
 
     int hum, minTemp, maxTemp; // load humidity og temp
 
