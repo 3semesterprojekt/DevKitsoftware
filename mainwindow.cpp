@@ -132,7 +132,7 @@ void MainWindow::on_showBiolex_clicked()
     ptr_BioLex->show();
 }
 
-void MainWindow::on_editUnit_clicked()
+void MainWindow::on_Settings_clicked()
 {
 
 }

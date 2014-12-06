@@ -51,8 +51,7 @@ private slots:
     void changeStatusLabel();
     void on_showWeather_clicked();
     void on_showBiolex_clicked();
-
-    void on_editUnit_clicked();
+    void on_Settings_clicked();
 
 private:
     Ui::MainWindow *ui;

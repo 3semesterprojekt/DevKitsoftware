@@ -19,15 +19,15 @@
      <x>40</x>
      <y>40</y>
      <width>381</width>
-     <height>191</height>
+     <height>181</height>
     </rect>
    </property>
   </widget>
   <widget class="QPushButton" name="btn_autoconfig">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>240</y>
+     <x>30</x>
+     <y>230</y>
      <width>81</width>
      <height>23</height>
     </rect>
@@ -48,8 +48,8 @@
   <widget class="QPushButton" name="btn_measurement">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>240</y>
+     <x>121</x>
+     <y>230</y>
      <width>101</width>
      <height>23</height>
     </rect>
@@ -70,8 +70,8 @@
   <widget class="QPushButton" name="btn_sensor">
    <property name="geometry">
     <rect>
-     <x>320</x>
-     <y>240</y>
+     <x>232</x>
+     <y>230</y>
      <width>81</width>
      <height>23</height>
     </rect>
@@ -114,8 +114,8 @@
   <widget class="QPushButton" name="btn_return">
    <property name="geometry">
     <rect>
-     <x>330</x>
-     <y>10</y>
+     <x>380</x>
+     <y>230</y>
      <width>81</width>
      <height>23</height>
     </rect>

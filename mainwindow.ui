@@ -211,7 +211,7 @@
      <string>Biolex</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="editUnit">
+   <widget class="QPushButton" name="Settings">
     <property name="geometry">
      <rect>
       <x>280</x>
@@ -230,7 +230,7 @@
      <enum>Qt::NoFocus</enum>
     </property>
     <property name="text">
-     <string>Edit Units</string>
+     <string>Settings</string>
     </property>
    </widget>
   </widget>
