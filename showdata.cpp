@@ -30,12 +30,14 @@ void ShowData::init(std::vector<CurrentData*>* ptr){
     ptr_currentData = ptr_currentDataVector->at(0);
     ui->tempLcd->display(ptr_currentData->getCurrentTemp());
     ui->humidityLcd->display(ptr_currentData->getCurrentHumidity());
+    ui->outTempLcd->display(ptr_currentData->getCurrentOutTemp());
     connect(ptr_currentData, SIGNAL(currentDataChanged()), this, SLOT(update()));
 }
 
 void ShowData::update(){
     ui->tempLcd->display(ptr_currentData->getCurrentTemp());
     ui->humidityLcd->display(ptr_currentData->getCurrentHumidity());
+    ui->outTempLcd->display(ptr_currentData->getCurrentOutTemp());
 }
 
 void ShowData::on_deviceComboBox_currentIndexChanged(int index)

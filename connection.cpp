@@ -64,8 +64,18 @@ void connection::getValues(int device){
 
     if((rxbuffer[0] ^ rxbuffer[1] ^ rxbuffer[2]) == rxbuffer[3]){
         humidity = (unsigned int) rxbuffer[0];
-        temp = (unsigned int) rxbuffer[1];
-        outTemp = (unsigned int) rxbuffer[2];
+        if((unsigned int) rxbuffer[2] < 128){
+            temp = (unsigned int) rxbuffer[2];
+        }
+        else{
+            temp = ((unsigned int) rxbuffer[2]) -255;
+        }
+        if((unsigned int) rxbuffer[1] < 128){
+            outTemp = (unsigned int) rxbuffer[1];
+        }
+        else{
+            outTemp = ((unsigned int) rxbuffer[1]) -255;
+        }
 
         qDebug() << "temp: " << temp;
         qDebug() << "humidity: " << humidity;
@@ -78,6 +88,10 @@ void connection::getValues(int device){
 
     }
     else{
+        qDebug() << "temp: " << (unsigned int) rxbuffer[2];
+        qDebug() << "humidity: " << (unsigned int) rxbuffer[0];
+        qDebug() << "outTemp: " << (unsigned int) rxbuffer[1];
+        qDebug() << "checksum" << (unsigned int)rxbuffer[3];
         qDebug() << "SPI DATA FAIL!";
         qDebug() << "-------------------------";
     }

@@ -38,9 +38,9 @@
   <widget class="QLCDNumber" name="humidityLcd">
    <property name="geometry">
     <rect>
-     <x>60</x>
+     <x>15</x>
      <y>110</y>
-     <width>150</width>
+     <width>130</width>
      <height>70</height>
     </rect>
    </property>
@@ -51,9 +51,9 @@
   <widget class="QLCDNumber" name="tempLcd">
    <property name="geometry">
     <rect>
-     <x>270</x>
+     <x>175</x>
      <y>110</y>
-     <width>150</width>
+     <width>130</width>
      <height>70</height>
     </rect>
    </property>
@@ -64,7 +64,7 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>70</x>
+     <x>50</x>
      <y>70</y>
      <width>171</width>
      <height>40</height>
@@ -83,7 +83,7 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>290</x>
+     <x>180</x>
      <y>70</y>
      <width>161</width>
      <height>40</height>
@@ -96,7 +96,8 @@
     </font>
    </property>
    <property name="text">
-    <string>Temperatur in °C</string>
+    <string>Indoor 
+Temperatur in °C</string>
    </property>
   </widget>
   <widget class="QComboBox" name="deviceComboBox">
@@ -113,6 +114,39 @@
    </property>
    <property name="sizeAdjustPolicy">
     <enum>QComboBox::AdjustToContents</enum>
+   </property>
+  </widget>
+  <widget class="QLCDNumber" name="outTempLcd">
+   <property name="geometry">
+    <rect>
+     <x>335</x>
+     <y>110</y>
+     <width>130</width>
+     <height>70</height>
+    </rect>
+   </property>
+   <property name="intValue" stdset="0">
+    <number>0</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>69</y>
+     <width>161</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Outdoor 
+Temperatur in °C</string>
    </property>
   </widget>
  </widget>
