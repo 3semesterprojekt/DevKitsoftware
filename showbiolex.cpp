@@ -68,8 +68,8 @@ void ShowBiolex::on_recbutton_clicked() // find good recommendations for all 3 p
     recommendationsTomato = "Recommendations for tomato: humidity: 20 %, min: 20 c, max 30 c";
     recommendationsCucumber = "Recommendations for cucumber: humidity: 30 %, min: 20 c, max 30 c";
     recommendationsGrape = "Recommendations for grape: humidity: 30 %, min: 20 c, max 30 c";
-    QString recommendationsBasil = "Recommendations for basil: humidity: 25 %, min: 20 c, max 30 c";
-    QString recommendationsStrawBerry = "Recommendations for strawberry: humidity: 22 %, min: 20 c, max 30 c";
+    recommendationsBasil = "Recommendations for basil: humidity: 25 %, min: 20 c, max 30 c";
+    recommendationsStrawBerry = "Recommendations for strawberry: humidity: 22 %, min: 20 c, max 30 c";
     qDebug() << "plant switch: " << plantSwitch;
     if(status){
         switch(plantSwitch)// switchcase with the different events

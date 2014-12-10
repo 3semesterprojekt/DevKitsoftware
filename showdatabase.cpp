@@ -76,6 +76,8 @@ void ShowDatabase::on_btn_sensor_clicked()
 
     model->setQuery(qry);
     ui->tableView->setModel(model);
+    ui->tableView->sortByColumn(0,Qt::DescendingOrder);
+
 
     QHeaderView* qheader;
     ui->tableView->horizontalHeader()->setResizeMode(qheader->ResizeToContents);

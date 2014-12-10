@@ -44,6 +44,8 @@ private:
     QString recommendationsTomato;
     QString recommendationsCucumber;
     QString recommendationsGrape;
+    QString recommendationsBasil;
+    QString recommendationsStrawBerry;
     bool status;
 
 };
