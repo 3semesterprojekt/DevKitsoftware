@@ -31,63 +31,6 @@
     <string>Biolex</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="TomatoButton">
-   <property name="geometry">
-    <rect>
-     <x>370</x>
-     <y>60</y>
-     <width>81</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Tomato</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="CucumberButton">
-   <property name="geometry">
-    <rect>
-     <x>370</x>
-     <y>100</y>
-     <width>81</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Cucumber</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="GrapeButton">
-   <property name="geometry">
-    <rect>
-     <x>370</x>
-     <y>140</y>
-     <width>81</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Grape</string>
-   </property>
-  </widget>
   <widget class="QTextBrowser" name="textBrowser">
    <property name="geometry">
     <rect>
@@ -150,6 +93,16 @@
    </property>
    <property name="sizeAdjustPolicy">
     <enum>QComboBox::AdjustToContents</enum>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="plantCombo">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>50</y>
+     <width>81</width>
+     <height>23</height>
+    </rect>
    </property>
   </widget>
  </widget>

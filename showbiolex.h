@@ -30,13 +30,10 @@ private slots:
 
     void on_deviceComboBox_currentIndexChanged(int index);
 
-    void on_GrapeButton_clicked();
-
-    void on_CucumberButton_clicked();
-
-    void on_TomatoButton_clicked();
 
     void on_ReturnButton_clicked();
+
+    void on_plantCombo_currentIndexChanged(int index);
 
 private:
     std::vector<CurrentData*>* ptr_currentDataVector;
@@ -48,6 +45,7 @@ private:
     QString recommendationsCucumber;
     QString recommendationsGrape;
     bool status;
+
 };
 
 #endif // SHOWBIOLEX_H

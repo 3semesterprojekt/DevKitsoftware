@@ -43,6 +43,8 @@ void ShowDatabase::on_btn_autoconfig_clicked()
 
     model->setQuery(qry);
     ui->tableView->setModel(model);
+    QHeaderView* qheader;
+    ui->tableView->horizontalHeader()->setResizeMode(qheader->ResizeToContents);
 }
 
 void ShowDatabase::on_btn_measurement_clicked()
@@ -57,6 +59,9 @@ void ShowDatabase::on_btn_measurement_clicked()
 
     model->setQuery(qry);
     ui->tableView->setModel(model);
+    QHeaderView* qheader;
+    ui->tableView->horizontalHeader()->setResizeMode(qheader->ResizeToContents);
+
 }
 
 void ShowDatabase::on_btn_sensor_clicked()
@@ -71,7 +76,9 @@ void ShowDatabase::on_btn_sensor_clicked()
 
     model->setQuery(qry);
     ui->tableView->setModel(model);
-    ui->tableView->sortByColumn(1);
+
+    QHeaderView* qheader;
+    ui->tableView->horizontalHeader()->setResizeMode(qheader->ResizeToContents);
 }
 
 void ShowDatabase::on_btn_clearTable_clicked()
