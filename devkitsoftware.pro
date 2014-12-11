@@ -15,6 +15,7 @@ TARGET = devkitsoftware
 INSTALLS += target
 TEMPLATE = app
 
+CONFIG(release, debug|release):DEFINES += QT_NO_DEBUG_OUTPUT
 
 SOURCES += main.cpp\
         mainwindow.cpp \
