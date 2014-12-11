@@ -43,7 +43,6 @@ void showLog::update(){
         ui->logViewer->insertPlainText(ptr_logFile->getLogEntry(lastEntry));
         lastEntry++;
     }
-
 }
 
 void showLog::on_clearLog_clicked()
