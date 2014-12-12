@@ -25,10 +25,10 @@ public:
 
     QSqlDatabase mydb;
 
-    void WriteMeasurementRow(bool water, int deviceNumber);
+    void WriteSystemRow(bool water, int deviceNumber);
     void WriteAutoConfigRow(std::vector<CurrentData *> * ptr);
-    void WriteSensorRow(QString sensorName, int measurement);
-
+    void WriteSensorRow(QString sensorName, int measurement, int id);
+    void WriteMeasurementRow(int sensorId, int measurement);
     Database *ptr_database;
 
 private:

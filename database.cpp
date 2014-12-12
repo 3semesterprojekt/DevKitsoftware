@@ -40,8 +40,8 @@ void Database::SystemValuesInit(std::vector<CurrentData *> * ptr){
 
     //*****************************************************************************
     // READ WINDOWOPEN STATE
-    QString table2 = "Measurement";
-    QString column2 = "MeasurementId";
+    QString table2 = "System";
+    QString column2 = "SystemId";
     bool windowOpen;
     bool heaterOn;
 
@@ -103,7 +103,7 @@ void Database::WriteAutoConfigRow(std::vector<CurrentData *> * ptr) // write an 
 
 
 
-void Database::WriteMeasurementRow(bool water, int deviceNumber) // writes a row in table Measurement DONE
+void Database::WriteSystemRow(bool water, int deviceNumber) // writes a row in table Measurement DONE
 {
     mydb.open();
 
@@ -142,7 +142,7 @@ void Database::WriteMeasurementRow(bool water, int deviceNumber) // writes a row
     //mydb.close();
 }
 
-void Database::WriteSensorRow(QString sensorName, int measurement) // done
+void Database::WriteMeasurementRow(int sensorId, int measurement) // done
 {
     mydb.open();
     QSqlQuery qry;
@@ -163,13 +163,32 @@ void Database::WriteSensorRow(QString sensorName, int measurement) // done
 
     qDebug() << "Time: "<< t;
 
-    qry.exec(QString("insert into main.%1 values ('%2','%3','%4','%5')").arg(table).arg(Id).arg(sensorName).arg(measurement).arg(time));
+    qry.exec(QString("insert into main.%1 values ('%2','%3','%4','%5')").arg(table).arg(Id).arg(sensorId).arg(measurement).arg(time));
     //qDebug() << qry.lastError();
     //mydb.close();
 
 }
 
+void Database::WriteSensorRow(QString sensorName, int measurement, int id) // done
+{
+    mydb.open();
+    QSqlQuery qry;
+    QString table = "Sensor";
 
+    int Id;
+
+    qDebug() << "Sensor id : " << Id;
+
+    QDateTime t = QDateTime::currentDateTime();
+    QString time = t.toString();
+
+    qDebug() << "Time: "<< t;
+
+    qry.exec(QString("insert into main.%1 values ('%2','%3','%4','%5')").arg(table).arg(id).arg(sensorName).arg(measurement).arg(time));
+    //qDebug() << qry.lastError();
+    //mydb.close();
+
+}
 
 
 

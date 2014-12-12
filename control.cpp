@@ -33,14 +33,14 @@ void control::checkValues(int newDevice){
                 ptr_connection->setHeater(device, true);    //turn heater on
                 ptr_currentData->setCurrentHeaterState(true);
                 ptr_logFile->setLogEvent("Heater has been turned on");
-                ptr_database->WriteMeasurementRow(0,ptr_currentData->getDeviceID());// write db measurement row
+                ptr_database->WriteSystemRow(0,ptr_currentData->getDeviceID());// write db measurement row
         }
 
         if(ptr_currentData->getCurrentTemp() >= ptr_currentData->getMinTemp() + TEMPOVERMIN && ptr_currentData->getCurrentHeaterState() == true){ //its warm enough, the heater is on
             ptr_connection->setHeater(device, false);    //turn heater of
             ptr_currentData->setCurrentHeaterState(false);
             ptr_logFile->setLogEvent("Heater has been turned off");
-            ptr_database->WriteMeasurementRow(0,ptr_currentData->getDeviceID());// write db measurement row
+            ptr_database->WriteSystemRow(0,ptr_currentData->getDeviceID());// write db measurement row
         }
     }
     if(ptr_currentData->getOverrideHeater() == true && ptr_currentData->getCurrentHeaterState() != ptr_currentData->getManualHeaterState()){ //heater is on manual override but not set correct
@@ -48,11 +48,11 @@ void control::checkValues(int newDevice){
         ptr_currentData->setCurrentHeaterState(ptr_currentData->getManualHeaterState());
         if(ptr_currentData->getManualHeaterState() == true){
             ptr_logFile->setLogEvent("Heater has been turned on");
-            ptr_database->WriteMeasurementRow(0,ptr_currentData->getDeviceID());//write db measurement row
+            ptr_database->WriteSystemRow(0,ptr_currentData->getDeviceID());//write db measurement row
         }
         else{
             ptr_logFile->setLogEvent("Heater has been turned off");
-            ptr_database->WriteMeasurementRow(0,ptr_currentData->getDeviceID());//write db measurement row
+            ptr_database->WriteSystemRow(0,ptr_currentData->getDeviceID());//write db measurement row
         }
     }
 
@@ -61,13 +61,13 @@ void control::checkValues(int newDevice){
             ptr_connection->setWindow(device, true);    //open window
             ptr_currentData->setCurrentWindowState(true);
             ptr_logFile->setLogEvent("Window has been opened");
-            ptr_database->WriteMeasurementRow(0,ptr_currentData->getDeviceID());// write db measurement row
+            ptr_database->WriteSystemRow(0,ptr_currentData->getDeviceID());// write db measurement row
         }
         if(ptr_currentData->getCurrentTemp() <= ptr_currentData->getMaxTemp() - TEMPUNDERMAX && ptr_currentData->getCurrentWindowState() == true){ //temperatur is low enough and window is open
             ptr_connection->setWindow(device, false);    //close window
             ptr_currentData->setCurrentWindowState(false);
             ptr_logFile->setLogEvent("Window has been closed");
-            ptr_database->WriteMeasurementRow(0,ptr_currentData->getDeviceID());// write db measurement row
+            ptr_database->WriteSystemRow(0,ptr_currentData->getDeviceID());// write db measurement row
         }
     }
 
@@ -76,11 +76,11 @@ void control::checkValues(int newDevice){
         ptr_currentData->setCurrentWindowState(ptr_currentData->getManualWindowState());
         if(ptr_currentData->getManualWindowState() == true){
             ptr_logFile->setLogEvent("Window has been opened");
-            ptr_database->WriteMeasurementRow(0,ptr_currentData->getDeviceID());// write db measurement row
+            ptr_database->WriteSystemRow(0,ptr_currentData->getDeviceID());// write db measurement row
         }
         else{
             ptr_logFile->setLogEvent("Window has been closed");
-            ptr_database->WriteMeasurementRow(0,ptr_currentData->getDeviceID());// write db measurement row
+            ptr_database->WriteSystemRow(0,ptr_currentData->getDeviceID());// write db measurement row
         }
     }
 
@@ -104,7 +104,7 @@ void control::checkValues(int newDevice){
         }
 
         ptr_logFile->setLogEvent(tmp);
-        ptr_database->WriteMeasurementRow(1,ptr_currentData->getDeviceID());// write db measurement row
+        ptr_database->WriteSystemRow(1,ptr_currentData->getDeviceID());// write db measurement row
 
     }
 }
@@ -120,11 +120,11 @@ void control::update(int device){ //react fast on manual override
         ptr_currentData->setCurrentHeaterState(ptr_currentData->getManualHeaterState());
         if(ptr_currentData->getManualHeaterState() == true){
             ptr_logFile->setLogEvent("Heater has been turned on");
-            ptr_database->WriteMeasurementRow(0,ptr_currentData->getDeviceID());// write db measurement row
+            ptr_database->WriteSystemRow(0,ptr_currentData->getDeviceID());// write db measurement row
         }
         else{
             ptr_logFile->setLogEvent("Heater has been turned off");
-            ptr_database->WriteMeasurementRow(0,ptr_currentData->getDeviceID());// write db measurement row
+            ptr_database->WriteSystemRow(0,ptr_currentData->getDeviceID());// write db measurement row
         }
     }
 
@@ -133,11 +133,11 @@ void control::update(int device){ //react fast on manual override
         ptr_currentData->setCurrentWindowState(ptr_currentData->getManualWindowState());
         if(ptr_currentData->getManualWindowState() == true){
             ptr_logFile->setLogEvent("Window has been opened");
-            ptr_database->WriteMeasurementRow(0,ptr_currentData->getDeviceID());// write db measurement row
+            ptr_database->WriteSystemRow(0,ptr_currentData->getDeviceID());// write db measurement row
         }
         else{
             ptr_logFile->setLogEvent("Window has been closed");
-            ptr_database->WriteMeasurementRow(0,ptr_currentData->getDeviceID());// write db measurement row
+            ptr_database->WriteSystemRow(0,ptr_currentData->getDeviceID());// write db measurement row
         }
     }
 
@@ -155,7 +155,7 @@ void control::update(int device){ //react fast on manual override
         }
 
         ptr_logFile->setLogEvent(tmp);
-        ptr_database->WriteMeasurementRow(1,ptr_currentData->getDeviceID());// write db measurement row
+        ptr_database->WriteSystemRow(1,ptr_currentData->getDeviceID());// write db measurement row
     }
 
     ptr_connection->getValues(device);

@@ -82,9 +82,14 @@ void connection::getValues(int device){
         qDebug() << "outTemp: " << outTemp;
         qDebug() << "checksum" << (unsigned int)rxbuffer[3];
         qDebug() << "-------------------------";
-        ptr_database->WriteSensorRow("Humidity",humidity);
-        ptr_database->WriteSensorRow("IndoorTemp",temp);
-        ptr_database->WriteSensorRow("OutdoorTemp",outTemp);
+
+        ptr_database->WriteMeasurementRow(1,humidity);
+        ptr_database->WriteMeasurementRow(2,temp);
+        ptr_database->WriteMeasurementRow(3,outTemp);
+        ptr_database->WriteSensorRow("Humidity",humidity,1);
+        ptr_database->WriteSensorRow("IndoorTemp",temp,2);
+        ptr_database->WriteSensorRow("OutdoorTemp",outTemp,3);
+
 
     }
     else{
