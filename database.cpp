@@ -46,7 +46,7 @@ void Database::SystemValuesInit(std::vector<CurrentData *> * ptr){
     bool heaterOn;
 
 
-    qry.exec("SELECT * FROM main.'"+table2+"' WHERE MeasurementId=(SELECT max(MeasurementId) FROM main.'"+table2+"')"); // select max id row
+    qry.exec("SELECT * FROM main.'"+table2+"' WHERE SystemId=(SELECT max(SystemId) FROM main.'"+table2+"')"); // select max id row
 
     qry.first();
 
@@ -107,8 +107,8 @@ void Database::WriteSystemRow(bool water, int deviceNumber) // writes a row in t
 {
     mydb.open();
 
-    QString table = "Measurement";
-    QString column = "MeasurementId";
+    QString table = "System";
+    QString column = "SystemId";
     // read from db
 
     int Id;
@@ -146,8 +146,8 @@ void Database::WriteMeasurementRow(int sensorId, int measurement) // done
 {
     mydb.open();
     QSqlQuery qry;
-    QString table = "Sensor";
-    QString column = "SensorId";
+    QString table = "Measurement";
+    QString column = "MeasurementId";
     int Id;
     // read from db
     qry.exec("SELECT * FROM main."+table+" WHERE "+column+"=(SELECT max("+column+") FROM main."+table+")"); // select max id row
@@ -163,7 +163,7 @@ void Database::WriteMeasurementRow(int sensorId, int measurement) // done
 
     qDebug() << "Time: "<< t;
 
-    qry.exec(QString("insert into main.%1 values ('%2','%3','%4','%5')").arg(table).arg(Id).arg(sensorId).arg(measurement).arg(time));
+    qry.exec(QString("insert into main.%1 values ('%2','%3','%4','%5')").arg(table).arg(Id).arg(measurement).arg(time).arg(sensorId));
     //qDebug() << qry.lastError();
     //mydb.close();
 

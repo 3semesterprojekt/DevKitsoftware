@@ -29,6 +29,8 @@ private slots:
 
     void on_btn_clearTable_clicked();
 
+    void on_System_clicked();
+
 private:
     Ui::ShowDatabase *ui;
 

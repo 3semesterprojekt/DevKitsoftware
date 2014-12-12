@@ -50,7 +50,7 @@ void ShowDatabase::on_btn_autoconfig_clicked()
 void ShowDatabase::on_btn_measurement_clicked()
 {
     ui->btn_clearTable->isEnabled()== true;
-    table = "Measurement";
+    table= "Measurement";
     QSqlQueryModel* model = new QSqlQueryModel;
 
     QSqlQuery qry;
@@ -59,6 +59,9 @@ void ShowDatabase::on_btn_measurement_clicked()
 
     model->setQuery(qry);
     ui->tableView->setModel(model);
+    ui->tableView->sortByColumn(0,Qt::DescendingOrder);
+
+
     QHeaderView* qheader;
     ui->tableView->horizontalHeader()->setResizeMode(qheader->ResizeToContents);
 
@@ -92,5 +95,23 @@ void ShowDatabase::on_btn_clearTable_clicked()
         qry.exec("DELETE FROM Measurement");
     if(table == "AutoConfig")
         qry.exec("DELETE FROM AutoConfig");
+    if(table == "System")
+        qry.exec("DELETE FROM System");
 
+}
+
+void ShowDatabase::on_System_clicked()
+{
+    ui->btn_clearTable->isEnabled()== true;
+    table = "System";
+    QSqlQueryModel* model = new QSqlQueryModel;
+
+    QSqlQuery qry;
+    qry.exec("SELECT * FROM System");
+    qDebug() << "System table read" << qry.lastError();
+
+    model->setQuery(qry);
+    ui->tableView->setModel(model);
+    QHeaderView* qheader;
+    ui->tableView->horizontalHeader()->setResizeMode(qheader->ResizeToContents);
 }
