@@ -35,7 +35,7 @@ void ShowBiolex::init(std::vector<CurrentData *> * ptr, Database* ptr2){
         ui->deviceComboBox->addItem(ptr_currentDataVector->at(i)->getDeviceName());
     }
 
-    for(unsigned int i = 0; i < plants.size(); i++){
+    for(int i = 0; i < plants.size(); i++){
         ui->plantCombo->addItem(plants.at(i));
     }
 

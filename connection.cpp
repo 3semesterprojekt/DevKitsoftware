@@ -16,7 +16,6 @@ void connection::init(Database* ptr){
 }
 
 void connection::getValues(int device){
-    int res = 0;
     int spiDev;
     switch(device){
     case 0:
@@ -60,7 +59,7 @@ void connection::getValues(int device){
     xfer.cs_change = 0;
     xfer.bits_per_word = bits_per_word;
     xfer.delay_usecs = 150; //todo: set correct delay
-    res = ioctl(spiDev, SPI_IOC_MESSAGE(1), &xfer);
+    ioctl(spiDev, SPI_IOC_MESSAGE(1), &xfer);
 
     if((rxbuffer[0] ^ rxbuffer[1] ^ rxbuffer[2]) == rxbuffer[3]){
         humidity = (unsigned int) rxbuffer[0];

@@ -175,9 +175,7 @@ void Database::WriteSensorRow(QString sensorName, int measurement, int id) // do
     QSqlQuery qry;
     QString table = "Sensor";
 
-    int Id;
-
-    qDebug() << "Sensor id : " << Id;
+    qDebug() << "Sensor id : " << id;
 
     QDateTime t = QDateTime::currentDateTime();
     QString time = t.toString();

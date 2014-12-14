@@ -14,8 +14,13 @@ class control: public QObject
 public:
     control();
     void init(logFile*,CurrentData*, Database*);
-    void checkValues(int newDevice);
     void dispenseWater(int device, int amount);
+
+    void updateSystemValues(int device);
+    void manualHumidityControl(int device);
+    void autoHumidityControl(int device);
+    void autoTempControl(int device);
+
 private:
     logFile* ptr_logFile;
     CurrentData* ptr_currentData;
@@ -26,7 +31,7 @@ private:
     int device;
     int numberOfDevices;
 private slots:
-    void update(int);
+    void manualTempControl(int device);
 };
 
 #endif // CONTROL_H

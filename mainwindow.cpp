@@ -76,11 +76,13 @@ void MainWindow::on_showLog_clicked()
 
 void MainWindow::update(){
     for(int i = 0; i < numberOfUnits; i++){
-        ptr_control->checkValues(i);
+        ptr_control->updateSystemValues(i);
+        ptr_control->autoTempControl(i);
+        ptr_control->autoHumidityControl(i);
     }
 }
 
-void MainWindow::changeStatusLabel(){
+void MainWindow::changeStatusLabel(){ //not currently in use
     QString tmp = "";
 
     if(ptr_currentDataVector->at(0)->getAutoTemp() == true){ //temp on auto
