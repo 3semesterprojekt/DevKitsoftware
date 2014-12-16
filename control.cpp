@@ -31,15 +31,18 @@ void control::updateSystemValues(int device){
     ptr_currentData->setCurrentOutTemp(ptr_connection->getOutTemp());
     if(waterQueue.at(device) != 0){
         ptr_connection->giveWater(device);
+        ptr_database->WriteSystemRow(1,device);
     }
 }
 
 void control::manualTempControl(int device){
     if(ptr_currentData->getOverrideHeater()){ //heater is on manual
         ptr_connection->setHeater(device, ptr_currentData->getManualHeaterState()); //set heater to userinput
+        ptr_database->WriteSystemRow(0,device);
     }
     if(ptr_currentData->getOverrideWindow()){ //window is on manual
         ptr_connection->setWindow(device, ptr_currentData);
+        ptr_database->WriteSystemRow(0,device);
     }
     ptr_connection->getValues(device);
 }
@@ -49,6 +52,7 @@ void control::autoHumidityControl(int device){
         if(QDateTime::currentMSecsSinceEpoch() - lastWater >= (2 * 60 *1000)){ //only dispence water every 2 minutes
             waterQueue.at(device)++;
             lastWater = QDateTime::currentMSecsSinceEpoch();
+            ptr_database->WriteSystemRow(1,device);
         }
     }
 }
@@ -58,6 +62,7 @@ void control::autoTempControl(int device){
         if(!ptr_currentData->getOverrideHeater()){ //heater is not on override
             if(ptr_currentData->getCurrentTemp() < (ptr_currentData->getMinTemp())){ //temperature is under minimum
                 ptr_connection->setHeater(device, true);
+                ptr_database->WriteSystemRow(0,device);
             }
             if(ptr_currentData->getCurrentTemp() > (ptr_currentData->getMinTemp() +3)){ //temperatur is 3° over minimum
                 ptr_connection->setHeater(device, false);
@@ -66,9 +71,11 @@ void control::autoTempControl(int device){
         if(!ptr_currentData->getOverrideWindow()){ //window is not on override
             if(ptr_currentData->getCurrentTemp() > ptr_currentData->getMaxTemp()){ //temperature is over maximum
                 ptr_connection->setWindow(device, true);
+                ptr_database->WriteSystemRow(0,device);
             }
-            if(ptr_currentData->getCurrentTemp() < (ptr_currentData->getMaxTemp() +3)){ //temperature is 3° is under maximum
+            if(ptr_currentData->getCurrentTemp() < (ptr_currentData->getMaxTemp() +3)){ //temperature is 3° under maximum
                 ptr_connection->setWindow(device, false);
+                ptr_database->WriteSystemRow(0,device);
             }
         }
     }
