@@ -32,8 +32,8 @@ void connection::getValues(int device){
     }
     //set commands using the tx buffer
     txbuffer[0] = (heater.at(device)?0xAA:0x00);
-    txbuffer[1] = (window.at(device)?0xAA:0x00);
-    txbuffer[2] = (water.at(device)?0xAA:0x00);
+    txbuffer[1] = (window.at(device)?0xBB:0x00);
+    txbuffer[2] = (water.at(device)?0xCC:0x00);
     txbuffer[3] = txbuffer[0] ^ txbuffer[1] ^ txbuffer[2];
 
     qDebug() << "heater: " <<(unsigned int)txbuffer[0];

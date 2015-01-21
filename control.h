@@ -31,7 +31,7 @@ private:
     int device;
     int numberOfDevices;
 private slots:
-    void manualTempControl(int device);
+    void manualTempControl(int device, int type);
 };
 
 #endif // CONTROL_H

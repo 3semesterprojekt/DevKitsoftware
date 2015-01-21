@@ -15,7 +15,7 @@ void control::init(logFile * ptr_log, CurrentData * ptr_data, Database* ptr_db){
     ptr_currentData = ptr_data;
     ptr_connection = new connection;
     ptr_database = ptr_db;
-    connect(ptr_currentData, SIGNAL(manualOverrideChanged(int)), this, SLOT(manualTempControl(int)));
+    connect(ptr_currentData, SIGNAL(manualOverrideChanged(int, int)), this, SLOT(manualTempControl(int, int)));
     ptr_connection->init(ptr_database);
 }
 
@@ -35,36 +35,40 @@ void control::updateSystemValues(int device){
         ptr_database->WriteSystemRow(1,device);
         QString tmp = "";
         if(waterQueue.at(device) == 0){
-            tmp.append("Dispenced 500ml of water");
+            tmp.append("Dispenced 100ml of water");
         }
         else{
-            tmp.append("Dispenced 500ml of water with ");
-            tmp.append(QString::number(waterQueue.at(device)*500));
+            tmp.append("Dispenced 100ml of water with ");
+            tmp.append(QString::number(waterQueue.at(device)*100));
             tmp.append("ml stil to go");
         }
         ptr_logFile->setLogEvent(tmp);
     }
 }
 
-void control::manualTempControl(int device){
+void control::manualTempControl(int device, int type){
     if(ptr_currentData->getOverrideHeater()){ //heater is on manual
         ptr_connection->setHeater(device, ptr_currentData->getManualHeaterState()); //set heater to userinput
         ptr_database->WriteSystemRow(0,device);
-        if(ptr_currentData->getManualHeaterState()){
-            ptr_logFile->setLogEvent("Heater has been activated");
-        }
-        else{
-            ptr_logFile->setLogEvent("Heater has been deactivated");
+        if(type == 1){
+            if(ptr_currentData->getManualHeaterState()){
+                ptr_logFile->setLogEvent("Heater has been activated");
+            }
+            else{
+                ptr_logFile->setLogEvent("Heater has been deactivated");
+            }
         }
     }
     if(ptr_currentData->getOverrideWindow()){ //window is on manual
         ptr_connection->setWindow(device, ptr_currentData->getManualWindowState());
         ptr_database->WriteSystemRow(0,device);
-        if(ptr_currentData->getManualWindowState()){
-            ptr_logFile->setLogEvent("Window has been opened");
-        }
-        else{
-            ptr_logFile->setLogEvent("Window has been closed");
+        if(type == 0){
+            if(ptr_currentData->getManualWindowState()){
+                ptr_logFile->setLogEvent("Window has been opened");
+            }
+            else{
+                ptr_logFile->setLogEvent("Window has been closed");
+            }
         }
     }
     ptr_connection->getValues(device);
@@ -85,26 +89,34 @@ void control::autoHumidityControl(int device){
 void control::autoTempControl(int device){
     if(ptr_currentData->getAutoTemp()){ //automatic temp control is on
         if(!ptr_currentData->getOverrideHeater()){ //heater is not on override
-            if(ptr_currentData->getCurrentTemp() < (ptr_currentData->getMinTemp())){ //temperature is under minimum
-                ptr_connection->setHeater(device, true);
-                ptr_logFile->setLogEvent("Heater has been activated");
-                ptr_database->WriteSystemRow(0,device);
+            if((ptr_currentData->getCurrentTemp() < (ptr_currentData->getMinTemp()))){ //temperature is under minimum
+                if(ptr_currentData->getCurrentHeaterState() == false){ //heater is off
+                    ptr_connection->setHeater(device, true);
+                    ptr_logFile->setLogEvent("Heater has been activated");
+                    ptr_database->WriteSystemRow(0,device);
+                }
             }
-            if(ptr_currentData->getCurrentTemp() > (ptr_currentData->getMinTemp() +3)){ //temperatur is 3° over minimum
-                ptr_connection->setHeater(device, false);
-                ptr_logFile->setLogEvent("Heater has been deactivated");
+            if(ptr_currentData->getCurrentTemp() > ptr_currentData->getMinTemp()){ //temperatur is over minimum
+                if(ptr_currentData->getCurrentHeaterState() == true){ //heater is on
+                    ptr_connection->setHeater(device, false);
+                    ptr_logFile->setLogEvent("Heater has been deactivated");
+                }
             }
         }
         if(!ptr_currentData->getOverrideWindow()){ //window is not on override
             if(ptr_currentData->getCurrentTemp() > ptr_currentData->getMaxTemp()){ //temperature is over maximum
-                ptr_connection->setWindow(device, true);
-                ptr_logFile->setLogEvent("window has been opened");
-                ptr_database->WriteSystemRow(0,device);
+                if(ptr_currentData->getCurrentWindowState() == false){ //window is closed
+                    ptr_connection->setWindow(device, true);
+                    ptr_logFile->setLogEvent("window has been opened");
+                    ptr_database->WriteSystemRow(0,device);
+                }
             }
-            if(ptr_currentData->getCurrentTemp() < (ptr_currentData->getMaxTemp() +3)){ //temperature is 3° under maximum
-                ptr_connection->setWindow(device, false);
-                ptr_logFile->setLogEvent("window has been closed");
-                ptr_database->WriteSystemRow(0,device);
+            if(ptr_currentData->getCurrentTemp() < ptr_currentData->getMaxTemp()){ //temperature is under maximum
+                if(ptr_currentData->getCurrentWindowState() == true){ // window is open
+                    ptr_connection->setWindow(device, false);
+                    ptr_logFile->setLogEvent("window has been closed");
+                    ptr_database->WriteSystemRow(0,device);
+                }
             }
         }
     }

@@ -111,7 +111,7 @@ bool CurrentData::getManualWindowState(){
 
 void CurrentData::setManualWindowState(bool tmp){
     manualWindowState = tmp;
-    emit manualOverrideChanged(deviceID);
+    emit manualOverrideChanged(deviceID, 0);
 }
 
 bool CurrentData::getManualHeaterState(){
@@ -120,7 +120,7 @@ bool CurrentData::getManualHeaterState(){
 
 void CurrentData::setManualHeaterState(bool tmp){
     manualHeaterState = tmp;
-    emit manualOverrideChanged(deviceID);
+    emit manualOverrideChanged(deviceID, 1);
 }
 
 bool CurrentData::getAutoTemp(){

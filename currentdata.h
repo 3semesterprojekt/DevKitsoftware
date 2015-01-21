@@ -63,7 +63,7 @@ private:
 
 signals:
     void currentDataChanged(void);
-    void manualOverrideChanged(int);
+    void manualOverrideChanged(int, int);
     void statusChanged(void);
 };
 

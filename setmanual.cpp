@@ -93,7 +93,7 @@ void SetManual::on_humidityButton_clicked()
 void SetManual::on_humiditySlider_valueChanged(int value)
 {
     QString s = "Add ";
-    s.append(QString::number(value));
+    s.append(QString::number(100*value));
     s.append("ml of water");
     ui->humidityButton->setText(s);
 }

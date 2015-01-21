@@ -38,10 +38,10 @@
   <widget class="QPushButton" name="humidityButton">
    <property name="geometry">
     <rect>
-     <x>45</x>
+     <x>35</x>
      <y>80</y>
-     <width>130</width>
-     <height>130</height>
+     <width>140</width>
+     <height>140</height>
     </rect>
    </property>
    <property name="font">
@@ -60,10 +60,10 @@
   <widget class="QPushButton" name="windowButton">
    <property name="geometry">
     <rect>
-     <x>185</x>
+     <x>180</x>
      <y>80</y>
-     <width>130</width>
-     <height>130</height>
+     <width>140</width>
+     <height>140</height>
     </rect>
    </property>
    <property name="font">
@@ -84,7 +84,7 @@
   <widget class="QSlider" name="humiditySlider">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>15</x>
      <y>70</y>
      <width>16</width>
      <height>160</height>
@@ -106,10 +106,10 @@
     <number>10</number>
    </property>
    <property name="singleStep">
-    <number>50</number>
+    <number>1</number>
    </property>
    <property name="pageStep">
-    <number>500</number>
+    <number>1</number>
    </property>
    <property name="orientation">
     <enum>Qt::Vertical</enum>
@@ -120,8 +120,8 @@
     <rect>
      <x>325</x>
      <y>80</y>
-     <width>130</width>
-     <height>130</height>
+     <width>140</width>
+     <height>140</height>
     </rect>
    </property>
    <property name="font">

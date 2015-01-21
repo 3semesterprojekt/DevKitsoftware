@@ -194,6 +194,7 @@ void ShowBiolex::on_plantCombo_currentIndexChanged(int index)
     case 1:
     {
         status = true;
+        ui->recbutton->setText("Recommendations");
         plantSwitch = 2;
         QString cucumberText;
         cucumberText = "Cucumber (Cucumis sativus) is a widely cultivated plant in the gourd family Cucurbitaceae. It is a creeping vine that bears cylindrical fruits that are used as culinary vegetables. There are three main varieties of cucumber: slicing, pickling, and burpless. Within these varieties, several different cultivars have emerged. The cucumber is originally from Southern Asia, but now grows on most continents. Many different varieties are traded on the global market.\n Source: Wikipedia";
@@ -203,6 +204,7 @@ void ShowBiolex::on_plantCombo_currentIndexChanged(int index)
     case 2:
     {
         status = true;
+        ui->recbutton->setText("Recommendations");
         plantSwitch = 3;
         QString grape;
         grape = "A grape is a fruiting berry of the deciduous woody vines of the botanical genus Vitis. Grapes can be eaten raw or they can be used for making wine, jam, juice, jelly, grape seed extract, raisins, vinegar, and grape seed oil. Grapes are a non-climacteric type of fruit, generally occurring in clusters.\n Source: Wikipedia";
@@ -213,6 +215,7 @@ void ShowBiolex::on_plantCombo_currentIndexChanged(int index)
     case 3:
     {
         status = true;
+        ui->recbutton->setText("Recommendations");
         plantSwitch = 4;
         QString basil;
         basil = "Basil, Thai basil, or sweet basil, is a common name for the culinary herb Ocimum basilicum of the family Lamiaceae (mints), sometimes known as Saint Joseph's Wort in some English-speaking countries. Basil is native to India, China, Southeast Asia, and New Guinea. It was originally domesticated in India, having been cultivated there for more than 5,000 years, but was thoroughly familiar to Theophrastus and Dioscorides. It is a half-hardy annual plant, best known as a culinary herb prominently featured in Italian cuisine, and also plays a major role in Southeast Asian cuisines of Indonesia, Thailand, Vietnam, Cambodia, Laos, and the cuisine of Taiwan. Depending on the species and cultivar, the leaves may taste somewhat like anise, with a strong, pungent, often sweet smell.\n Source: Wikipedia";
@@ -223,6 +226,7 @@ void ShowBiolex::on_plantCombo_currentIndexChanged(int index)
     case 4:
     {
         status = true;
+        ui->recbutton->setText("Recommendations");
         plantSwitch = 5;
         QString strawBerry;
         strawBerry = "The garden strawberry (or simply strawberry (Fragaria × ananassa) is a widely grown hybrid species of the genus Fragaria (collectively known as the strawberries). It is cultivated worldwide for its fruit. The fruit (which is not a botanical berry, but an aggregate accessory fruit) is widely appreciated for its characteristic aroma, bright red color, juicy texture, and sweetness. It is consumed in large quantities, either fresh or in such prepared foods as preserves, fruit juice, pies, ice creams, milkshakes, and chocolates. Artificial strawberry flavoring is also widely used in many products like hand sanitizers, lip gloss, perfume, and many others.\n Source: Wikipedia";
